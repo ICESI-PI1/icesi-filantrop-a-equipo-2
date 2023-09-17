@@ -1,0 +1,155 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8048238A-2A87-DC7F-5B2B-5EEC29E7EC4C" name="Beca">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:06:50 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="sponsor_NIT" id="4A57BDA5-632B-07A5-A324-33D00A4BA557">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:28:25 UTC</createdTime>
+<generatorID>3AD2B127-6F01-0EE9-21E0-9DB0C9EFE9BC</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<referedAttribute>87D40569-4828-A2F8-F466-8FDF1C492DC3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>12 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="program_id" id="0958C4F8-39E8-9D0A-2E85-A296CB20A310">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:28:25 UTC</createdTime>
+<generatorID>3AD2B127-6F01-0EE9-21E0-9DB0C9EFE9BC</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<referedAttribute>9CC588D7-21B8-FD7A-5485-5EFBEA756BEA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id" id="BCD7A968-C13A-ED2F-BA44-BE21D0B1246B">
+<createdBy>User</createdBy>
+<createdTime>2023-09-11 00:04:21 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<ownDataTypeParameters>,0,5</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="297F83AC-6913-7682-829F-3AE3DBB77CF4">
+<createdBy>User</createdBy>
+<createdTime>2023-09-10 23:34:41 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="type" id="E5AD93ED-BD0E-A114-2463-C1FED0084D34">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:29:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Debe ser una de:
+ - Rescate
+ - Sostenimiento
+ - Transporte
+ - Estudio]]></commentInRDBMS>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="quote" id="6C90AE8E-5585-D9A4-25A7-36CA1C00C2D0">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:31:05 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>9</dataTypeScale>
+<ownDataTypeParameters>,0,9</ownDataTypeParameters>
+</Attribute>
+<Attribute name="duration" id="EDB3515C-3D4B-4DA0-32C8-495DD2AC70B6">
+<createdBy>User</createdBy>
+<createdTime>2023-09-11 00:03:37 UTC</createdTime>
+<commentInRDBMS><![CDATA[Cantidad de semestres que durará.]]></commentInRDBMS>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,0,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="minimum_average" id="2E527DF2-7411-E3A5-D0BD-2595C6E40B1C">
+<createdBy>User</createdBy>
+<createdTime>2023-09-11 00:04:54 UTC</createdTime>
+<commentInRDBMS><![CDATA[Promedio mínimo necesario para mantener la beca.]]></commentInRDBMS>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<ownDataTypeParameters>,2,1</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="69AE0952-B4DA-4615-5E7F-A5621A2A3A25" name="Beca PK">
+<createdBy>User</createdBy>
+<createdTime>2023-09-10 23:34:58 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>4A57BDA5-632B-07A5-A324-33D00A4BA557</attributeRef>
+<attributeRef>0958C4F8-39E8-9D0A-2E85-A296CB20A310</attributeRef>
+<attributeRef>297F83AC-6913-7682-829F-3AE3DBB77CF4</attributeRef>
+<attributeRef>BCD7A968-C13A-ED2F-BA44-BE21D0B1246B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

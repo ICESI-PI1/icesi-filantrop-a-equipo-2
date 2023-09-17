@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_5" directorySegmentName="seg_0" id="12365F91-E1F7-3CD0-9201-EEF86046E636">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:23:58 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>6A32A67B-53C5-822A-0280-E8867D15FB2B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>92A0AED0-BDD6-48D0-A55C-11B0EE8B3264</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
