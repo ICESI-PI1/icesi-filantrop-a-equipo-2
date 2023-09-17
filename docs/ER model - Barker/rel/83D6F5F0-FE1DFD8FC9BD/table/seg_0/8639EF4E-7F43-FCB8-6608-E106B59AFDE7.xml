@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8639EF4E-7F43-FCB8-6608-E106B59AFDE7" name="Alerta">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>25D5526D-4E6F-0846-EBF4-5ECB91A8863D</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="775A699F-DA07-42ED-D246-1C88E84F1F71">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>3F29A72C-223E-F2D9-A58B-873564972EC1</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<ownDataTypeParameters>,0,5</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="D6A0760C-AF4F-06A1-8E5B-D9F33C4626B3">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>0C9F93C4-7C60-3E29-C099-98E5449D4AC5</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="3176FE68-C9ED-8C3C-7421-29065A9E6C8E">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>6CF293FD-A8BC-E02E-9709-2116E7232C79</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 CHAR</dataTypeSize>
+<ownDataTypeParameters>1000 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="type" id="FB715E8C-D58C-4C3A-C528-20845FF7FAE5">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<commentInRDBMS><![CDATA[Una de las siguientes:
+- Actualización de informes
+- Actualización de datos 
+- Seguimiento de corte de parciales
+- Cancelación de Materia]]></commentInRDBMS>
+<generatorID>59EAC8BB-8C0A-AC54-7476-627720FF03F8</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>33</dataTypeSize>
+<ownDataTypeParameters>33,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="date" id="AB1ED87A-45BB-E571-8428-1F7A15B6F380">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>7E960259-3D40-F80F-CFEE-8EBA93D0A9E3</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Estudiante_student_code" id="FE4153F1-5D61-4B71-CF9A-E275EE11154A">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>8F637518-C85F-5DA5-9802-F5E9FE1574BA</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="30D13511-9FF0-8C89-C25E-8F0E13047DA5" referredColumn="659AB59E-74E7-E6A3-569E-394DDE2EC8DF"/>
+</associations>
+</Column>
+<Column name="Usuario_id" id="35446357-E819-DCFF-34C5-1F099B655385">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>6FC8C105-DEAC-08C2-0EE3-6147517D9089</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AFDB4972-F29A-D751-813E-E31D1A7B6851" referredColumn="7C5A20A0-277F-B575-EDA9-5A6137CB80D1"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EE1F758B-1491-65B0-90F9-88551F15D713" name="Alerta_PK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>C30FB476-F834-80CB-C1EF-A91874513064</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="775A699F-DA07-42ED-D246-1C88E84F1F71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9A6A9756-2410-10A8-26B8-20C0774EAB55" name="Alerta_Estudiante_FK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>9BDAA499-511D-E643-C6D2-218368453E05</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FE4153F1-5D61-4B71-CF9A-E275EE11154A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F99CE18F-7AA3-2CBC-04E9-6429F58CAD7C" name="Alerta_Usuario_FK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>964FA438-EED9-703C-D42E-18FFABB5F6AA</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="35446357-E819-DCFF-34C5-1F099B655385"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

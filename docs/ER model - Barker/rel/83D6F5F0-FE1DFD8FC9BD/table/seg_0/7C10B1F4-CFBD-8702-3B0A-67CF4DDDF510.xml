@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7C10B1F4-CFBD-8702-3B0A-67CF4DDDF510" name="Relation_5">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Informe_id" id="665B2272-5B2C-C5BD-E8C9-DF637CFAE0EC">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="46AA47F3-B572-9575-229F-D6FC6B15E0BA" referredColumn="2AAD0656-E4BB-D4CB-B8E7-7784019FC70D"/>
+</associations>
+</Column>
+<Column name="Donante_NIT" id="458FFFD9-6F17-95B4-8BA0-DF81DBBD6E0C">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>12 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EF10D171-26CF-DFB8-011E-8B570F19F8E0" referredColumn="5C8BB2FA-B9DE-3C3E-7955-F00343A299B9"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DFC8C222-A24D-305F-4A63-030FCD695D60" name="Relation_5_PK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="665B2272-5B2C-C5BD-E8C9-DF637CFAE0EC"/>
+<colUsage columnID="458FFFD9-6F17-95B4-8BA0-DF81DBBD6E0C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="81657DF2-80D1-C793-A127-5F90F2EEB276" name="Relation_5_Informe_FK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>12365F91-E1F7-3CD0-9201-EEF86046E636</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="665B2272-5B2C-C5BD-E8C9-DF637CFAE0EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="43590882-2A73-FC17-5E01-72F4347D5457" name="Relation_5_Donante_FK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>12365F91-E1F7-3CD0-9201-EEF86046E636</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="458FFFD9-6F17-95B4-8BA0-DF81DBBD6E0C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

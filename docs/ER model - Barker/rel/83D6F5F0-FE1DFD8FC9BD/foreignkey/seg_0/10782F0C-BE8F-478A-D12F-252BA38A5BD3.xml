@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="10782F0C-BE8F-478A-D12F-252BA38A5BD3" containerWithKeyObject="A6247710-18A4-7DBA-0F4B-945B289F6FB0" localFKIndex="A6BB903B-B484-DE14-6004-15C313D2A060" name="Programa_Beca_Donante_FK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>7BD59D35-467A-813A-6517-7CCBF19789C1</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<referredTableLongName>Donante</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>5FC7F9AC-C092-0261-DFEA-B0D56E64E595</referredTableID>
+<keyObject>C9373BDD-1D08-A2B2-150A-15BC6D41DC0A</keyObject>
+<referredKeyID>C9373BDD-1D08-A2B2-150A-15BC6D41DC0A</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>NIT</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
