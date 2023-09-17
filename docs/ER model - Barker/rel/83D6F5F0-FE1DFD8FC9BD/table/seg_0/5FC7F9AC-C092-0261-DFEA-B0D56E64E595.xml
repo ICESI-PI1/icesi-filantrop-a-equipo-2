@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5FC7F9AC-C092-0261-DFEA-B0D56E64E595" name="Donante">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>92A0AED0-BDD6-48D0-A55C-11B0EE8B3264</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NIT" id="5C8BB2FA-B9DE-3C3E-7955-F00343A299B9">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>E1C83F20-7353-C7BC-F734-9C0976D4C68C</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>12 CHAR</dataTypeSize>
+<ownDataTypeParameters>12 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="type" id="A66468E3-18A7-1022-14E3-3ED165939CB1">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<commentInRDBMS><![CDATA[Debe ser una de las siguientes:
+ - Natural
+  - Legal]]></commentInRDBMS>
+<generatorID>2BCB98DC-9E72-38EF-9087-C01C0E237C33</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>7 CHAR</dataTypeSize>
+<ownDataTypeParameters>7 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="70E49C00-234B-10A2-4A5C-E566D2AF82CA">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>DA5BDCFA-72F2-F74B-36AB-70D6B3C95651</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 CHAR</dataTypeSize>
+<ownDataTypeParameters>1000 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="previous_colaborations" id="E4A12B35-E253-F999-1775-15823EEEF550">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>2C875E63-2D20-FB44-2A9E-1C7BCDD0D553</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 CHAR</dataTypeSize>
+<ownDataTypeParameters>1000 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="92243E7B-C771-FDA5-975C-E79F35D36804">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>853AC66E-906A-7538-FDA3-B813B1BCD597</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C9373BDD-1D08-A2B2-150A-15BC6D41DC0A" name="Donante_PK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>118F94BE-7C32-3536-6CEC-73CF530B244F</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5C8BB2FA-B9DE-3C3E-7955-F00343A299B9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

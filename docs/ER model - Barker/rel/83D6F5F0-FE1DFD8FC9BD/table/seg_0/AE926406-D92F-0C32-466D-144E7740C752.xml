@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AE926406-D92F-0C32-466D-144E7740C752" name="Usuario">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>CED1444C-1D79-B1A5-4E0C-C12139918BC2</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="7C5A20A0-277F-B575-EDA9-5A6137CB80D1">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>1C182E91-D5BA-CCA8-5B79-14E21708FFF5</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<ownDataTypeParameters>,0,4</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="username" id="60EA1816-B690-3E53-0589-AC6140B34199">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>70520E6F-2F29-AA6F-604B-D53846583468</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="rol" id="65777A19-CB45-7D2D-231E-BFD7D04E1DE7">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<commentInRDBMS><![CDATA[Uno de los siguientes:
+- Oficina de Filantropía
+- Oficina de Contabilidad
+- Director de Programa
+- Bienestar Universitario
+- Registro Académico
+- Apoyo Financiero]]></commentInRDBMS>
+<generatorID>F918F8E0-4F5E-0510-F48F-5E0F69768C53</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="password" id="63F6760B-203A-88B9-F046-E0A382412E9C">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<commentInRDBMS><![CDATA[Debe encriptarse
+]]></commentInRDBMS>
+<generatorID>5233440C-0909-0192-B0C6-3B831FDF7529</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25 CHAR</dataTypeSize>
+<ownDataTypeParameters>25 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="261A200C-ECD6-7763-6D7F-D13D9A173E0B" name="Usuario_PK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>AA82B474-E0E3-AB4C-25C3-020C9DB1B63C</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7C5A20A0-277F-B575-EDA9-5A6137CB80D1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

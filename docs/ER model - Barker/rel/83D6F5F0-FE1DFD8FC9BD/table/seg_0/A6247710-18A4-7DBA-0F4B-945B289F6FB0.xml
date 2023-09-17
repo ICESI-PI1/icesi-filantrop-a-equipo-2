@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A6247710-18A4-7DBA-0F4B-945B289F6FB0" name="Programa_Beca">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>1FE94728-9887-6754-0DD6-B0C151B853AB</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Donante_NIT" id="0F8020D9-55E0-F081-5DD7-21AA86440249">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>87D40569-4828-A2F8-F466-8FDF1C492DC3</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>12 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="10782F0C-BE8F-478A-D12F-252BA38A5BD3" referredColumn="5C8BB2FA-B9DE-3C3E-7955-F00343A299B9"/>
+</associations>
+</Column>
+<Column name="Attribute_3" id="C5AC3DD6-4CC5-8BAD-6352-4BEC2047CBEA">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>BFD5F373-1B2E-8F7F-7547-BE973D9C5B03</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id" id="1EE72C26-3E1A-E5A6-FE57-5020BF8E48DA">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>9CC588D7-21B8-FD7A-5485-5EFBEA756BEA</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="quote" id="1701D474-5414-D742-A46C-FCA1293FAA4C">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>C4E9EA02-6597-C853-D24C-ED1E70B973CF</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>9</dataTypeScale>
+<ownDataTypeParameters>,0,9</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="435C5750-4ABC-50AF-874F-CAD307EFD8D9">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>450EFE61-93D2-1053-C89E-246DFF59FFDB</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5608785D-7A40-D673-4FB8-A121F54DC69B" name="Programa_Beca_PK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>B8B9291E-BA97-617D-E84C-26E3EAC2AF6C</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0F8020D9-55E0-F081-5DD7-21AA86440249"/>
+<colUsage columnID="1EE72C26-3E1A-E5A6-FE57-5020BF8E48DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A6BB903B-B484-DE14-6004-15C313D2A060" name="Programa_Beca_Donante_FK">
+<createdBy>usuario</createdBy>
+<createdTime>2023-09-11 22:41:11 UTC</createdTime>
+<generatorID>7BD59D35-467A-813A-6517-7CCBF19789C1</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0F8020D9-55E0-F081-5DD7-21AA86440249"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

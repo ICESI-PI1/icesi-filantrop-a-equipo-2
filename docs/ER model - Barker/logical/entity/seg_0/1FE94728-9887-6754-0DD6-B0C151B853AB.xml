@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1FE94728-9887-6754-0DD6-B0C151B853AB" name="Programa_Beca">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 04:06:54 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="sponsor_NIT" id="87D40569-4828-A2F8-F466-8FDF1C492DC3">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:16:54 UTC</createdTime>
+<generatorID>7BD59D35-467A-813A-6517-7CCBF19789C1</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<referedAttribute>E1C83F20-7353-C7BC-F734-9C0976D4C68C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>12 CHAR</dataTypeSize>
+<ownDataTypeParameters>12 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id" id="9CC588D7-21B8-FD7A-5485-5EFBEA756BEA">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:27:57 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="quote" id="C4E9EA02-6597-C853-D24C-ED1E70B973CF">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:32:28 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>9</dataTypeScale>
+<ownDataTypeParameters>,0,9</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="450EFE61-93D2-1053-C89E-246DFF59FFDB">
+<createdBy>User</createdBy>
+<createdTime>2023-09-10 23:34:24 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B8B9291E-BA97-617D-E84C-26E3EAC2AF6C" name="Programa_Beca PK">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:15:39 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>87D40569-4828-A2F8-F466-8FDF1C492DC3</attributeRef>
+<attributeRef>9CC588D7-21B8-FD7A-5485-5EFBEA756BEA</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,120 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6A32A67B-53C5-822A-0280-E8867D15FB2B" name="Informe">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:12:21 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="EEAB3035-D528-F148-556D-4EA4F9315954">
+<createdBy>User</createdBy>
+<createdTime>2023-09-10 23:48:30 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<ownDataTypeParameters>,0,5</ownDataTypeParameters>
+</Attribute>
+<Attribute name="type" id="F9AECEE1-D448-DB7D-8EC1-3C1B7624E594">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:12:27 UTC</createdTime>
+<commentInRDBMS><![CDATA[Uno de los siguientes:
+- Seguimiento del programa de becas
+- Seguimiento de actividades
+- Seguimiento de consultas en el CREA]]></commentInRDBMS>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>35 CHAR</dataTypeSize>
+<ownDataTypeParameters>35 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="description" id="256AA2D5-AEE1-4AD3-5F5B-AA9352035533">
+<createdBy>User</createdBy>
+<createdTime>2023-09-04 07:12:49 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100000 CHAR</dataTypeSize>
+<ownDataTypeParameters>100000 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date" id="4BD0F26D-9B02-2F9D-CF51-E403F65110C6">
+<createdBy>User</createdBy>
+<createdTime>2023-09-10 23:48:03 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="student_code" id="A5B63637-1155-868B-08D9-CE95D65FCCD1">
+<createdBy>User</createdBy>
+<createdTime>2023-09-11 00:06:04 UTC</createdTime>
+<generatorID>31970A04-EB3B-B6AF-3DE2-D6747D9BDB2E</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<referedAttribute>0B4D9EB9-7131-A64D-82DB-7486D9174278</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="B979965A-5847-21CC-4BCD-0C463ACAE40A">
+<createdBy>User</createdBy>
+<createdTime>2023-09-11 00:08:24 UTC</createdTime>
+<generatorID>A0F50D70-8925-B4CC-1CED-40CB3F278085</generatorID>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<referedAttribute>1C182E91-D5BA-CCA8-5B79-14E21708FFF5</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="84D70BBB-312B-EAF2-62D1-5DFF36058C1F" name="Informe PK">
+<createdBy>User</createdBy>
+<createdTime>2023-09-10 23:48:12 UTC</createdTime>
+<ownerDesignName>ER model - Barker</ownerDesignName>
+<engineerTo>
+<item key="83D6F5F0-9CEA-1FD9-1B92-FE1DFD8FC9BD" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EEAB3035-D528-F148-556D-4EA4F9315954</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
