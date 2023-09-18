@@ -29,24 +29,29 @@ def signUp(request):
                 return HttpResponse('Usuario ya existe')
 
             return HttpResponse('Contrasenas incorrectas')
-        
-def logIn(request): 
-     if request.method == 'GET' :
-          return render(request, 'login.html', {
-               'form': AuthenticationForm
-          })
-     else:
-          user = authenticate(request, username = request.POST['username'], password = request.POST['password'])
-          if user is None:
-               return HttpResponse('No existe el usuario')
-          else:
+
+
+def logIn(request):
+    if request.method == 'GET':
+        return render(request, 'login.html', {
+            'form': AuthenticationForm
+        })
+    else:
+        user = authenticate(
+            request, username=request.POST['username'], password=request.POST['password'])
+        if user is None:
+            return HttpResponse('No existe el usuario')
+        else:
             login(request, user)
-            return redirect( "/postlog")
-        
-@login_required       
+            return redirect("/postlog")
+
+
+@login_required
 def postLog(request):
-    return render(request,'logout.html')
+    return render(request, 'logout.html')
+
+
 @login_required
 def singout(request):
-    logout(request) 
+    logout(request)
     return redirect(home)
