@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.db import IntegrityError
 
 
@@ -28,3 +28,16 @@ def signUp(request):
                 return HttpResponse('Usuario ya existe')
 
             return HttpResponse('Contrasenas incorrectas')
+        
+def logIn(request): 
+     if request.method == 'GET' :
+          return render(request, 'login.html', {
+               'form': AuthenticationForm
+          })
+     else:
+          user = authenticate(request, username = request.POST['username'], password = request.POST['password'])
+          if user is None:
+               return HttpResponse('No existe el usuario')
+          else:
+            login(request, user)
+            return redirect( "/postlog")
