@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -42,9 +43,10 @@ def logIn(request):
             login(request, user)
             return redirect( "/postlog")
         
+@login_required       
 def postLog(request):
     return render(request,'logout.html')
-
+@login_required
 def singout(request):
     logout(request) 
     return redirect(home)
