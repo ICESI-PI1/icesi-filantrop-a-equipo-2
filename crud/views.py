@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.db import IntegrityError
 
 
@@ -41,3 +41,10 @@ def logIn(request):
           else:
             login(request, user)
             return redirect( "/postlog")
+        
+def postLog(request):
+    return render(request,'logout.html')
+
+def singout(request):
+    logout(request) 
+    return redirect(home)
