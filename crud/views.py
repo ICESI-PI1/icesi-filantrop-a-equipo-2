@@ -55,3 +55,8 @@ def postLog(request):
 def singout(request):
     logout(request)
     return redirect(home)
+
+
+@login_required
+def upload_non_academic_report(request):
+    return render(request, "upload_non_academic_report.html")
