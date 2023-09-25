@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Solicitar información </title>
+</head>
+<body>
+    <h1> Solicitud de actualización de información </h1>
+
+    <form method="post" action="/askInfoUpdate/">
+        {% csrf_token %}
+
+        <b> Oficina: </b> <select name="offices">
+            
+            <option value=""> Selecciona una Oficina </option>
+            {% for office in offices %}
+                <option value="{{ office.id }}">{{ office.name }}</option>
+            {% endfor %}
+        
+        </select>
+
+        <br><br>
+
+        <button type="submit"> Solicitar </button>
+    </form>
+</body>
+</html>
+
+
+{% endblock content %}
