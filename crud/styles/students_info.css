@@ -1,0 +1,98 @@
+body{
+    font-family: Inter;
+    margin: 0;
+    color: white;
+}
+
+header{
+    display: flex;
+    height: 83px;
+    justify-content: space-between;
+    background-color: #25579C;
+    align-items: center;
+    padding: 5px;
+}
+
+.navigation{
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #25579C;
+    padding: 17px;
+}
+
+.nav{
+    color: white;
+    font-family: Inter;
+
+}
+
+.logo{
+    display: flex;
+    height: 110px;
+}
+
+.menu{
+    list-style: none;
+    padding: 0;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: white;
+    padding: 40px;
+    display: block;
+}
+
+.menu li{
+    display: inline-block;
+    text-align: center;
+}
+
+.menu li a:hover{
+    background-color: rgba(193, 193, 193, 0.30);
+}
+
+
+
+.icono_bell{
+    width: 50px;
+    height: 51px;
+    top: 30px;
+    left: 1198px;
+    flex-shrink: 0;
+
+}
+
+.icono_user{
+    width: 70px;
+    height: 68.082px;
+    flex-shrink: 0;
+    top: 21px;
+    left: 1278px;
+
+}
+
+.botones {
+    border-radius: 12px; /* Ajusta este valor para cambiar cuánto quieres que se redondeen los bordos */
+    padding: 10px 20px; /* Esto agrega algo de relleno alrededor del texto del botón */
+    border: none; /* Esto elimina el borde predeterminado del botón */
+    background-color: #25579C; /* Esto cambia el color de fondo del botón a azul */
+    color: white; /* Esto cambia el color del texto a blanco */
+    text-align: center; /* Esto centra el texto dentro del botón */
+    text-decoration: none; /* Esto elimina la subrayado del texto */
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer; /* Esto cambia el cursor a un puntero cuando se pasa sobre el botón */
+}
+
+.botones:hover {
+    background: rgba(193, 193, 193, 0.99);
+}
+
+
+
