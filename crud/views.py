@@ -61,6 +61,7 @@ def singout(request):
     logout(request)
     return redirect(home)
 
+
 @login_required
 def ask_info_update(request):
     if request.method == 'POST':
@@ -80,6 +81,7 @@ def ask_info_update(request):
     return render(request, 'ask_update_info.html', {
         'offices' : offices
     })
+
 
 def send_email(receiver_email):
     subject = "Solicitud de actualización de información"
