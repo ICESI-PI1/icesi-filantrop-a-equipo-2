@@ -8,36 +8,66 @@
     <title> Solicitar información </title>
 </head>
 <body>
+  <div class="d-flex justify-content-center">
+    <h1> Solicitud de actualización de información </h1>
+  </div>
 
-    <div class="d-flex justify-content-center">
-        <h1> Solicitud de actualización de información </h1>
-    </div>
+  <div class="mt-5 d-flex justify-content-center vh-100">
+    <form method="post" action="/askInfoUpdate/">
+    {% csrf_token %}
 
-    <div class="mt-5 d-flex justify-content-center vh-100">
-        <form method="post" action="/askInfoUpdate/">
-            {% csrf_token %}
-
-            <p class="text-center fs-5 fw-bold"> Oficina: </p>
-            
-            <select class="form-select" name="offices">
-                
-                <option value=""> Selecciona una Oficina </option>
-                {% for office in offices %}
-                    <option value="{{ office.id }}">{{ office.name }}</option>
-                {% endfor %}
-            
-            </select>
-
-            <br><br>
+      <p class="text-center fs-5 fw-bold"> Oficina: </p>
+      <select class="form-select" name="offices">
+        <option value=""> Selecciona una Oficina </option>
+        
+        {% for office in offices %}
+          <option value="{{ office.id }}">{{ office.name }}</option>
+        {% endfor %}
           
-            <div class="mt-2 d-flex justify-content-center">
-                <button class="btn btn-outline-primary" type="submit"> Solicitar </button>
+      </select>
+
+      <br><br>
+        
+      <div class="mt-2 d-flex justify-content-center">
+        <button class="btn btn-outline-primary" type="submit"> Solicitar </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Tesging -->
+
+  <div class="container my-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <!-- Search box -->
+            <div class="input-group rounded mb-4">
+              <input type="search" id="search-box" class="form-control rounded" placeholder="Search for cars.." aria-label="Search" aria-describedby="search-box">
+              <span class="input-group-text border-0" id="search-box">
+                <i class="fas fa-search"></i>
+              </span>
             </div>
+            <!-- / Search box -->
+  
+            <!-- List -->
+            <ul class="list-group" id="car-list">
 
-        </form>
+            {% for office in offices %}
+              <li class="list-group-item" value="{{ office.id }}">{{ office.name }}</li>
+            {% endfor %}
+              
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-
+  </div>
 </body>
+
+<script src="search.js"></script>
+
 </html>
 
 
