@@ -30,11 +30,11 @@ def ask_info_update(request):
         return redirect(home)
 
     offices = Office.objects.all()
-
-    print(offices)
+    students = Student.objects.all()
 
     return render(request, 'ask_update_info.html', {
-        'offices' : offices
+        'offices' : offices,
+        'students' : students
     })
 
 

@@ -38,7 +38,7 @@
                 <!-- Search box -->
                 <div class="input-group rounded mb-4">
                   
-                  <input type="search" id="search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca la oficina" aria-label="Search" aria-describedby="search-box-icon">
+                  <input type="search" id="search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon">
                   
                   <span class="input-group-text border-0" id="search-box-icon">
                     <i class="fas fa-search"></i>
@@ -48,8 +48,8 @@
                 
                 <!-- List -->
                 <ul class="list-group" id="offices-list">
-                  {% for office in offices %}
-                    <li class="list-group-item" value="{{ office.id }}">{{ office.name }}</li>
+                  {% for student in students %}
+                    <li class="list-group-item" value="{{ student.id }}">{{ student.name }} - {{ student.student_code }}</li>
                   {% endfor %}
                 </ul>
 
