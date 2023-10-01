@@ -7,8 +7,10 @@ from crud.models import Office, Student
 import smtplib
 from email.mime.text import MIMEText
 
+
 def home(request):
     return render(request, 'home.html')
+
 
 """
 Renders the view to make a request, to an office, to update a student's information.
@@ -19,15 +21,21 @@ When the user fills all the fields, this method receives the information and cal
 def ask_info_update(request):
     if request.method == 'POST':
         selected_office_id = request.POST.get('offices')
+        message = request.POST.get('message-area', '')
 
         try:
             selected_office = Office.objects.get(id=selected_office_id)
         except Office.DoesNotExist:
             return HttpResponse('La oficina seleccionada no existe')
 
-        send_email(selected_office.email)
+        try:
+            subject = "Solicitud de actualización de información"
 
-        return redirect(home)
+            send_email(selected_office.email, message, subject)
+        except Exception:
+            return HttpResponse('All bad')
+
+        return render(request, 'ask_update_info_confirmation.html')
 
     offices = Office.objects.all()
     students = Student.objects.all()
@@ -39,12 +47,9 @@ def ask_info_update(request):
 
 
 """
-Given a destinatary, sends an email, form the default mail.
+Given a destinatary, a message, and a subject, sends an email, from the default mail.
 """
-def send_email(receiver_email):
-    subject = "Solicitud de actualización de información"
-    message = "Por favor, actualice la información, amiguito bello."
-
+def send_email(receiver_email, message, subject):
     sender = "pi.seg.estudiantes@gmail.com"
     password = "zhazuuahhicywuyg"
 

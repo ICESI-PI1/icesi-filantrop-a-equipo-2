@@ -8,6 +8,7 @@
     <title> Solicitar información </title>
 
     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'request_info_update_styles.css' %}">
 
 </head>
 <body>
@@ -16,6 +17,7 @@
   </div>
 
   <div class="mt-5 d-flex justify-content-center vh-100">
+    
     <form method="post" action="/askInfoUpdate/">
     {% csrf_token %}
 
@@ -49,7 +51,11 @@
                 <!-- List -->
                 <ul class="list-group" id="offices-list">
                   {% for student in students %}
-                    <li class="list-group-item" value="{{ student.id }}">{{ student.name }} - {{ student.student_code }}</li>
+                    
+                    <li class="list-group-item student-item" data-student-id="{{ student.id }}">
+                        {{ student.name }} - {{ student.student_code }}
+                    </li>
+
                   {% endfor %}
                 </ul>
 
@@ -60,9 +66,17 @@
       </div>
       
       <div class="mt-1 justify-content-center">
-              
         <span class="input-group-text"> Mensaje a enviar </span>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
+        <textarea name="message-area" id="message-area" class="form-control auto-resize-textarea" aria-label="With textarea" style="height: 200px;" oninput="auto_resize(this)">Buenos días/tardes. 
+
+Por medio del presente, solicito la actualización de la información del estudiante {{ selected_student.name }}, con código de estudiante {{ selected_student.student_code }}, desde la Oficina de Filantropía.</textarea>
+
+        <script>
+          function auto_resize(element) {
+            element.style.height = 'auto';
+            element.style.height = (element.scrollHeight) + 'px';
+          }
+        </script>
       
       </div>
 
@@ -77,6 +91,5 @@
 
 </body>
 </html>
-
 
 {% endblock content %}

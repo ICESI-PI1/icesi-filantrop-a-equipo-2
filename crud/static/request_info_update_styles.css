@@ -1,0 +1,11 @@
+/* Hoveron on the results of the searcher */
+.list-group-item:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+  /* Style to make the textarea autoresizable */
+  .auto-resize-textarea {
+    resize: none;
+    overflow-y: hidden;
+  }
