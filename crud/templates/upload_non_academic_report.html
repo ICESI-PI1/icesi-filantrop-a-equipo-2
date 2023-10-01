@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<html>
+<head>
+    {% load static %}
+</head>
 <h1> Subir archivo de reporte de seguimiento de actividades no académicas </h1>
+
+<body>
+    <input type="file" id="fileInput" accept=".xlsx">
+    <p>Archivo seleccionado: <span id="fileName"></span></p>
+
+    <script src="{% static 'non_academic_report_script.js' %}"></script>
+</body>
+</html>
 
 {% endblock content %}
