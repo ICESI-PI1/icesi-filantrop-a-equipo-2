@@ -1,216 +1,159 @@
-.body{
+.body {
+    align-content: center;
+    color: white;
     font-family: "Inter", sans-serif;
     font-size: 20px;
     font-style: normal;
+    justify-content: center;
     line-height: normal;
     margin: 0;
-    color: white;
-    align-content: center;
-    justify-content: center;
 }
 
-.header{
-    display: flex;
-    height: 83px;
-    justify-content: space-between;
-    background-color: #25579C;
-    align-items: center;
-    padding: 5px 0px 0px 0px;
+.container {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, auto);
 }
 
-.logo{
-    display: flex;
-    height: 110px;
-}
+.container .forms{
 
-.menu{
-    list-style: none;
-    padding: 0;
-    width: 90%;
-    max-width: 1000px;
-    margin: auto;
 }
-
-.menu li a{
-    text-decoration: none;
-    color: white;
-    padding: 30px 50px;
-    display: block;
-    height: 100%;
-}
-
-.menu li{
-    display: inline-block;
-    text-align: center;
-}
-
-.menu li a:hover{
-    padding: 30px 50px;
-    background-color: rgba(193, 193, 193, 0.30);
-}
-
-.nav{
-    color: white;
-    font-family: "Inter", sans-serif;
-}
-
-.container_buttons{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 70px 0px 0px 20px;
-}
-
-.container_buttons .register{
-    margin-left: 1340px;
-    margin-bottom: 110px;
-    height: 60px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-
-.search, .infor, .assign, .register{
-    border-radius: 40px;
-    padding: 25px 45px;
-    border: none;
-    background-color: #25579C;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 60px 2px 0px 60px;
-    cursor: pointer;
-}
-
-.navigation{
-    display: inline-block;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #25579C;
-    padding: 17px;
-}
-
-.icons{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.icono_bell{
-    padding: 0px 20px 0px 0px;
-    width: 50px;
-    height: 50.909px;
-    flex-shrink: 0;
-    margin-top: 10px;
-    margin-right: 15px;
-}
-
-.icono_bell:hover{
-    text-decoration: none;
-    color: white;
-    padding: 0px 20px 0px 0px;
-    background-color: rgba(193, 193, 193, 0.30);
-}
-
-.icono_user{
-    padding: 0px 20px 0px 0px;
-    width: 70px;
-    height: 68.02px;
-    flex-shrink: 0;
-    margin-bottom: 8px;
-}
-
-.icono_user:hover{
-    padding: 0px 20px 0px 0px;
-    background-color: rgba(193, 193, 193, 0.30);
-}
-
-.search{
-    margin-left: 70px;
-}
-
-.infor{
-    margin-left: 55px;
-}
-
-.assign{
-    margin-left: 80px;
-}
-
-.container_buttons .register:hover{
-    background: rgba(193, 193, 193, 0.30);
-    color: white;
-}
-
-.container_buttons .search:hover{
-    background: rgba(193, 193, 193, 0.30);
-    color: white;
-}
-
-.container_buttons .infor:hover{
-    background: rgba(193, 193, 193, 0.30);
-    color: white;
-}
-
-.container_buttons .assign:hover{
-    background: rgba(193, 193, 193, 0.30);
-    color: white;
-}
-
 
 
 .container input, .container select {
-    font-family: "Inter", sans-serif;
-    color: #1b1b1b;
-    font-size: 16px;
-    line-height: 1.2;
-    display: block;
-    width: 100%;
-    height: 50px;
     background: #f2f2f2;
-    padding: 0 25px;
     border: none;
     border-radius: 25px;
-    outline: none;
+    color: #1b1b1b;
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    height: 50px;
+    line-height: 1.2;
     margin: 0;
+    outline: none;
+    padding: 0 25px;
+    width: 100%;
+}
+
+.container_buttons {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 70px 0px 0px 20px;
+}
+
+.container_buttons .register {
+    height: 60px;
+    justify-content: center;
+    margin-bottom: 110px;
+    margin-left: 75px;
+    text-align: center;
+}
+
+.container_buttons .register:hover,
+.container_buttons .search:hover,
+.container_buttons .infor:hover,
+.container_buttons .assign:hover {
+    background-color: rgba(193, 193, 193, 0.30);
+}
+
+.header {
+    align-items: center;
+    background-color: #25579C;
+    display: flex;
+    height: 83px;
+    justify-content: space-between;
+}
+
+.icons {
+   display:flex;
+   justify-content:flex-end;
+}
+
+.icono_bell {
+   flex-shrink :0;
+   height :50.909px;
+   margin-right :15px;
+   margin-top :10px;
+   padding :0px 20px 0px 0px;
+   width :50px;
+}
+
+.icono_bell:hover {
+   background-color :rgba(193,193,193,0.30);
+   color :white;
+   padding :0px 20px 0px 0px;
+   text-decoration :none;
+}
+
+.icono_user {
+   flex-shrink :0;
+   height :68.02px;
+   margin-bottom :8px;
+   padding :0px 20px 0px 0px;
+   width :70px;
+}
+
+.icono_user:hover {
+   background-color :rgba(193,193,193,0.30);
+   padding :0px 20px 0px 0px;
 }
 
 .input-box input, .input-box select {
-    position: relative;
-    height: 50px;
-    width: 110%;
-    outline: none;
-    border: 1px solid #d5dbd9;
-    padding: 0 15px;
-    margin-top: 8px;
-    margin-left: 25px;
+   border :1px solid #d5dbd9;
+   height :50px;
+   margin-left :25px;
+   margin-top :8px;
+   outline :none;
+   padding :0 15px;
+   position:relative ;
+   width :110%;
 }
 
 .input-box label {
-    margin-left: 35px;
-    margin-top: 50px;
-    margin-bottom: 40px;
+   margin-bottom :40px ;
+   margin-left :35px ;
+   margin-top :50px ;
 }
 
-.container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-}
-.sidebar-box-typeID{
-    border: 1px solid #ccc;
-    width: 140px;
-    overflow: hidden;
+.logo{
+     display:flex ;
+     height :110px ;
 }
 
-.sidebar-box-typeID select {
-    padding: 5px 8px;
-    width: 130%;
-    border: none;
-    box-shadow: none;
-    background-color: transparent;
-    background-image: none;
-    appearance: none;
+.menu{
+     list-style:none ;
+     margin:auto ;
+     max-width :1000px ;
+     padding :0 ;
+     width :90% ;
+}
+
+.menu li{
+     display:inline-block ;
+     text-align:center ;
+}
+
+.menu li a{
+     color:white ;
+     display:block ;
+     height :100% ;
+     padding :30px 50px ;
+     text-decoration:none ;
+}
+
+.menu li a:hover{
+     background-color :rgba(193,193,193,0.30) ;
+     padding :30px 50px ;
+}
+
+.forms .enviarBtn{
+    height: 60px;
+    justify-content: center;
+    margin-bottom: 110px;
+    margin-left: 75px;
+    text-align: center;
 }

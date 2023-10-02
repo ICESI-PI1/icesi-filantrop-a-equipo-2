@@ -10,7 +10,6 @@
        <header>
               <h1 class ="logo">
                     <img class = "icono_icesi" src = "{% static 'logoIcesi.png'%}" alt="LogoIcesi">
-
                 </h1>
 
                 <ul class = "menu">
@@ -39,16 +38,15 @@
                 <button class = "assign">
                     Asignar donante
                 </button>
-            <a href = "students_confirm.html">
+                <br>
                 <button class = "register">
                     Registrar estudiante
                 </button>
-                </a>
         </div>
 
 
         <div class = "container">
-            <form method= "post" action = "/students_info/">
+            <form method= "post" action = "/students_info/" class = "forms">
                 {% csrf_token %}
                 <div class = "input-box">
                     <label> Nombre completo</label>
@@ -121,7 +119,7 @@
                     <input type="number" name="creditos_cursados" placeholder="Ingrese los créditos cursados">
                 </div>
 
-                <button type="submit" value ="Submit"> Enviar </button>
+                <button type="submit" value ="Submit" class = "enviarBtn"> Enviar </button>
             </form>
         </div>
     </body>
