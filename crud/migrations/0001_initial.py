@@ -12,22 +12,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Estudiante',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre_completo', models.CharField(max_length=100)),
-                ('codigo_identificador', models.CharField(max_length=100)),
-                ('tipo_documento', models.CharField(max_length=50)),
-                ('genero', models.CharField(max_length=50)),
-                ('numero_documento', models.IntegerField()),
-                ('correo_electronico', models.EmailField(max_length=254)),
-                ('correo_institucional', models.EmailField(max_length=254)),
-                ('puntaje_icfes', models.IntegerField()),
-                ('fecha_nacimiento', models.DateField()),
-                ('numero_celular', models.CharField(max_length=15)),
-                ('promedio_acumulado', models.DecimalField(decimal_places=2, max_digits=3)),
-                ('creditos_cursados', models.IntegerField()),
-
             name='Office',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
