@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Student
+from crud.models import Student
 
 
 def home(request):

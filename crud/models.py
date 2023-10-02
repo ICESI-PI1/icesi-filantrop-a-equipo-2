@@ -65,4 +65,6 @@ class Student(models.Model):
                                           blank=False)
 
     def str(self):
-        return self.name + " - " + self.student_code
+        return self.name + \
+               " - " + \
+               self.student_code
