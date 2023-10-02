@@ -69,10 +69,6 @@
     grid-template-rows: repeat(6, auto);
 }
 
-.container .forms{
-
-}
-
 
 .container input, .container select {
     background: #f2f2f2;
