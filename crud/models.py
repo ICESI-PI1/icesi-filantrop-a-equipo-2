@@ -13,7 +13,6 @@ class Office(models.Model):
 
     def __str__(self):
         return self.name
-    
 
 class Student(models.Model):
     student_code = models.CharField(max_length=9,
@@ -32,34 +31,51 @@ class Student(models.Model):
         ('RC', 'RC - Registro Civil'),
     ]
 
+    GENRE = [
+        ('M', 'M - Masculino'),
+        ('F', 'F - Femenino'),
+        ('O', 'O - Otro'),
+    ]
+
+    genre = models.CharField(max_length=1,
+                             choices=GENRE,
+                             null=False,
+                             blank=False)
+
     id_type = models.CharField(max_length=2,
-                                null=False,
-                                blank=False,
-                                choices=ID_OPTIONS)
-    
-    email = models.CharField(max_length=1000,
-                                null=False,
-                                blank=False)
-    
-    institutional_email = models.CharField(max_length=1000,
-                                           null=False,
-                                           blank=False)
-    
+                               null=False,
+                               blank=False,
+                               choices=ID_OPTIONS)
+
+    id_number = models.CharField(max_length=20,
+                                 null=False,
+                                 blank=False)
+
+    email = models.EmailField(max_length=1000,
+                              null=False,
+                              blank=False)
+
+    institutional_email = models.EmailField(max_length=1000,
+                                            null=False,
+                                            blank=False)
+
     icfes_score = models.IntegerField(null=False,
                                       blank=False)
-    
+
     birth_date = models.DateField(null=False,
                                   blank=False)
-    
+
     cellphone_number = models.CharField(max_length=15,
                                         null=False,
                                         blank=False)
-    
+
     accumulated_average = models.DecimalField(max_digits=2,
                                               decimal_places=1,
-                                              null=False)
-    
-    credits_studied = models.IntegerField(null=False)
+                                              null=False,
+                                              blank=False)
+
+    credits_studied = models.IntegerField(null=False,
+                                          blank=False)
 
     def __str__(self):
         return self.name + " - " + self.student_code
