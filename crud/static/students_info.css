@@ -1,4 +1,4 @@
-body{
+.body{
     font-family: "Inter", sans-serif;
     font-size: 20px;
     font-style: normal;
@@ -9,7 +9,7 @@ body{
     justify-content: center;
 }
 
-header{
+.header{
     display: flex;
     height: 83px;
     justify-content: space-between;
@@ -127,38 +127,6 @@ header{
     background-color: rgba(193, 193, 193, 0.30);
 }
 
-.container{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    justify-items: self-end;
-    margin-top: -35%;
-    margin-right: -40%;
-}
-
-.container {
-    font-family: "Inter", sans-serif;
-    color: #1b1b1b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 90%;
-    padding: 25px;
-    border-radius: 8px;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    row-gap: 40px;
-    column-gap: 70px;
-    margin-right: 90px;
-}
-
 .search{
     margin-left: 70px;
 }
@@ -191,7 +159,9 @@ header{
     color: white;
 }
 
-.container input{
+
+
+.container input, .container select {
     font-family: "Inter", sans-serif;
     color: #1b1b1b;
     font-size: 16px;
@@ -207,7 +177,7 @@ header{
     margin: 0;
 }
 
-.input-box input{
+.input-box input, .input-box select {
     position: relative;
     height: 50px;
     width: 110%;
@@ -218,19 +188,29 @@ header{
     margin-left: 25px;
 }
 
-.input-box label{
+.input-box label {
     margin-left: 35px;
     margin-top: 50px;
     margin-bottom: 40px;
 }
 
+.container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+.sidebar-box-typeID{
+    border: 1px solid #ccc;
+    width: 140px;
+    overflow: hidden;
+}
 
-
-
-
-
-
-
-
-
-
+.sidebar-box-typeID select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    appearance: none;
+}
