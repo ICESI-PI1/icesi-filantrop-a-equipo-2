@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from crud.models import Student
 
 
+# Create your views here.
 def home(request):
     return render(request, 'home.html')
 
@@ -30,6 +31,7 @@ def signUp(request):
 
             return HttpResponse('Contrasenas incorrectas')
 
+          
 def logIn(request):
     if request.method == 'GET':
         return render(request, 'login.html', {
@@ -55,6 +57,7 @@ def singout(request):
     logout(request)
     return redirect(home)
 
+  
 def confirmacion(request):
     return render(request, 'students_confirm.html')
 

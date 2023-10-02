@@ -27,6 +27,12 @@ class Migration(migrations.Migration):
                 ('numero_celular', models.CharField(max_length=15)),
                 ('promedio_acumulado', models.DecimalField(decimal_places=2, max_digits=3)),
                 ('creditos_cursados', models.IntegerField()),
+
+            name='Office',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=25)),
+                ('email', models.CharField(max_length=1000)),
             ],
         ),
     ]
