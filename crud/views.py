@@ -5,11 +5,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import request
 from .models import Student
 
 
-# Create your views here.
 def home(request):
     return render(request, 'home.html')
 
@@ -89,6 +87,5 @@ def guardar_estudiante(request):
                                          accumulated_average=accumulatedAverage,
                                          credits_studied=creditsStudied)
         student.save()
-        print(Student.objects.all())
         return render(request, 'students_info.html')
     return render(request, 'students_info.html')

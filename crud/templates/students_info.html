@@ -4,15 +4,13 @@
         {%  load static %}
         <meta charset="UTF-8">
         <title>Universidad ICESI</title>
-        <link rel="stylesheet" type="text/css" href="{% static '/students_info.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'crud/static/students_info.css' %}">
     </head>
     <body>
        <header>
               <h1 class ="logo">
-                    <img class = "icono_icesi" src = "{% static 'logoIcesi.png'%}" alt="LogoIcesi">
-                </h1>
-
-                <ul class = "menu">
+                    <img class = "icono_icesi" src = "{% static 'images/logoIcesi.png' %}" alt="LogoIcesi">
+                       <ul class = "menu">
                     <li><a href = "" class = "nav"> Inicio </a></li>
                     <li><a href = "" class = "nav"> Reportes </a></li>
                     <li><a href = "" class = "nav"> Donantes </a></li>
@@ -20,26 +18,27 @@
                 </ul>
 
              <div class = "icons">
-                 <img class = icono_bell src = "{% static 'bell.png' %}" alt = "icono_bell">
-                 <img class = icono_user src = "{% static 'user.png'%}" alt = "icono_user">
+                 <img class = icono_bell src = "{% static 'images/bell.png' %}" alt = "icono_bell">
+                 <img class = icono_user src = "{% static 'images/user.png' %}" alt = "icono_user">
              </div>
+                </h1>
         </header>
 
 
-        <div class = "container_buttons">
-                <button class = "search">
+        <div class = "container_buttons" style = "height: 300px !important; width: 160px !important;">
+                <button class = "search" style=" width: 156px !important; height: 45px !important;margin-top: 20px">
                     Buscar estudiante
                 </button>
                 <br>
-                <button class = "infor">
+                <button class = "infor" style="width: 156px !important; height: 45px">
                     Información estudiante
                 </button>
                 <br>
-                <button class = "assign">
+                <button class = "assign" style ="width: 156px !important; height: 55px">
                     Asignar donante
                 </button>
                 <br>
-                <button class = "register">
+                <button class = "register" style="width: 156px !important; height: 55px !important; margin-bottom: 0px !important; margin-left: 0px !important;">
                     Registrar estudiante
                 </button>
         </div>

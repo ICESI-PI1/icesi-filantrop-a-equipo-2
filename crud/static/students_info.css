@@ -1,12 +1,65 @@
-.body {
-    align-content: center;
-    color: white;
+.body{
     font-family: "Inter", sans-serif;
     font-size: 20px;
     font-style: normal;
-    justify-content: center;
     line-height: normal;
     margin: 0;
+    color: white;
+    align-content: center;
+    justify-content: center;
+}
+
+.header{
+    display: flex;
+    height: 83px;
+    justify-content: space-between;
+    background-color: #25579C;
+    align-items: center;
+    padding: 5px 0px 0px 0px;
+}
+
+.logo{
+    display: flex;
+    height: 110px;
+}
+
+.menu{
+    list-style: none;
+    padding: 0;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: white;
+    padding: 30px 50px;
+    display: block;
+    height: 100%;
+}
+
+.menu li{
+    display: inline-block;
+    text-align: center;
+}
+
+.menu li a:hover{
+    padding: 30px 50px;
+    background-color: rgba(193, 193, 193, 0.30);
+}
+
+.nav{
+    color: white;
+    font-family: "Inter", sans-serif;
+}
+
+.navigation{
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #25579C;
+    padding: 17px;
 }
 
 .container {
@@ -58,14 +111,6 @@
 .container_buttons .infor:hover,
 .container_buttons .assign:hover {
     background-color: rgba(193, 193, 193, 0.30);
-}
-
-.header {
-    align-items: center;
-    background-color: #25579C;
-    display: flex;
-    height: 83px;
-    justify-content: space-between;
 }
 
 .icons {
