@@ -34,7 +34,9 @@ function update_results() {
         var student_name = student_info[0];
         var student_code = student_info[1];
 
-        document.getElementById('message-area').value = 'Buenos días/tardes.\n\nPor medio del presente, solicito la actualización de la información del estudiante ' + student_name + ', con código de estudiante ' + student_code + ', desde la Oficina de Filantropía.';
+        // document.getElementById('message-area').value = 'Buenos días/tardes.\n\nPor medio del presente, solicito la actualización de la información del estudiante ' + student_name + ', con código de estudiante ' + student_code + ', desde la Oficina de Filantropía.';
+
+        document.getElementById('message-area').value += '\n-' + student_name + ' - ' + student_code;
     });
   });
 }
@@ -59,7 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
             var student_code = student_info[1];
 
             // Actualiza el contenido del textarea
-            document.getElementById('message-area').value = 'Buenos días/tardes.\n\nPor medio del presente, solicito la actualización de la información del estudiante ' + student_name + ', con código de estudiante ' + student_code + ', desde la Oficina de Filantropía.';
+            // document.getElementById('message-area').value = 'Buenos días/tardes.\n\nPor medio del presente, solicito la actualización de la información del estudiante ' + student_name + ', con código de estudiante ' + student_code + ', desde la Oficina de Filantropía.';
+
+            document.getElementById('message-area').value += '\n-' + student_name + ' - ' + student_code;
         });
     });
 });
