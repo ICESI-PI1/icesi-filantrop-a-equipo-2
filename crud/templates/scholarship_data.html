@@ -1,33 +1,38 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="container mt-3">
-    <h1 class="text-center">Cargar Informacion de las Becas Estudiantiles</h1>
-    
-    <form class="mt-5" method="POST" enctype="multipart/form-data"> 
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="file" class="form-label">Seleccione un archivo Excel:</label>
-            <input type="file" name="file" class="form-control" id="file" accept=".xlsx, .xls">
-        </div>
-        <button type="submit" class="btn btn-primary">Cargar</button>
-    </form>
+  <h1 class="text-center">Cargar Informacion de las Becas Estudiantiles</h1>
 
-    <h2 class="mt-5">Historial de Archivos Subidos</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre del Archivo</th>
-                <th>Fecha</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for archivo in archivos %}
-                <tr>
-                    <td>{{ archivo.nombre }}</td>
-                    <td>{{ archivo.fecha }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-    </table>
+  <form class="mt-5" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="file" class="form-label">Seleccione un archivo Excel:</label>
+      <input
+        type="file"
+        name="file"
+        class="form-control"
+        id="file"
+        accept=".xlsx, .xls"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Cargar</button>
+  </form>
+
+  <h2 class="mt-5">Historial de Archivos Subidos</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre del Archivo</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for archivo in archivos %}
+      <tr>
+        <td>{{ archivo.nombre }}</td>
+        <td>{{ archivo.fecha }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock content %}
