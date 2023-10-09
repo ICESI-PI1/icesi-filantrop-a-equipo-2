@@ -1,5 +1,16 @@
 venv
-.vscode
+.vscode/* 
 db.sqlite3
 .idea
 **/__pycache__
+htmlcov/ 
+.tox/ 
+.coverage 
+.coverage.* 
+.cache 
+.pytest_cache/ 
+nosetests.xml 
+coverage.xml 
+*.cover 
+.hypothesis/ 
+test_file.xlsx
