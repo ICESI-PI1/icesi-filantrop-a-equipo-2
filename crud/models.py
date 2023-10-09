@@ -2,27 +2,29 @@ from django.db import models
 
 # Create your models here.
 
+
 class Office(models.Model):
     name = models.CharField(max_length=25,
                             null=False,
                             blank=False)
-    
+
     email = models.CharField(max_length=1000,
-                            null=False,
-                            blank=False)
+                             null=False,
+                             blank=False)
 
     def __str__(self):
         return self.name
+
 
 class Student(models.Model):
     student_code = models.CharField(max_length=9,
                                     null=False,
                                     blank=False)
-    
+
     name = models.CharField(max_length=100,
                             null=False,
                             blank=False)
-    
+
     ID_OPTIONS = [
         ('PA', 'PA - Pasaporte'),
         ('CC', 'CC - Cédula de Ciudadanía'),
