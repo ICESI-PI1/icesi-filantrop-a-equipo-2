@@ -24,4 +24,4 @@ def signin(request):
 
         # Authentication succeeded
         login(request, user)
-        return redirect('home')
+        return redirect('home/')
