@@ -12,5 +12,5 @@ urlpatterns = [
     path('students_info/', views.guardar_estudiante, name='estudiante'),
     path('students_confirm/', views.confirmacion, name='confirm'),
     path('students_info/', views.guardar_estudiante, name='guardar_estudiante'),
-    path('askInfoUpdate/', request_info_update.ask_info_update)
+    path('askInfoUpdate/', request_info_update.ask_info_update, name='ask_info_update')
 ]
