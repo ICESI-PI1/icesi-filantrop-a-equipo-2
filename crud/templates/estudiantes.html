@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid d-flex flex-column justify-content-center" style="height: 75vh;">
+    <div class="row">
+        <div class="col-md-6 mt-5 d-flex align-items-center">
+            <a class="btn btn-primary custom-btn" href="/students_info" role="button">Registrar Estudiante</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mt-5 d-flex align-items-center">
+            <a class="btn btn-primary custom-btn" href="#" role="button">Buscar Estudiante</a>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mt-5 d-flex align-items-center">
+            <a class="btn btn-primary custom-btn" href="/askInfoUpdate" role="button">Solicitar Informacion</a>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mt-5 d-flex align-items-center">
+            <a class="btn btn-primary custom-btn" href="#" role="button">Asignar Estudiante</a>
+
+        </div>
+    </div>
+</div>
+<style>
+    .custom-btn {
+        background-color: #3255a4;
+        border-radius: 20px; /* Cambia este valor para ajustar el radio de borde */
+        width: 50%;
+    }
+</style>
+
+{% endblock content %}

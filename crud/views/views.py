@@ -10,36 +10,6 @@ from crud.models import Student
 
 # Create your views here.
 
-def signUp(request):
-    if request.method == 'GET':
-        return render(request, 'signup.html', {
-            'form': UserCreationForm,
-        })
-    else:
-        if request.POST['password1'] == request.POST['password2']:
-            try:
-                user = User.objects.create_user(
-                    username=request.POST['username'], password=request.POST['password1'])
-                user.save()
-                login(request, user)
-                return redirect('/postlog')
-            except IntegrityError:
-                return HttpResponse('Usuario ya existe')
-
-            return HttpResponse('Contrasenas incorrectas')
-
-
-@login_required
-def postLog(request):
-    return render(request, 'logout.html')
-
-
-# @login_required
-# def singout(request):
-#    logout(request)
-#    return redirect(home)
-
-
 def confirmacion(request):
     return render(request, 'students_confirm.html')
 
