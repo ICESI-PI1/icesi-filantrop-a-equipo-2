@@ -1,37 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     {% load static %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Oficina de Filantropoa</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-</head>
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'styles/base.css' %}">-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <!-- jQuery, Popper.js, y Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
 
-<body>
-   <header>
-              <h1 class ="logo">
-                    <img class = "icono_icesi" src = "{% static 'images/logoIcesi.png' %}" alt="LogoIcesi">
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #003da0">
+      <div class="container d-flex align-items-center">
+        <div class="h-100">
+          <a class="navbar-brand" href="#">
+            <img
+              class="img-fluid"
+              src="{% static 'images/logo_Icesi.png' %}"
+              alt="Bootstrap"
+              width="200"
+              height="100%"
+            />
+          </a>
+        </div>
 
-                </h1>
-
-                <ul class = "menu">
-                    <li><a href = "" class = "nav"> Inicio </a></li>
-                    <li><a href = "" class = "nav"> Reportes </a></li>
-                    <li><a href = "" class = "nav"> Donantes </a></li>
-                    <li><a href = "/students_info" class = "nav"> Estudiantes </a></li>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav d-flex flex-row flex-fill text-center">
+            <li class="nav-item ms-3 flex-fill">
+              <a class="nav-link text-white fs-5 btn-outline-light" href="/home"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item ms-3 flex-fill">
+              <a class="nav-link text-white fs-5 btn-outline-light" href="#"
+                >Reportes</a
+              >
+            </li>
+            <li class="nav-item ms-3 flex-fill">
+              <a class="nav-link text-white fs-5 btn-outline-light" href="#"
+                >Donantes</a
+              >
+            </li>
+            <li class="nav-item ms-3 flex-fill">
+              <a
+                class="nav-link text-white fs-5 btn-outline-light"
+                href="/estudiantes"
+                >Estudiantes</a
+              >
+            </li>
+            <li class="nav-item dropdown ms-3 flex-fill">
+              <div class="dropdown">
+                <button
+                  class="btn dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i
+                    class="fa-regular fa-bell fa-2xl"
+                    style="color: #ffffff"
+                  ></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#">Notificaciones</a></li>
                 </ul>
+              </div>
+            </li>
+            <li class="nav-item dropdown ms-3 flex-fill">
+              <div class="dropdown">
+                <button
+                  class="btn dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i
+                    class="fa-regular fa-user fa-2xl"
+                    style="color: #ffffff"
+                  ></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="/">Cerrar Sesion</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-             <div class = "icons">
-                 <img class = icono_bell src = "{% static 'images/bell.png' %}" alt = "icono_bell">
-                 <img class = icono_user src = "{% static 'images/user.png' %}" alt = "icono_user">
-             </div>
-        </header>
-   {% block content %}
-    {% endblock %}
-</body>
-
+    <style>
+      .dropdown-toggle::after {
+        color: #ffffff !important; /* Cambia el color de la flecha a blanco */
+      }
+    </style>
+    {% block content %} {% endblock %}
+  </body>
 </html>

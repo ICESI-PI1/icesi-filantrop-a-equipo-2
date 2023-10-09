@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Office(models.Model):
     name = models.CharField(max_length=25,
                             null=False,
@@ -81,3 +82,21 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name + " - " + self.student_code
+
+
+class Beca(models.Model):
+    id_estudiante = models.CharField(max_length=20)
+    tipo_beca = models.CharField(max_length=255)
+    duracion = models.IntegerField()
+    monto = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+
+def __str__(self): 
+    return self.id_estudiante
+
+
+class Archivo(models.Model):
+    nombre = models.CharField(max_length=255)
+    fecha = models.DateTimeField(auto_now_add=True)
+
