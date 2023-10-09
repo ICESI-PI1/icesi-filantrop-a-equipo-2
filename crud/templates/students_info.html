@@ -121,5 +121,10 @@
                 <button type="submit" value ="Submit" class = "enviarBtn"> Enviar </button>
             </form>
         </div>
+            {% if message %}
+        <div class="alert alert-info">
+          {{ message }}
+        </div>
+        {% endif %}
     </body>
 </html>
