@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from crud.models import Office, Student 
+from crud.models import Office, Student
 
 import smtplib
 from email.mime.text import MIMEText
@@ -17,6 +17,8 @@ Renders the view to make a request, to an office, to update a student's informat
 
 When the user fills all the fields, this method receives the information and calls the send email function.
 """
+
+
 @login_required
 def ask_info_update(request):
     if request.method == 'POST':
@@ -41,14 +43,16 @@ def ask_info_update(request):
     students = Student.objects.all()
 
     return render(request, 'ask_update_info.html', {
-        'offices' : offices,
-        'students' : students
+        'offices': offices,
+        'students': students
     })
 
 
 """
 Given a destinatary, a message, and a subject, sends an email, from the default mail.
 """
+
+
 def send_email(receiver_email, message, subject):
     sender = "pi.seg.estudiantes@gmail.com"
     password = "zhazuuahhicywuyg"
