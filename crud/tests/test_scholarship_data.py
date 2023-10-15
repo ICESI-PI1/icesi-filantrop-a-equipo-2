@@ -6,6 +6,7 @@ import pandas as pd
 from io import BytesIO
 from datetime import datetime
 
+
 class LoadScholarshipDataTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -43,7 +44,7 @@ class LoadScholarshipDataTest(TestCase):
         self.assertTemplateUsed(response, 'scholarship_data.html')
         self.assertIsInstance(response.context['form'], UploadFileForm)
         archivos = response.context['archivos']
-        self.assertEqual(len(archivos), 1) 
+        self.assertEqual(len(archivos), 1)
         self.assertEqual(archivos[0].nombre, 'test_data.xlsx')
 
     def test_post_valid_form(self):
