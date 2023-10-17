@@ -11,15 +11,20 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles/request_info_update_styles.css' %}">
 
 </head>
+
 <body>
   <div class="d-flex justify-content-center">
     <h1> Solicitud de actualización de información </h1>
   </div>
 
-  <div class="mt-5 d-flex justify-content-center vh-100">
+  <div class="mt-5 d-flex justify-content-center">
     
     <form method="post" action="/askInfoUpdate/">
     {% csrf_token %}
+
+
+    <!-- Office selector -->
+    <div class="justify-content-center container">
 
       <p class="text-center fs-5 fw-bold"> Oficina: </p>
       <select class="form-select" name="offices">
@@ -31,60 +36,75 @@
           
       </select>
 
-      <div class="d-flex container my-5">
-        <div class="d-flex justify-content-center">
-          <div class="col-lg-6" style="width: 100%;">
-            <div class="card">
-              <div class="card-body">
+    </div>
+    
+    <!-- Student searcher -->
+    <div class="justify-content-center d-flex container my-5">
+      <div class="d-flex justify-content-center">
+        <div class="col-lg-6" style="width: 100%;">
+          <div class="card">
+            <div class="card-body">
 
-                <!-- Search box -->
-                <div class="input-group rounded mb-4">
-                  
-                  <input type="search" id="search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon">
-                  
-                  <span class="input-group-text border-0" id="search-box-icon">
-                    <i class="fas fa-search"></i>
-                  </span>
+              <!-- Search box -->
+              <div class="input-group rounded mb-4">
                 
-                </div>
-                
-                <!-- List -->
-                <ul class="list-group" id="offices-list">
-                  {% for student in students %}
-                    
-                    <li class="list-group-item student-item" data-student-id="{{ student.id }}">
-                        {{ student.name }} - {{ student.student_code }}
-                    </li>
-
-                  {% endfor %}
-                </ul>
-
+                <input type="search" id="search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon">
+              
               </div>
+              
+              <!-- List -->
+              <ul class="list-group" id="students-list">
+                {% for student in students %}
+                  
+                  <li class="list-group-item student-item" data-student-id="{{ student.id }}">
+                      {{ student.name }} - {{ student.student_code }}
+                  </li>
+
+                {% endfor %}
+              </ul>
+
             </div>
           </div>
         </div>
       </div>
+    </div>
       
-      <div class="mt-1 justify-content-center">
-        <span class="input-group-text"> Mensaje a enviar </span>
-        <textarea name="message-area" id="message-area" class="form-control auto-resize-textarea" aria-label="With textarea" style="height: 200px;" oninput="auto_resize(this)">Buenos días/tardes. 
+    <!-- Message area -->
+    <div class="mt-1 justify-content-center">
+      <span class="input-group-text"> Mensaje a enviar </span>
+      <textarea name="message-area" id="message-area" class="form-control auto-resize-textarea" aria-label="With textarea" style="height: 200px;" oninput="auto_resize(this)">Buenos días/tardes. 
 
-Por medio del presente, solicito la actualización de la información del estudiante {{ selected_student.name }}, con código de estudiante {{ selected_student.student_code }}, desde la Oficina de Filantropía.</textarea>
+Por medio del presente, solicito la actualización de la información de los siguientes estudiantes, desde la Oficina de Filantropía:</textarea>
 
-        <script>
-          function auto_resize(element) {
-            element.style.height = 'auto';
-            element.style.height = (element.scrollHeight) + 'px';
-          }
-        </script>
-      
-      </div>
+      <script>
+        function auto_resize(element) {
+          element.style.height = 'auto';
+          element.style.height = (element.scrollHeight) + 'px';
+        }
+      </script>
+    
+    </div>
 
-      <div class="mt-5 d-flex justify-content-center">
-        <button class="btn btn-outline-primary" type="submit"> Solicitar </button>
-      </div>
+    <div class="mt-5 d-flex justify-content-center">
+      <button class="btn btn-outline-primary" type="submit"> Solicitar </button>
+    </div>
+
+    {% if result_message %}
+    <div class="mt-5 justify-content-center">
+      {% if "Actualización solicitada correctamente" in result_message %}
+        <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+  
+      {% elif "Error" in result_message %}
+        <img src="{% static 'images/error.png' %}" alt="Error: ">
+  
+      {% endif %}
+  
+      <b style="font-size: 18px;"> {{ result_message }} </b>
+    </div>
+    {% endif %}
 
     </form>
+    
   </div>
 
   <script src="{% static 'request_info_update_script.js' %}"></script>
