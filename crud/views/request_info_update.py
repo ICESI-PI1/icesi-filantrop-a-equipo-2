@@ -17,8 +17,6 @@ Renders the view to make a request, to an office, to update a student's informat
 
 When the user fills all the fields, this method receives the information and calls the send email function.
 """
-
-
 @login_required
 def ask_info_update(request):
 
@@ -62,8 +60,6 @@ def ask_info_update(request):
 """
 Given a destinatary, a message, and a subject, sends an email, from the default mail.
 """
-
-
 def send_email(receiver_email, message, subject):
     sender = "pi.seg.estudiantes@gmail.com"
     password = "zhazuuahhicywuyg"
