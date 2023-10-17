@@ -1,0 +1,200 @@
+.body{
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    line-height: normal;
+    margin: 0;
+    color: white;
+    align-content: center;
+    justify-content: center;
+}
+
+.header{
+    display: flex;
+    height: 83px;
+    justify-content: space-between;
+    background-color: #25579C;
+    align-items: center;
+    padding: 5px 0px 0px 0px;
+}
+
+.logo{
+    display: flex;
+    height: 110px;
+}
+
+.menu{
+    list-style: none;
+    padding: 0;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: white;
+    padding: 30px 50px;
+    display: block;
+    height: 100%;
+}
+
+.menu li{
+    display: inline-block;
+    text-align: center;
+}
+
+.menu li a:hover{
+    padding: 30px 50px;
+    background-color: rgba(193, 193, 193, 0.30);
+}
+
+.nav{
+    color: white;
+    font-family: "Inter", sans-serif;
+}
+
+.navigation{
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #25579C;
+    padding: 17px;
+}
+
+.container {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, auto);
+}
+
+
+.container input, .container select {
+    background: #f2f2f2;
+    border: none;
+    border-radius: 25px;
+    color: #1b1b1b;
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    height: 50px;
+    line-height: 1.2;
+    margin: 0;
+    outline: none;
+    padding: 0 25px;
+    width: 100%;
+}
+
+.container_buttons {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 70px 0px 0px 20px;
+}
+
+.container_buttons .register {
+    height: 60px;
+    justify-content: center;
+    margin-bottom: 110px;
+    margin-left: 75px;
+    text-align: center;
+}
+
+.container_buttons .register:hover,
+.container_buttons .search:hover,
+.container_buttons .infor:hover,
+.container_buttons .assign:hover {
+    background-color: rgba(193, 193, 193, 0.30);
+}
+
+.icons {
+   display:flex;
+   justify-content:flex-end;
+}
+
+.icono_bell {
+   flex-shrink :0;
+   height :50.909px;
+   margin-right :15px;
+   margin-top :10px;
+   padding :0px 20px 0px 0px;
+   width :50px;
+}
+
+.icono_bell:hover {
+   background-color :rgba(193,193,193,0.30);
+   color :white;
+   padding :0px 20px 0px 0px;
+   text-decoration :none;
+}
+
+.icono_user {
+   flex-shrink :0;
+   height :68.02px;
+   margin-bottom :8px;
+   padding :0px 20px 0px 0px;
+   width :70px;
+}
+
+.icono_user:hover {
+   background-color :rgba(193,193,193,0.30);
+   padding :0px 20px 0px 0px;
+}
+
+.input-box input, .input-box select {
+   border :1px solid #d5dbd9;
+   height :50px;
+   margin-left :25px;
+   margin-top :8px;
+   outline :none;
+   padding :0 15px;
+   position:relative ;
+   width :110%;
+}
+
+.input-box label {
+   margin-bottom :40px ;
+   margin-left :35px ;
+   margin-top :50px ;
+}
+
+.logo{
+     display:flex ;
+     height :110px ;
+}
+
+.menu{
+     list-style:none ;
+     margin:auto ;
+     max-width :1000px ;
+     padding :0 ;
+     width :90% ;
+}
+
+.menu li{
+     display:inline-block ;
+     text-align:center ;
+}
+
+.menu li a{
+     color:white ;
+     display:block ;
+     height :100% ;
+     padding :30px 50px ;
+     text-decoration:none ;
+}
+
+.menu li a:hover{
+     background-color :rgba(193,193,193,0.30) ;
+     padding :30px 50px ;
+}
+
+.forms .enviarBtn{
+    height: 60px;
+    justify-content: center;
+    margin-bottom: 110px;
+    margin-left: 75px;
+    text-align: center;
+}

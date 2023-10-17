@@ -1,98 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {%  load static %}
         <meta charset="UTF-8">
         <title>Universidad ICESI</title>
-        <link rel="stylesheet" type="text/css" href="/crud/styles/students_info.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/students_info.css' %}">
     </head>
     <body>
-         <header>
+       <header>
               <h1 class ="logo">
-                    <img class = "icono_icesi" src="/crud/images/logoIcesi.png" alt="LogoIcesi">
-                </h1>
-
-                <ul class = "menu">
+                    <img class = "icono_icesi" src = "{% static 'images/logoIcesi.png' %}" alt="LogoIcesi">
+                       <ul class = "menu">
                     <li><a href = "" class = "nav"> Inicio </a></li>
                     <li><a href = "" class = "nav"> Reportes </a></li>
                     <li><a href = "" class = "nav"> Donantes </a></li>
-                    <li><a href = "" class = "nav"> Estudiantes </a></li>
+                    <li><a href = "/students_info" class = "nav"> Estudiantes </a></li>
                 </ul>
 
              <div class = "icons">
-                 <img class = icono_bell src = "/crud/images/bell.png" alt = "icono_bell">
-                 <img class = icono_user src = "/crud/images/user.png" alt = "icono_user">
+                 <img class = icono_bell src = "{% static 'images/bell.png' %}" alt = "icono_bell">
+                 <img class = icono_user src = "{% static 'images/user.png' %}" alt = "icono_user">
              </div>
+                </h1>
         </header>
 
-        <div class = "container_buttons">
 
-                <button class = "search">
+        <div class = "container_buttons" style = "height: 300px !important; width: 160px !important;">
+                <button class = "search" style=" width: 156px !important; height: 45px !important;margin-top: 20px">
                     Buscar estudiante
                 </button>
                 <br>
-                <button class = "infor">
+                <button class = "infor" style="width: 156px !important; height: 45px">
                     Información estudiante
                 </button>
                 <br>
-                <button class = "assign">
+                <button class = "assign" style ="width: 156px !important; height: 55px">
                     Asignar donante
                 </button>
-            <a href = "students_confirm.html">
-                <button class = "register">
+                <br>
+                <button class = "register" style="width: 156px !important; height: 55px !important; margin-bottom: 0px !important; margin-left: 0px !important;">
                     Registrar estudiante
                 </button>
-                </a>
         </div>
 
-        <section class = "container">
-            <form action = "#" class = "formName">
+
+        <div class = "container">
+            <form method= "post" action = "/students_info/" class = "forms">
+                {% csrf_token %}
                 <div class = "input-box">
                     <label> Nombre completo</label>
-                    <input type = "text" name = "name" placeholder = "Ingrese el nombre completo">
+                    <input type = "text" name = "nombre_completo" placeholder = "Ingrese el nombre completo">
                 </div>
-            </form>
 
-            <form action = "#" class = "formDate">
                 <div class = "input-box">
-                    <label for ="start"> Fecha de nacimiento</label>
-                    <input type = "date" id = "start" name = "name" value ="2023-09-25" min = "1980-01-01" max = "2023-12-31"/>
+                    <label> Código identificador</label>
+                    <input type = "text" name = "codigo_identificador" placeholder = "Ingrese el código identificador">
                 </div>
-            </form>
 
-            <form action = "#" class = "formCC">
+                <div class = "sidebar-box-typeID">
+                    <label> Tipo de documento</label>
+                        <select name = "tipo_documento">
+                            <option value="CC">Cédula de ciudadanía</option>
+                            <option value="CE">Cédula de extranjería</option>
+                            <option value="TI">Tarjeta de identidad</option>
+                            <option value="PA">Pasaporte</option>
+                            <option value="RC">Registro civil</option>
+                        </select>
+                </div>
+
                 <div class = "input-box">
-                    <label> Cédula o TI</label>
-                    <input type = "text" name = "name" placeholder = "Ingrese la cédula">
+                    <label> Número de documento</label>
+                    <input type = "text" name = "numero_documento" placeholder = "Ingrese el número de documento">
                 </div>
-            </form>
 
-            <form action = "#" class = "formCode">
+                <div class = "side-box-genre">
+                    <label> Género</label>
+                        <select name="genero">
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="O">Otro</option>
+                        </select>
+                </div>
+
                 <div class = "input-box">
-                    <label> Código de estudiante</label>
-                    <input type = "text" name = "name" placeholder = "Ingrese el código de estudiante">
+                    <label> Correo</label>
+                    <input type = "email" name = "correo_electronico" placeholder = "Ingrese el correo">
                 </div>
-            </form>
 
-            <form action = "#" class = "formEmail">
                 <div class = "input-box">
-                    <label> Correo electrónico</label>
-                    <input type = "text" name = "name" placeholder = "Ingrese el correo electrónico">
+                    <label> Correo institucional</label>
+                    <input type = "email" name = "correo_institucional" placeholder = "Ingrese el correo institucional">
                 </div>
-            </form>
 
-            <form action = "#" class = "formNumber">
-                <div class = "input-box">
-                    <label> Número telefónico</label>
-                    <input type = "text" name = "name" placeholder = "Ingrese el número telefónico">
-                </div>
-            </form>
-
-            <form action = "#" class = "formICFES">
                 <div class = "input-box">
                     <label> Puntaje ICFES</label>
-                    <input type = "number" name = "name" placeholder = "Ingrese el puntaje ICFES">
+                    <input type = "text" name = "puntaje_icfes" placeholder = "Ingrese el puntaje ICFES" min = 0 max="500">
                 </div>
+
+
+                 <div class="input-box">
+                    <label for="start">Fecha de nacimiento</label>
+                    <input type="date" id="start" name="fecha_nacimiento" value="2023-09-25" min="1980-01-01" max="2023-12-31"/>
+                </div>
+
+                <div class="input-box">
+                    <label>Número de celular</label>
+                    <input type="tel" name="numero_celular" placeholder="Ingrese el número de celular">
+                </div>
+
+                <div class="input-box">
+                    <label>Promedio acumulado</label>
+                    <input type="number" step="0.1" min="0" max="5.0" name="promedio_acumulado" placeholder="Ingrese el promedio acumulado">
+                </div>
+
+                <div class="input-box">
+                    <label>Créditos cursados</label>
+                    <input type="number" name="creditos_cursados" placeholder="Ingrese los créditos cursados">
+                </div>
+
+                <button type="submit" value ="Submit" class = "enviarBtn"> Enviar </button>
             </form>
-        </section>
+        </div>
     </body>
 </html>

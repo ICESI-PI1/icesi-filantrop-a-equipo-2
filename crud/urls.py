@@ -1,6 +1,8 @@
-
 from django.urls import path
-from . import views
+
+from .views import views
+from .views import request_info_update
+from .views import upload_non_academic_report
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -8,5 +10,9 @@ urlpatterns = [
     path('login/', views.logIn),
     path('postlog/', views.postLog),
     path('logout/', views.singout),
-    path('uploadNonAcademicReport/', views.upload_non_academic_report),
+    path('students_info/', views.guardar_estudiante, name='estudiante'),
+    path('students_confirm/', views.confirmacion, name='confirm'),
+    path('students_info/', views.guardar_estudiante, name='guardar_estudiante'),
+    path('askInfoUpdate/', request_info_update.ask_info_update),
+    path('uploadNonAcademicReport/', upload_non_academic_report.upload_non_academic_report)
 ]

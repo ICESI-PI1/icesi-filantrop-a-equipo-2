@@ -54,6 +54,15 @@ header{
     font-family: "Inter", sans-serif;
 }
 
+
+.navigation{
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #25579C;
+    padding: 17px;
+}
+
 .icons{
     display: flex;
     justify-content: flex-end;
@@ -86,25 +95,4 @@ header{
 .icono_user:hover{
     padding: 0px 20px 0px 0px;
     background-color: rgba(193, 193, 193, 0.30);
-}
-
-.confirmacion{
-    font-size: 26px;
-    text-align: center;
-    font-family: "Inter", sans-serif;
-    color: #1b1b1b;
-    width: 40%;
-    margin-left: 500px;
-    margin-top: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.iconoConfirmacion{
-    margin-right: 10px;
-    width: 60px;
-    height: 60px;
-    margin-left: 10px;
-
 }
