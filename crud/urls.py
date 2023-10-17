@@ -1,5 +1,4 @@
 from django.urls import path
-
 from .views import login, save_student, request_info_update, upload_scholarship_data
 
 urlpatterns = [

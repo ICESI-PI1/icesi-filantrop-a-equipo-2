@@ -13,13 +13,15 @@ def validar_datos(data):
 
         # Comprueba si los correos electrónicos son válidos
         email_regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-        if not re.fullmatch(email_regex, data['correo_electronico']) or not re.fullmatch(email_regex, data['correo_institucional']):
+        if not re.fullmatch(email_regex, data['correo_electronico']) or not re.fullmatch(email_regex,
+                                                                                         data['correo_institucional']):
             return False, "Por favor, introduce un correo electrónico válido."
 
         return True, ""
     except Exception as e:
         # Agrega un manejo de excepciones para posibles errores aquí.
         return False, "Error en la validación de datos: " + str(e)
+
 
 def guardar_estudiante(request):
     message = ''
