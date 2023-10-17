@@ -1,12 +1,12 @@
 const search_input = document.getElementById('search-box');
-const results_list = document.getElementById('offices-list');
+const results_list = document.getElementById('students-list');
 
-const offices_list = [];
+const students_list = [];
 
-const elements = document.querySelectorAll('#offices-list li');
+const elements = document.querySelectorAll('#students-list li');
 
 elements.forEach(li => {
-  offices_list.push(li.textContent.trim());
+  students_list.push(li.textContent.trim());
 });
 
 /**
@@ -15,7 +15,7 @@ elements.forEach(li => {
 function update_results() {
   const search_term = search_input.value.toLowerCase();
 
-  const filtered_results = offices_list.filter
+  const filtered_results = students_list.filter
   (result => 
     result.toLowerCase().includes(search_term)
   );
@@ -34,7 +34,9 @@ function update_results() {
         var student_name = student_info[0];
         var student_code = student_info[1];
 
-        document.getElementById('message-area').value = 'Buenos días/tardes.\n\nPor medio del presente, solicito la actualización de la información del estudiante ' + student_name + ', con código de estudiante ' + student_code + ', desde la Oficina de Filantropía.';
+        // document.getElementById('message-area').value = 'Buenos días/tardes.\n\nPor medio del presente, solicito la actualización de la información del estudiante ' + student_name + ', con código de estudiante ' + student_code + ', desde la Oficina de Filantropía.';
+
+        document.getElementById('message-area').value += '\n-' + student_name + ' - ' + student_code;
     });
   });
 }
@@ -59,7 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
             var student_code = student_info[1];
 
             // Actualiza el contenido del textarea
-            document.getElementById('message-area').value = 'Buenos días/tardes.\n\nPor medio del presente, solicito la actualización de la información del estudiante ' + student_name + ', con código de estudiante ' + student_code + ', desde la Oficina de Filantropía.';
+            // document.getElementById('message-area').value = 'Buenos días/tardes.\n\nPor medio del presente, solicito la actualización de la información del estudiante ' + student_name + ', con código de estudiante ' + student_code + ', desde la Oficina de Filantropía.';
+
+            document.getElementById('message-area').value += '\n-' + student_name + ' - ' + student_code;
         });
     });
 });

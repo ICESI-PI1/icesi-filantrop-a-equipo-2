@@ -28,4 +28,4 @@ class Migration(migrations.Migration):
                 ('credits_studied', models.IntegerField()),
             ],
         ),
-    ]
+]
