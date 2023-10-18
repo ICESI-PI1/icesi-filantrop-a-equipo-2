@@ -79,3 +79,20 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name + " - " + self.student_code
+    
+
+class AcademicPerformance(models.Model):
+    student_code = models.CharField(max_length=100)
+    
+    name = models.CharField(max_length=100)
+    
+    lastname = models.CharField(max_length=100)
+    
+    grade = models.FloatField()
+    
+    subject = models.CharField(max_length=200)
+    
+    semester = models.CharField(max_length=50)
+    
+
+

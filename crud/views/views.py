@@ -6,6 +6,9 @@ from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from crud.models import Student
+from django.shortcuts import render
+from crud.models import AcademicPerformance
+import pandas as pd
 
 
 # Create your views here.
@@ -92,3 +95,37 @@ def guardar_estudiante(request):
         student.save()
         return render(request, 'students_info.html')
     return render(request, 'students_info.html')
+
+
+def upload_academic_performance(request):
+    try:
+        if request.method == 'POST':
+            received_file = request.FILES['performanceFile']
+
+            file = pd.read_excel(received_file)
+
+            for _, row in file.iterrows():
+                fields = {
+                    'student_code': row['Código de estudiante'],
+                    'name': row['Nombres'],
+                    'lastname': row['Apellidos'],
+                    'grade': row['Nota'],
+                    'subject': row['Materia'],
+                    'semester': row['Semestre']
+                }
+
+                exists_row = AcademicPerformance.objects.filter(
+                    student_code=row['Código de estudiante'],
+                    subject=row['Materia'],
+                    semester=row['Semestre']
+                )
+
+                if exists_row.exists():
+                    exists_row.update(**fields)
+                else:
+                    AcademicPerformance.objects.create(**fields)
+
+    except Exception as e:
+        return HttpResponse("<h1>Error</h1>")
+
+    return render(request, 'uploading_student_academic_performance_report.html')

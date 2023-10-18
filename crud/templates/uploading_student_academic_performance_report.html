@@ -5,13 +5,16 @@
 <head>
     {% load static %}
 </head>
-<h1> Subir la informacion del desempeño academico del estudiante </h1>
+<h1>Subir la información del desempeño académico del estudiante</h1>
 
 <body>
-    <input type="file" id="fileInput" accept=".xlsx">
-    <p>Archivo seleccionado: <span id="fileName"></span></p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="performanceFile" accept=".xlsx">
+        <button type="submit">Subir</button>
+    </form>
 
-    <script src="{% static 'performance_academic_report.js' %}"></script>
+    <script src="{% static 'upload_student_academic_performance_report.js' %}"></script>
 </body>
 </html>
 

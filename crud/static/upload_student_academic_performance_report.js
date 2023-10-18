@@ -1,20 +1,5 @@
-function upload_data(file) {
-    const formData = new FormData();
-    formData.append('excelFile', file);
+document.getElementById("fileInput").addEventListener("change", function(event) {
+    let uploadedFileName = event.target.files[0].name;
+    document.getElementById("fileName").textContent = uploadedFileName;
+});
 
-    fetch('/upload_data/', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Datos agregados con éxito!");
-        } else {
-            alert("Hubo un error al agregar los datos.");
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-    });
-}
