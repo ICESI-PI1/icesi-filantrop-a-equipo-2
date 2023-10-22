@@ -3,33 +3,30 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 from django.views import View
-from .forms import UploadFileForm  
-from crud.models import Beca,Archivo  
+from .forms import UploadFileForm
+from crud.models import Beca, Archivo
 from datetime import datetime
-import time
-
-
 
 class LoadScholarshipData(View):
-    
+
     def get(self, request):
         form = UploadFileForm()
-        archivos = Archivo.objects.all()  
+        archivos = Archivo.objects.all()
         for archivo in archivos:
             print(f'Nombre del archivo: {archivo.nombre}')
             print(f'Fecha: {archivo.fecha}')
         return render(request, 'scholarship_data.html', {
             'form': form,
-            'archivos': archivos  
+            'archivos': archivos
         })
-    
+
     def post(self, request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             archivo = Archivo(
                 nombre=request.FILES['file'].name,
                 fecha=datetime.now()
-                )
+            )
             archivo.save()
             xls = pd.ExcelFile(request.FILES['file'])
             for sheet_name in xls.sheet_names:
@@ -54,7 +51,8 @@ class LoadScholarshipData(View):
                         messages.error(request, f'Hubo un error al cargar el archivo: {str(e)}')
                 messages.success(request, 'Se cargaron las becas correctamente')
         else:
-            messages.error(request, 'El formulario no es válido')
-        return render(request, 'scholarship_data.html', {
-            'form': form})
-        
+            if 'file' in form.errors:
+                messages.error(request, 'El archivo es requerido. Asegúrate de seleccionar un archivo antes de enviar el formulario.')
+            else:
+                messages.error(request, 'El formulario no es válido. Asegúrate de cargar un archivo válido.')
+        return render(request, 'scholarship_data.html', {'form': form})

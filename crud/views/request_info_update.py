@@ -21,26 +21,37 @@ When the user fills all the fields, this method receives the information and cal
 
 @login_required
 def ask_info_update(request):
-    if request.method == 'POST':
-        selected_office_id = request.POST.get('offices')
-        message = request.POST.get('message-area', '')
-
-        try:
-            selected_office = Office.objects.get(id=selected_office_id)
-        except Office.DoesNotExist:
-            return HttpResponse('La oficina seleccionada no existe')
-
-        try:
-            subject = "Solicitud de actualización de información"
-
-            send_email(selected_office.email, message, subject)
-        except Exception:
-            return HttpResponse('All bad')
-
-        return render(request, 'ask_update_info_confirmation.html')
 
     offices = Office.objects.all()
     students = Student.objects.all()
+
+    if request.method == 'POST':
+        try:
+            selected_office_id = request.POST.get('offices')
+            message = request.POST.get('message-area', '')
+
+            selected_office = Office.objects.get(id=selected_office_id)
+        
+            subject = "Solicitud de actualización de información"
+
+            send_email(selected_office.email, message, subject)
+
+            result_message = "Actualización solicitada correctamente"
+            
+        except Exception:
+            result_message = "Error al solicitar actualización"
+
+            return render(request, 'ask_update_info.html', {
+                'offices' : offices,
+                'students' : students,
+                'result_message' : result_message
+            })
+
+        return render(request, 'ask_update_info.html', {
+            'offices' : offices,
+            'students' : students,
+            'result_message' : result_message
+        })
 
     return render(request, 'ask_update_info.html', {
         'offices': offices,
