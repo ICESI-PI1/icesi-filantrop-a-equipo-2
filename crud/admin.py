@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Office)
 admin.site.register(Student)
 admin.site.register(NonAcademicActvitiesReport)
+admin.site.register(CREAReport)
