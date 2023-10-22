@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head>
+    {% load static %}
+</head>
+<div class="d-flex justify-content-center">
+    <h1> Subir archivo de reporte de seguimiento de actividades no académicas </h1>
+</div>
+
+
+<body>
+
+    <div class="mt-5 d-flex justify-content-center">
+        <form method="post" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+    
+            <div class="input-group">
+                <input type="file" name="report_file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".xls, .xlsx">
+                <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
+            </div>
+
+            {% if result_message %}
+            <div class="mt-5 justify-content-center">
+                {% if "Carga exitosa" in result_message %}
+                  <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+          
+                {% elif "Error al cargar reporte" in result_message %}
+                  <img src="{% static 'images/error.png' %}" alt="Error: ">
+          
+                {% endif %}
+          
+                <b style="font-size: 18px;"> {{ result_message }} </b>
+            </div>
+            {% endif %}
+          
+
+        </form>
+    </div>
+</body>
+</html>
+
+{% endblock content %}

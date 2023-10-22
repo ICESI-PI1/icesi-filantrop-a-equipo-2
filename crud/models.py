@@ -100,3 +100,65 @@ class Archivo(models.Model):
     nombre = models.CharField(max_length=255)
     fecha = models.DateTimeField(auto_now_add=True)
 
+class NonAcademicActvitiesReport(models.Model):
+    student_code = models.CharField(max_length=9,
+                                    null=False,
+                                    blank=False)
+
+    name = models.CharField(max_length=100,
+                            null=False,
+                            blank=False)
+
+    lastname = models.CharField(max_length=100,
+                                null=False,
+                                blank=False)
+
+    activity = models.CharField(max_length=100,
+                                null=False,
+                                blank=False)
+
+    activity_hours = models.DecimalField(max_digits=3,
+                                         decimal_places=1,
+                                         null=False,
+                                         blank=False)
+
+    semester = models.CharField(max_length=6,
+                                null=False,
+                                blank=False)
+
+    def str(self):
+        return self.name + " " + self.lastname + " - " + self.activity + " - " + self.semester
+    
+class CREAReport(models.Model):
+    student_code = models.CharField(max_length=9,
+                                    null=False,
+                                    blank=False)
+
+    name = models.CharField(max_length=100,
+                            null=False,
+                            blank=False)
+
+    lastname = models.CharField(max_length=100,
+                                null=False,
+                                blank=False)
+    
+    monitor_name = models.CharField(max_length=100,
+                                    null=False,
+                                    blank=False)
+    
+    reason = models.CharField(max_length=500,
+                              null=False,
+                              blank=False)
+
+    result = models.CharField(max_length=500,
+                              null=False,
+                              blank=False)
+    
+    date = models.DateField(null=False,
+                            blank=False)
+    
+    hour = models.TimeField(null=False,
+                            blank=False)
+    
+    def __str__(self):
+        return "{} - {} - {}".format(self.student_code, self.date, self.monitor_name)
