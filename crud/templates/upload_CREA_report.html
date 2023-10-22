@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
+
     <div class="d-flex justify-content-center">
         <h1> Subir archivo de Informe del CREA </h1>
     </div>
@@ -20,23 +22,27 @@
                 <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
             </div>
 
-            {% if result_message %}
-            <div class="mt-5 justify-content-center">
-                {% if "Carga exitosa" in result_message %}
-                  <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
-          
-                {% elif "Error al cargar reporte" in result_message %}
-                  <img src="{% static 'images/error.png' %}" alt="Error: ">
-          
+            <div class="mt-5 d-flex justify-content-center">
+                {% if result_message %}
+
+                <div class="justify-content-center">
+                    {% if "Carga exitosa" in result_message %}
+                        <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+            
+                    {% elif "Error al cargar reporte" in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+            
+                    {% endif %}
+            
+                    <b style="font-size: 18px;"> {{ result_message }} </b>
+                </div>
+            
                 {% endif %}
-          
-                <b style="font-size: 18px;"> {{ result_message }} </b>
             </div>
-            {% endif %}
-          
 
         </form>
     </div>
+
 </body>
 
 </html>
