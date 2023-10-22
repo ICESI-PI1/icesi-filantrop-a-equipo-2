@@ -8,11 +8,21 @@
     {% load static %}
 
     <div class="d-flex justify-content-center">
-        <h1> Subir archivo de Informe del CREA </h1>
+        <h1> Subir archivo de Reporte del CREA </h1>
     </div>
 </head>
 
 <body>
+
+    <!-- Descarga de formato -->
+    <div class="mt-5 d-flex justify-content-center">
+
+        <a class="btn btn-secondary" href="{% static 'formats/Formato CREA Report.xlsx' %}" download="Formato Reporte CREA">
+            <i class="fas fa-download"></i> Descargar formato del reporte
+        </a>
+
+    </div>
+
     <div class="mt-5 d-flex justify-content-center">
         <form method="post" enctype="multipart/form-data" action="">
             {% csrf_token %}
