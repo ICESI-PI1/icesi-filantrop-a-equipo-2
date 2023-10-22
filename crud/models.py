@@ -128,3 +128,37 @@ class NonAcademicActvitiesReport(models.Model):
 
     def str(self):
         return self.name + " " + self.lastname + " - " + self.activity + " - " + self.semester
+    
+class CREAReport(models.Model):
+    student_code = models.CharField(max_length=9,
+                                    null=False,
+                                    blank=False)
+
+    name = models.CharField(max_length=100,
+                            null=False,
+                            blank=False)
+
+    lastname = models.CharField(max_length=100,
+                                null=False,
+                                blank=False)
+    
+    monitor_name = models.CharField(max_length=100,
+                                    null=False,
+                                    blank=False)
+    
+    reason = models.CharField(max_length=500,
+                              null=False,
+                              blank=False)
+
+    result = models.CharField(max_length=500,
+                              null=False,
+                              blank=False)
+    
+    date = models.DateField(null=False,
+                            blank=False)
+    
+    hour = models.TimeField(null=False,
+                            blank=False)
+    
+    def __str__(self):
+        return "{} - {} - {}".format(self.student_code, self.date, self.monitor_name)
