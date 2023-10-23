@@ -200,6 +200,21 @@
               </button>
             </div>
           </form>
+
+            <form class="mt-5" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="file" class="form-label">Seleccione un archivo Excel:</label>
+              <input
+                type="file"
+                name="file"
+                class="form-control"
+                id="file"
+                accept=".xlsx, .xls"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Cargar</button>
+          </form>
         </div>
       </div>
     </div>
@@ -228,5 +243,4 @@
     });
   })();
 </script>
-
 {% endblock content %}

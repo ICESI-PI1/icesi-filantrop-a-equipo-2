@@ -7,6 +7,7 @@ from .forms import UploadFileForm
 from crud.models import Beca, Archivo
 from datetime import datetime
 
+
 class LoadScholarshipData(View):
 
     def get(self, request):
@@ -52,7 +53,8 @@ class LoadScholarshipData(View):
                 messages.success(request, 'Se cargaron las becas correctamente')
         else:
             if 'file' in form.errors:
-                messages.error(request, 'El archivo es requerido. Asegúrate de seleccionar un archivo antes de enviar el formulario.')
+                messages.error(request,
+                               'El archivo es requerido. Asegúrate de seleccionar un archivo antes de enviar el formulario.')
             else:
                 messages.error(request, 'El formulario no es válido. Asegúrate de cargar un archivo válido.')
         return render(request, 'scholarship_data.html', {'form': form})

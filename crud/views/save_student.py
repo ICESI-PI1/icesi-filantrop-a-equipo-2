@@ -70,4 +70,6 @@ def guardar_estudiante(request):
         except Exception as e:
             message = str(e)
 
+
     return render(request, 'students_info.html', {'message': message})
+
