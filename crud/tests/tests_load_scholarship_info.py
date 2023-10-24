@@ -71,6 +71,8 @@ class LoadScholarshipDataTest(TestCase):
         self.assertEqual(len(becas), 2)
         self.assertEqual(becas[0].id_estudiante, 'A00381234')
         self.assertEqual(becas[1].id_estudiante, 'A00385678')
+<<<<<<< HEAD
+=======
 
     def test_post_invalid_form(self):
         # Prueba el manejo de un formulario inválido
@@ -139,3 +141,4 @@ class LoadScholarshipDataTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'scholarship_data.html')
         self.assertNotContains(response, 'Historial de Archivos Subidos')
+>>>>>>> 09a774910f560d45a94368c72b2f2dcbfe5925f3

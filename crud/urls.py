@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import login, save_student, request_info_update, upload_scholarship_data, upload_non_academic_report, estudiantes, upload_CREA_report
+from .views import login, save_student, request_info_update, upload_scholarship_data, upload_non_academic_report, estudiantes, upload_CREA_report, upload_academic_report
 
 urlpatterns = [
     path('', login.signin, name='signin'),
@@ -11,5 +11,8 @@ urlpatterns = [
     path('info-financiera/', upload_scholarship_data.LoadScholarshipData.as_view(), name='info-financiera'),
     path('uploadNonAcademicReport/', upload_non_academic_report.upload_non_academic_report),
     path('uploadCREAReport/', upload_CREA_report.upload_CREA_report, name='upload_crea_report'),
+    path('uploadAcademicReport/', upload_academic_report.procesar_zip, name='Subir-Notas'),
+
+    
 ]
 
