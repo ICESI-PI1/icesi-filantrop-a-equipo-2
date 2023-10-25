@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Solicitar información </title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/request_info_update_styles.css' %}">
+
+</head>
+
+<body>
+    <div class="d-flex justify-content-center">
+        <h1> Envío de reportes a donantes </h1>
+    </div>
+
+
+    <div class=" mt-5 d-flex justify-content-center">
+        
+        <form method="post" action="/askInfoUpdate/">
+            {% csrf_token %}
+            
+            <!-- Student searcher -->
+            <div class="justify-content-center d-flex container my-5">
+
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
+
+{% endblock content %}
