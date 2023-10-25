@@ -18,17 +18,92 @@
     </div>
 
 
-    <div class=" mt-5 d-flex justify-content-center">
+    <div class=" mt-2 d-flex justify-content-center">
         
-        <form method="post" action="/askInfoUpdate/">
+        <form method="post" action="/sendReportToDonor/">
             {% csrf_token %}
             
+
             <!-- Student searcher -->
             <div class="justify-content-center d-flex container my-5">
+                <div class="d-flex justify-content-center">
+                    <div class="col-lg-6" style="width: 100%;">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                
+                                <!-- Search box -->
+                                <div class="input-group rounded mb-4">
+                                    
+                                    <input type="search" id="student-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon">
+                                
+                                </div>
 
+                                <!-- List -->
+                                <ul class="list-group" id="students-list">
+                                    <p id="student-prompt-message" class="text-center" style="font-size: 12px; color: rgb(168, 168, 172);">Verá los resultados en esta área</p>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Donor searcher -->
+            <div class="justify-content-center d-flex container my-3">
+                <div class="d-flex justify-content-center">
+                    <div class="col-lg-6" style="width: 100%;">
+                        <div class="card">
+                            <div class="card-body">         
+
+                                <!-- Search box -->
+                                <div class="input-group rounded mb-4">
+                                    
+                                    <input type="search" id="donor-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al donante" aria-label="Search" aria-describedby="search-box-icon">
+                                
+                                </div>
+
+                                <!-- List -->
+                                <ul class="list-group" id="donors-list">
+                                    <p id="donors-prompt-message" class="text-center" style="font-size: 12px; color: rgb(168, 168, 172);">Verá los resultados en esta área</p>
+                                </ul>     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                                           
+
+
+            <!-- Send button -->
+            <div class="mt-5 d-flex justify-content-center">
+                <button class="btn btn-outline-primary" type="submit"> Solicitar </button>
+            </div>
+
+
+            <!-- Result message management -->
+            <div class="mt-5 d-flex justify-content-center">
+                {% if result_message %}
+
+                <div class="justify-content-center">
+                    {% if "Carga exitosa" in result_message %}
+                        <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+            
+                    {% elif "Error al cargar reporte" in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+            
+                    {% endif %}
+            
+                    <b style="font-size: 18px;"> {{ result_message }} </b>
+                </div>
+            
+                {% endif %}
             </div>
         </form>
     </div>
+    
+    <script src="{% static 'scripts/send_report_to_donor.js' %}"></script>
 
 </body>
 </html>

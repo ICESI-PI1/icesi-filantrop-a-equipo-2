@@ -13,5 +13,6 @@ urlpatterns = [
     path('uploadCREAReport/', upload_CREA_report.upload_CREA_report, name='upload_crea_report'),
     path('uploadAcademicReport/', upload_academic_report.procesar_zip, name='Subir-Notas'),
     path('sendReportToDonor/', send_report_to_donor.send_report_to_donor, name='send_report_to_donor'),
+    path('api/getStudents/', send_report_to_donor.get_students, name='get-students'),
 ]
 
