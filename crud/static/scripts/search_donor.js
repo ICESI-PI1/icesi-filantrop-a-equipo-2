@@ -14,7 +14,7 @@ fetch('/api/getDonors/')
 
                 donors_list[index] = {
                     "display_text" : donor_aux,
-                    "email" : donor.email
+                    "id" : donor.id
                 };
             });
         })
@@ -50,20 +50,23 @@ function update_results() {
         li.textContent = result.display_text;
 
         // Set the email as a data attribute.
-        li.setAttribute('data-email', result.email);
+        li.setAttribute('data-id', result.id);
 
         donor_results_list.appendChild(li);
     
         // Adds the click event to each new element.
         li.addEventListener('click', function () {
             var donor_info = this.textContent.trim().split(' - ');
-            var donor_name = donor_info[0];
-            var donor_id = donor_info[1];
+            var donor_name = donor_info[1];
+            var donor_nit = donor_info[0];
+
+            donor_search_input.value = donor_nit + " - " + donor_name;
+            update_results();
 
             // Get the email.
-            var donor_email = this.getAttribute('data-email');
+            var donor_id = this.getAttribute('data-id');
 
-            document.getElementById('donor-email-input').value = donor_email;
+            document.getElementById('donor-id-input').value = donor_id;
         });
     });
 

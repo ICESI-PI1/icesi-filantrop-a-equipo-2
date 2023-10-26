@@ -27,27 +27,6 @@
             <div class="container-fluid my-5">
                 <div class="row justify-content-center">
 
-                    <!-- Student searcher -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body" style="height: 218px;">
-                                
-                                <!-- Search box -->
-                                <div class="input-group rounded mb-4">
-                                    
-                                    <input type="search" id="student-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon">
-                                
-                                </div>
-
-                                <!-- List -->
-                                <ul class="list-group" id="students-list" style="max-height: 125px; overflow-y: auto;">
-                                    <p id="student-prompt-message" class="text-center" style="font-size: 12px; color: rgb(168, 168, 172);">Verá los resultados en esta área</p>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Donor searcher -->
                     <div class="col-lg-6">
                         <div class="card">
@@ -67,7 +46,29 @@
                                 
                                 
                                 <!-- Email of the selected donor -->
-                                <input type="hidden" name="donor-email" id="donor-email-input" value="">
+                                <input type="hidden" name="donor-id" id="donor-id-input" value="">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Student searcher -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body" style="height: 218px;">
+                                
+                                <!-- Search box -->
+                                <div class="input-group rounded mb-4">
+                                    
+                                    <input type="search" id="student-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon">
+                                
+                                </div>
+
+                                <!-- List -->
+                                <ul class="list-group" id="students-list" style="max-height: 125px; overflow-y: auto;">
+                                    <p id="student-prompt-message" class="text-center" style="font-size: 12px; color: rgb(168, 168, 172);">Verá los resultados en esta área</p>
+                                </ul>
+
                             </div>
                         </div>
                     </div>
