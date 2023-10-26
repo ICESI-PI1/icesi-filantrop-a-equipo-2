@@ -12,5 +12,5 @@ def get_students(request):
 
 @login_required
 def get_donors(request):
-    donors = Donor.objects.all().values('nit', 'name', 'lastname').order_by('nit')
+    donors = Donor.objects.all().values('nit', 'name', 'lastname', 'email').order_by('nit')
     return JsonResponse(list(donors), safe=False)

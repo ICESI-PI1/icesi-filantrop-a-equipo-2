@@ -11,11 +11,18 @@ def home(request):
 
 @login_required
 def send_report_to_donor(request):
-    students = Student.objects.all().order_by('student_code')[:3]
-    donors = Donor.objects.all().order_by('name')[:3]
+    if request.method == 'POST':
+        try:
+            selected_donor_email = request.POST.get('donor-email', '')
+
+            result_message = "Reporte generado y enviado con éxito"
+        except Exception as e:
+
+            result_message = "Error en la generación y envío de reporte"
+        
+        return render(request, 'send_report_to_donor.html', {
+            "result_message" : result_message
+        })
 
 
-    return render(request, 'send_report_to_donor.html', {
-        "students" : students,
-        "donors" : donors
-    })
+    return render(request, 'send_report_to_donor.html')

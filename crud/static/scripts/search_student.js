@@ -56,6 +56,9 @@ function update_results() {
             var student_code = student_info[1];
 
             document.getElementById('message-area').value += '\n-' + student_name + ' - ' + student_code;
+
+            // Call the auto_resize function after updating the message-area
+            auto_resize(document.getElementById('message-area'));
         });
     });
 

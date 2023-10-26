@@ -1,5 +1,5 @@
 /**
- * Fetches all the students created and adds to the HTML view all those that contain what is typed in the search box.
+ * Fetches all the donors created and adds to the HTML view all those that contain what is typed in the search box.
  */
 
 const donors_list = [];
@@ -12,7 +12,10 @@ fetch('/api/getDonors/')
             data.forEach((donor, index) => {
                 donor_aux = donor.nit + " - " + donor.name + " " + donor.lastname;
 
-                donors_list[index] = donor_aux;
+                donors_list[index] = {
+                    "display_text" : donor_aux,
+                    "email" : donor.email
+                };
             });
         })
         .catch(error => console.error('Error al obtener datos:', error));
@@ -30,7 +33,7 @@ function update_results() {
 
     const filtered_results = donors_list.filter
     (result =>
-        result.toLowerCase().includes(search_term)
+        result.display_text.toLowerCase().includes(search_term)
     );
         
     donor_results_list.innerHTML = '';
@@ -44,7 +47,11 @@ function update_results() {
     filtered_results.forEach(result => {
         const li = document.createElement('li');
         li.classList.add('list-group-item', 'student-item');
-        li.textContent = result;
+        li.textContent = result.display_text;
+
+        // Set the email as a data attribute.
+        li.setAttribute('data-email', result.email);
+
         donor_results_list.appendChild(li);
     
         // Adds the click event to each new element.
@@ -53,9 +60,10 @@ function update_results() {
             var donor_name = donor_info[0];
             var donor_id = donor_info[1];
 
-            console.log(donor_info);
+            // Get the email.
+            var donor_email = this.getAttribute('data-email');
 
-            document.getElementById('message-area').value += '\n-' + donor_id + ' - ' + donor_name;
+            document.getElementById('donor-email-input').value = donor_email;
         });
     });
 
