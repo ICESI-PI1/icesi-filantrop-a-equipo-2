@@ -1,3 +1,7 @@
+/**
+ * Fetches all the students created and adds to the HTML view all those that contain what is typed in the search box.
+ */
+
 const students_list = [];
 
 fetch('/api/getStudents/')
@@ -21,7 +25,7 @@ const student_prompt_message = document.getElementById('student-prompt-message')
 
 
 /**
- * Updates the list items with those that contains the search term written by the user.
+ * Updates the list items with those that contain the search term written by the user.
  */
 function update_results() {
     const search_term = search_input.value.toLowerCase();
@@ -35,11 +39,6 @@ function update_results() {
 
     if (!search_term) {
         filtered_results.splice(0, filtered_results.length);
-
-        // const p = document.createElement('p');
-        // p.classList.add('text-center');
-        // p.style.setProperty('font-size', '12px');
-        // p.style.setProperty('color', 'rgb(168, 168, 172)');
 
         results_list.appendChild(student_prompt_message);
     }

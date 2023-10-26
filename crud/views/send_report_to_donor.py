@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-import pandas as pd
-
 from crud.models import *
 from django.http import JsonResponse
 
@@ -21,9 +19,3 @@ def send_report_to_donor(request):
         "students" : students,
         "donors" : donors
     })
-
-
-@login_required
-def get_students(request):
-    students = Student.objects.all().values('student_code', 'name')
-    return JsonResponse(list(students), safe=False)
