@@ -1,9 +1,10 @@
+from django.db import IntegrityError, transaction
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 from crud.models import Student
-from django.db import IntegrityError, transaction
-import re
+from datetime import datetime
 import pandas as pd
+import re
 
 
 def validar_datos(data):
@@ -18,6 +19,32 @@ def validar_datos(data):
                                                                                          data['correo_institucional']):
             return False, "Por favor, introduce un correo electrónico válido."
 
+        # Comprueba si la fecha de nacimiento es válida
+        try:
+            birth_date = datetime.strptime(data['fecha_nacimiento'], '%d/%m/%Y')
+            if birth_date > datetime.now():
+                return False, "La fecha de nacimiento no puede ser en el futuro."
+        except ValueError:
+            return False, "Formato de fecha de nacimiento inválido. Debe ser DD/MM/AAAA."
+
+        # Comprueba si el número de celular es válido
+        if not re.fullmatch(r'\d{10}', data['numero_celular']):
+            return False, "El número de celular debe tener 10 dígitos."
+
+        # Comprueba si el puntaje ICFES está en el rango válido
+        if not 0 <= int(data['puntaje_icfes']) <= 500:
+            return False, "El puntaje ICFES debe estar entre 0 y 500."
+
+        # Comprueba si el promedio acumulado y los créditos cursados son números válidos
+        if not 0 <= float(data['promedio_acumulado']) <= 5.0:
+            return False, "El promedio acumulado debe estar entre 0 y 5."
+        if not 0 <= int(data['creditos_cursados']):
+            return False, "Los créditos cursados no pueden ser negativos."
+
+        # Comprueba si el género es válido
+        if data['genero'] not in ['Masculino', 'Femenino', 'Otro']:
+            return False, "El género debe ser 'Masculino', 'Femenino' o 'Otro'."
+
         return True, ""
     except Exception as e:
         # Agrega un manejo de excepciones para posibles errores aquí.
@@ -27,12 +54,9 @@ def validar_datos(data):
 def guardar_estudiante(request):
     message = ''
     if request.method == "POST":
-
         try:
-
             received_file = request.FILES['file_students']
             file = pd.read_excel(received_file)
-
             for index, row in file.iterrows():
                 fields = {
                     'id_type': row['tipo_documento'],
@@ -48,7 +72,6 @@ def guardar_estudiante(request):
                     'genre': row['genero'],
                     'student_code': row['codigo_identificador']
                 }
-
                 exists_row = Student.objects.filter(student_code=row['codigo_identificador'],
                                                     name=row['nombre_completo'],
                                                     genre=row['genero'],
@@ -61,17 +84,13 @@ def guardar_estudiante(request):
                                                     cellphone_number=row['numero_celular'],
                                                     accumulated_average=row['promedio_acumulado'],
                                                     credits_studied=row['creditos_cursados'])
-
                 if exists_row.exists():
                     exists_row.update(**fields)
-
                 else:
                     student = Student.objects.create(**fields)
                     student.save()
-            result_message = "Carga exitosa"
-
         except Exception as e:
-            result_message = "Error al cargar reporte"
+            message = str(e)
 
         data = {
             'id_type': request.POST.get('tipo_documento'),
@@ -87,15 +106,11 @@ def guardar_estudiante(request):
             'genre': request.POST.get('genero'),
             'student_code': request.POST.get('codigo_identificador')
         }
-
-        # Verificar si los datos requeridos están presentes
         if not all(data.values()):
             return HttpResponseBadRequest("Todos los campos son requeridos.")
-
         is_valid, message = validar_datos(data)
         if not is_valid:
             return render(request, 'students_info.html', {'message': message})
-
         try:
             with transaction.atomic():
                 student = Student.objects.create(student_code=data['codigo_identificador'],
@@ -116,5 +131,4 @@ def guardar_estudiante(request):
             message = 'No se pudo guardar el estudiante debido a un error de integridad de datos.'
         except Exception as e:
             message = str(e)
-
     return render(request, 'students_info.html', {'result_message': message})
