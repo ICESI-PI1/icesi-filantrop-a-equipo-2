@@ -7,9 +7,6 @@ from .forms import UploadFileForm
 from crud.models import Beca, Archivo
 from datetime import datetime
 
-
-from django.contrib import messages
-
 class LoadScholarshipData(View):
 
     def get(self, request):
@@ -53,7 +50,7 @@ class LoadScholarshipData(View):
             except Exception as e:
                 result_message = f'Error al cargar reporte: {e}'
         else:
+
             result_message = 'El formulario no es válido.'
             
         return render(request, 'scholarship_data.html', {'form': form, 'result_message': result_message})
-
