@@ -15,8 +15,8 @@ def send_report_to_donor(request):
         try:
             selected_donor = request.POST.get('donor-id', '')
 
-            print("Donante: {}".format(selected_donor))
-
+            
+            
             result_message = "Reporte generado y enviado con éxito"
         except Exception as e:
 
