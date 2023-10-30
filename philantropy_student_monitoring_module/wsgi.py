@@ -14,3 +14,4 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'philantropy_student_monitoring_module.settings')
 
 application = get_wsgi_application()
+app = application
