@@ -7,7 +7,6 @@ from .forms import UploadFileForm
 from crud.models import Beca, Archivo
 from datetime import datetime
 
-
 class LoadScholarshipData(View):
 
     def get(self, request):
@@ -24,37 +23,34 @@ class LoadScholarshipData(View):
     def post(self, request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            archivo = Archivo(
-                nombre=request.FILES['file'].name,
-                fecha=datetime.now()
-            )
-            archivo.save()
-            xls = pd.ExcelFile(request.FILES['file'])
-            for sheet_name in xls.sheet_names:
-                df = pd.read_excel(xls, sheet_name)
-                for index, row in df.iterrows():
-                    try:
-                        beca, created = Beca.objects.get_or_create(
-                            id_estudiante=row['id_estudiante'],
-                            defaults={
-                                'tipo_beca': row['tipo_beca'],
-                                'monto': row['monto_asignado'],
-                                'duracion': row['duracion']
-                            }
-                        )
-                        if not created:
-                            beca.tipo_beca = row['tipo_beca']
-                            beca.monto = row['monto_asignado']
-                            beca.duracion = row['duracion']
-                            beca.save()
-
-                    except Exception as e:
-                        messages.error(request, f'Hubo un error al cargar el archivo: {str(e)}')
-                messages.success(request, 'Se cargaron las becas correctamente')
+            try:
+                archivo = Archivo(
+                    nombre=request.FILES['file'].name,
+                    fecha=datetime.now()
+                )
+                archivo.save()
+                xls = pd.ExcelFile(request.FILES['file'])
+                for sheet_name in xls.sheet_names:
+                    df = pd.read_excel(xls, sheet_name)
+                    for index, row in df.iterrows():
+                            beca, created = Beca.objects.get_or_create(
+                                id_estudiante=row['id_estudiante'],
+                                defaults={
+                                    'tipo_beca': row['tipo_beca'],
+                                    'monto': row['monto_asignado'],
+                                    'duracion': row['duracion']
+                                }
+                            )
+                            if not created:
+                                beca.tipo_beca = row['tipo_beca']
+                                beca.monto = row['monto_asignado']
+                                beca.duracion = row['duracion']
+                                beca.save()
+                result_message = 'Carga exitosa'
+            except Exception as e:
+                result_message = f'Error al cargar reporte: {e}'
         else:
-            if 'file' in form.errors:
-                messages.error(request,
-                               'El archivo es requerido. Asegúrate de seleccionar un archivo antes de enviar el formulario.')
-            else:
-                messages.error(request, 'El formulario no es válido. Asegúrate de cargar un archivo válido.')
-        return render(request, 'scholarship_data.html', {'form': form})
+
+            result_message = 'El formulario no es válido.'
+            
+        return render(request, 'scholarship_data.html', {'form': form, 'result_message': result_message})
