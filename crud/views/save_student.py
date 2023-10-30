@@ -3,6 +3,7 @@ from django.shortcuts import render
 from crud.models import Student
 from django.db import IntegrityError, transaction
 import re
+import pandas as pd
 
 
 def validar_datos(data):
@@ -26,19 +27,65 @@ def validar_datos(data):
 def guardar_estudiante(request):
     message = ''
     if request.method == "POST":
+
+        try:
+
+            received_file = request.FILES['file_students']
+            file = pd.read_excel(received_file)
+
+            for index, row in file.iterrows():
+                fields = {
+                    'id_type': row['tipo_documento'],
+                    'id_number': row['numero_documento'],
+                    'name': row['nombre_completo'],
+                    'email': row['correo_electronico'],
+                    'institutional_email': row['correo_institucional'],
+                    'icfes_score': row['puntaje_icfes'],
+                    'birth_date': row['fecha_nacimiento'],
+                    'cellphone_number': row['numero_celular'],
+                    'accumulated_average': row['promedio_acumulado'],
+                    'credits_studied': row['creditos_cursados'],
+                    'genre': row['genero'],
+                    'student_code': row['codigo_identificador']
+                }
+
+                exists_row = Student.objects.filter(student_code=row['codigo_identificador'],
+                                                    name=row['nombre_completo'],
+                                                    genre=row['genero'],
+                                                    id_type=row['tipo_documento'],
+                                                    id_number=row['numero_documento'],
+                                                    email=row['correo_electronico'],
+                                                    institutional_email=row['correo_institucional'],
+                                                    icfes_score=row['puntaje_icfes'],
+                                                    birth_date=row['fecha_nacimiento'],
+                                                    cellphone_number=row['numero_celular'],
+                                                    accumulated_average=row['promedio_acumulado'],
+                                                    credits_studied=row['creditos_cursados'])
+
+                if exists_row.exists():
+                    exists_row.update(**fields)
+
+                else:
+                    student = Student.objects.create(**fields)
+                    student.save()
+            result_message = "Carga exitosa"
+
+        except Exception as e:
+            result_message = "Error al cargar reporte"
+
         data = {
-            'tipo_documento': request.POST.get('tipo_documento'),
-            'numero_documento': request.POST.get('numero_documento'),
-            'nombre_completo': request.POST.get('nombre_completo'),
-            'correo_electronico': request.POST.get('correo_electronico'),
-            'correo_institucional': request.POST.get('correo_institucional'),
-            'puntaje_icfes': request.POST.get('puntaje_icfes'),
-            'fecha_nacimiento': request.POST.get('fecha_nacimiento'),
-            'numero_celular': request.POST.get('numero_celular'),
-            'promedio_acumulado': request.POST.get('promedio_acumulado'),
-            'creditos_cursados': request.POST.get('creditos_cursados'),
-            'genero': request.POST.get('genero'),
-            'codigo_identificador': request.POST.get('codigo_identificador')
+            'id_type': request.POST.get('tipo_documento'),
+            'id_number': request.POST.get('numero_documento'),
+            'name': request.POST.get('nombre_completo'),
+            'email': request.POST.get('correo_electronico'),
+            'institutional_email': request.POST.get('correo_institucional'),
+            'icfes_score': request.POST.get('puntaje_icfes'),
+            'birth_date': request.POST.get('fecha_nacimiento'),
+            'cellphone_number': request.POST.get('numero_celular'),
+            'accumulated_average': request.POST.get('promedio_acumulado'),
+            'credits_studied': request.POST.get('creditos_cursados'),
+            'genre': request.POST.get('genero'),
+            'student_code': request.POST.get('codigo_identificador')
         }
 
         # Verificar si los datos requeridos están presentes
@@ -70,6 +117,4 @@ def guardar_estudiante(request):
         except Exception as e:
             message = str(e)
 
-
-    return render(request, 'students_info.html', {'message': message})
-
+    return render(request, 'students_info.html', {'result_message': message})

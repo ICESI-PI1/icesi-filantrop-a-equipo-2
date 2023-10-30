@@ -205,15 +205,24 @@
             {% csrf_token %}
             <div class="mb-3">
               <label for="file" class="form-label">Seleccione un archivo Excel:</label>
+
               <input
                 type="file"
-                name="file"
+                name="file_students"
                 class="form-control"
-                id="file"
+                id="inputGroupFile05"
+                aria-describedby="inputGroupFileAddon05"
+                aria-label="Upload"
+
                 accept=".xlsx, .xls"
               />
+                <button type="submit"
+                        class="btn btn-primary"
+                        id="inputGroupFileAddon05">
+                    Cargar
+                </button>
             </div>
-            <button type="submit" class="btn btn-primary">Cargar</button>
+
           </form>
         </div>
       </div>
