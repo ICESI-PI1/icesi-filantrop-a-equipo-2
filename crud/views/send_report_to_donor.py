@@ -54,6 +54,8 @@ def send_report_to_donor(request):
 
 
 def generate_general_report(date, student, testimony):
+    semester = date
+
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="reporte.pdf"'
 
@@ -65,7 +67,7 @@ def generate_general_report(date, student, testimony):
     p.showPage()
     p.save()
 
-    relative_path = "media/reportes/"  # Ruta relativa al directorio de tu aplicación
+    relative_path = "archivos/reportes/"  # Ruta relativa al directorio de tu aplicación
     full_path = os.path.join(settings.BASE_DIR, relative_path)
 
     # Asegúrate de que la carpeta exista, si no, créala
@@ -73,8 +75,10 @@ def generate_general_report(date, student, testimony):
 
     print(full_path)
 
+    report_name = "Reporte general {} - {}.pdf".format(student.student_code, semester)
+
     # Guardar el archivo PDF en la carpeta
-    with open(os.path.join(full_path, "reporte.pdf"), "wb") as pdf_file:
+    with open(os.path.join(full_path, report_name), "wb") as pdf_file:
         pdf_file.write(response.content)
 
     return response
