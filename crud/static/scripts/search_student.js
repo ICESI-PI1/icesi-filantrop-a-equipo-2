@@ -12,7 +12,10 @@ fetch('/api/getStudents/')
             data.forEach((student, index) => {
                 student_aux = student.student_code + " - " + student.name;
 
-                students_list[index] = student_aux;
+                students_list[index] = {
+                    "display_text" : student_aux,
+                    "id" : student.id
+                };
             });
         })
         .catch(error => console.error('Error al obtener datos:', error));
@@ -32,7 +35,7 @@ function update_results() {
 
     const filtered_results = students_list.filter
     (result =>
-        result.toLowerCase().includes(search_term)
+        result.display_text.toLowerCase().includes(search_term)
     );
         
     results_list.innerHTML = '';
@@ -46,16 +49,22 @@ function update_results() {
     filtered_results.forEach(result => {
         const li = document.createElement('li');
         li.classList.add('list-group-item', 'student-item');
-        li.textContent = result;
+        li.textContent = result.display_text;
+
         results_list.appendChild(li);
     
         // Adds the click event to each new element.
         li.addEventListener('click', function () {
             var student_info = this.textContent.trim().split(' - ');
-            var student_name = student_info[0];
-            var student_code = student_info[1];
+            var student_name = student_info[1];
+            var student_code = student_info[0];
 
             document.getElementById('message-area').value += '\n-' + student_name + ' - ' + student_code;
+
+            search_input.value = student_code + " - " + student_name;
+            update_results();
+
+            document.getElementById('student-id-input').value = result.id;
 
             // Call the auto_resize function after updating the message-area
             auto_resize(document.getElementById('message-area'));

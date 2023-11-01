@@ -20,6 +20,7 @@ fetch('/api/getDonors/')
         })
         .catch(error => console.error('Error al obtener datos:', error));
 
+        
 const donor_search_input = document.getElementById('donor-search-box');
 const donor_results_list = document.getElementById('donors-list');
 
@@ -63,7 +64,7 @@ function update_results() {
             donor_search_input.value = donor_nit + " - " + donor_name;
             update_results();
 
-            // Get the email.
+            // Get the id.
             var donor_id = this.getAttribute('data-id');
 
             document.getElementById('donor-id-input').value = donor_id;
