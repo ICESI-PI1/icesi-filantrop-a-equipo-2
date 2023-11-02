@@ -32,7 +32,24 @@ def send_report_to_donor(request):
             date = datetime.now().date()
             semester = f'{date.year} - 1' if date.month < 6 else f'{date.year} - 2'
 
-            generate_general_report(date, semester, selected_student, student_testimony)
+            # Tries to get the selected student's non academic activities. If there is no one, don't stop the report generation. 
+            try:
+                non_academic_activities = NonAcademicActvitiesReport.objects.get(student_code=selected_student_id)
+
+            except Exception as e:
+                print(f"Error: {e}")
+
+                non_academic_activities = "No se registran asistencias a actividades no académicas."
+
+            try:
+                crea_assistance = CREAReport.objects.get(student_code=selected_student_id)
+            
+            except Exception as e:
+                print(f"Error: {e}")
+
+                crea_assistance = "No se registran asistencias a monitorías."
+
+            generate_general_report(date, semester, selected_student, student_testimony, non_academic_activities, crea_assistance)
 
             # print("Donante: {}".format(selected_donor))
             # print("Estudiante: {}".format(selected_student_id))
@@ -58,9 +75,11 @@ def send_report_to_donor(request):
 Receives certain information, obtains the basic format of the report, and fills in 
 the available fields with the information received.
 """
-def generate_general_report(date, semester, student, testimony):
+def generate_general_report(date, semester, student, testimony, non_academic_activities, crea_assistance):
     report_name = "Reporte general {} - {}.docx".format(student.student_code, semester)
     output_path = f'archivos/reportes/{report_name}'
+    output_path_pdf = f'archivos/reportes/{report_name.replace(".docx", ".pdf")}'
+
     
     # Reads the format content
     format_content = read_report_format()
@@ -76,7 +95,9 @@ def generate_general_report(date, semester, student, testimony):
         paragraph_text = paragraph_text.replace("[Fecha]", semester)
         paragraph_text = paragraph_text.replace("[estudiante]", str(student.name))
         paragraph_text = paragraph_text.replace("[semestre]", semester)
-        paragraph_text = paragraph_text.replace("[testimonio]", testimony)
+        paragraph_text = paragraph_text.replace("[testimonio_estudiante]", testimony)
+        paragraph_text = paragraph_text.replace("[actividades_no_académicas]", str(non_academic_activities))
+        paragraph_text = paragraph_text.replace("[asistencia_monitorias]", str(crea_assistance))
 
         # Adds the modified text to the doc
         new_paragraph.add_run(paragraph_text)
@@ -89,8 +110,9 @@ def generate_general_report(date, semester, student, testimony):
                 run.font.name = run_info['font_name']
                 new_paragraph.alignment = run_info['alignment']
 
-    # Saves the doc
+    # Saves the .docx and .pdf of the report
     modified_doc.save(output_path)
+    convert(output_path, output_path_pdf)
 
 
 """
