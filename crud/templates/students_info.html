@@ -200,6 +200,30 @@
               </button>
             </div>
           </form>
+
+            <form class="mt-5" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="file" class="form-label">Seleccione un archivo Excel:</label>
+
+              <input
+                type="file"
+                name="file_students"
+                class="form-control"
+                id="inputGroupFile05"
+                aria-describedby="inputGroupFileAddon05"
+                aria-label="Upload"
+
+                accept=".xlsx, .xls"
+              />
+                <button type="submit"
+                        class="btn btn-primary"
+                        id="inputGroupFileAddon05">
+                    Upload
+                </button>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>
@@ -228,5 +252,4 @@
     });
   })();
 </script>
-
 {% endblock content %}

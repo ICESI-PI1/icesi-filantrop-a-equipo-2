@@ -162,3 +162,42 @@ class CREAReport(models.Model):
     
     def __str__(self):
         return "{} - {} - {}".format(self.student_code, self.date, self.monitor_name)
+    
+class Donor(models.Model):
+    nit = models.CharField(max_length=12,
+                           null=False,
+                           blank=False,
+                           unique=True)
+
+    name = models.CharField(max_length=100,
+                            null=False,
+                            blank=False)
+    
+    lastname = models.CharField(max_length=100,
+                                null=False,
+                                blank=False)
+    
+    email = models.EmailField(max_length=1000,
+                              null=False,
+                              blank=False)
+
+    TYPE_OPTIONS = [
+        ('Natural', 'Natural'),
+        ('Legal', 'Legal'),
+    ]
+
+    type = models.CharField(max_length=7,
+                            null=False,
+                            blank=False,
+                            choices=TYPE_OPTIONS)
+    
+    description = models.CharField(max_length=1000,
+                                   null=False,
+                                   blank=False)
+    
+    previous_colaborations = models.CharField(max_length=1000,
+                                              null=False,
+                                              blank=False)
+    
+    def __str__(self):
+        return "{} - {} {}".format(self.nit, self.name, self.lastname)
