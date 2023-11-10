@@ -91,14 +91,14 @@ class Beca(models.Model):
     monto = models.DecimalField(max_digits=10, decimal_places=2)
 
 
-
-def __str__(self): 
+def __str__(self):
     return self.id_estudiante
 
 
 class Archivo(models.Model):
     nombre = models.CharField(max_length=255)
     fecha = models.DateTimeField(auto_now_add=True)
+
 
 class NonAcademicActvitiesReport(models.Model):
     student_code = models.CharField(max_length=9,
@@ -128,7 +128,8 @@ class NonAcademicActvitiesReport(models.Model):
 
     def str(self):
         return self.name + " " + self.lastname + " - " + self.activity + " - " + self.semester
-    
+
+
 class CREAReport(models.Model):
     student_code = models.CharField(max_length=9,
                                     null=False,
@@ -141,11 +142,11 @@ class CREAReport(models.Model):
     lastname = models.CharField(max_length=100,
                                 null=False,
                                 blank=False)
-    
+
     monitor_name = models.CharField(max_length=100,
                                     null=False,
                                     blank=False)
-    
+
     reason = models.CharField(max_length=500,
                               null=False,
                               blank=False)
@@ -153,16 +154,17 @@ class CREAReport(models.Model):
     result = models.CharField(max_length=500,
                               null=False,
                               blank=False)
-    
+
     date = models.DateField(null=False,
                             blank=False)
-    
+
     hour = models.TimeField(null=False,
                             blank=False)
-    
+
     def __str__(self):
         return "{} - {} - {}".format(self.student_code, self.date, self.monitor_name)
-    
+
+
 class Donor(models.Model):
     nit = models.CharField(max_length=12,
                            null=False,
@@ -172,11 +174,11 @@ class Donor(models.Model):
     name = models.CharField(max_length=100,
                             null=False,
                             blank=False)
-    
+
     lastname = models.CharField(max_length=100,
                                 null=False,
                                 blank=False)
-    
+
     email = models.EmailField(max_length=1000,
                               null=False,
                               blank=False)
@@ -190,14 +192,14 @@ class Donor(models.Model):
                             null=False,
                             blank=False,
                             choices=TYPE_OPTIONS)
-    
+
     description = models.CharField(max_length=1000,
                                    null=False,
                                    blank=False)
-    
+
     previous_colaborations = models.CharField(max_length=1000,
                                               null=False,
                                               blank=False)
-    
+
     def __str__(self):
         return "{} - {} {}".format(self.nit, self.name, self.lastname)
