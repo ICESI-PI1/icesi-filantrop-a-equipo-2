@@ -16,5 +16,6 @@ urlpatterns = [
     path('api/getStudents/', api.get_students, name='get-students'),
     path('api/getDonors/', api.get_donors, name='get-donors'),
     path('create_donor/', donors.save_donor, name='save_donor'),
+    path('')
 ]
 
