@@ -30,9 +30,26 @@ def send_report_to_donor(request):
             student_testimony = request.POST.get('student-testimony', '')
 
             date = datetime.now().date()
-            semester = str(f'{date.year} - {1}') if date.month <=6 else str(f'{date.year} - {2}')
+            semester = f'{date.year} - 1' if date.month < 6 else f'{date.year} - 2'
 
-            generate_general_report(date, semester, selected_student, student_testimony)
+            # Tries to get the selected student's non academic activities. If there is no one, don't stop the report generation. 
+            try:
+                non_academic_activities = NonAcademicActvitiesReport.objects.get(student_code=selected_student_id)
+
+            except Exception as e:
+                print(f"Error: {e}")
+
+                non_academic_activities = "No se registran asistencias a actividades no académicas."
+
+            try:
+                crea_assistance = CREAReport.objects.get(student_code=selected_student_id)
+            
+            except Exception as e:
+                print(f"Error: {e}")
+
+                crea_assistance = "No se registran asistencias a monitorías."
+
+            generate_general_report(date, semester, selected_student, student_testimony, non_academic_activities, crea_assistance)
 
             # print("Donante: {}".format(selected_donor))
             # print("Estudiante: {}".format(selected_student_id))
@@ -54,40 +71,53 @@ def send_report_to_donor(request):
     return render(request, 'send_report_to_donor.html')
 
 
-def generate_general_report(date, semester, student, testimony):
+"""
+Receives certain information, obtains the basic format of the report, and fills in 
+the available fields with the information received.
+"""
+def generate_general_report(date, semester, student, testimony, non_academic_activities, crea_assistance):
     report_name = "Reporte general {} - {}.docx".format(student.student_code, semester)
     output_path = f'archivos/reportes/{report_name}'
+    output_path_pdf = f'archivos/reportes/{report_name.replace(".docx", ".pdf")}'
+
     
     # Reads the format content
     format_content = read_report_format()
 
-    # Crear un nuevo documento de Word modificado
+    # Creates a new doc to add the modifications
     modified_doc = Document()
 
     for paragraph_info in format_content:
         new_paragraph = modified_doc.add_paragraph()
 
-        # new_paragraph.text = new_paragraph.text.replace("[Fecha]", str(date))
-        # new_paragraph.text = new_paragraph.text.replace("[estudiante]", str(student.name))
-        # new_paragraph.text = new_paragraph.text.replace("[semestre]", semester)
-        # new_paragraph.text = new_paragraph.text.replace("[testimonio]", testimony)
+        # Replaces the fields with the information received as parameters
+        paragraph_text = paragraph_info['paragraph_text']
+        paragraph_text = paragraph_text.replace("[Fecha]", semester)
+        paragraph_text = paragraph_text.replace("[estudiante]", str(student.name))
+        paragraph_text = paragraph_text.replace("[semestre]", semester)
+        paragraph_text = paragraph_text.replace("[testimonio_estudiante]", testimony)
+        paragraph_text = paragraph_text.replace("[actividades_no_académicas]", str(non_academic_activities))
+        paragraph_text = paragraph_text.replace("[asistencia_monitorias]", str(crea_assistance))
 
-        for run_info in paragraph_info['runs']:
-            new_run = new_paragraph.add_run(run_info['text'])
+        # Adds the modified text to the doc
+        new_paragraph.add_run(paragraph_text)
+        
+        for run in new_paragraph.runs:
+            for run_info in paragraph_info['runs']:
+                run.font.size = Pt(run_info['font_size']) if run_info['font_size'] else None
+                run.font.bold = run_info['font_bold']
+                run.font.italic = run_info['font_italic']
+                run.font.name = run_info['font_name']
+                new_paragraph.alignment = run_info['alignment']
 
-            # new_run = new_paragraph.add_run(run_info['font_italic'])
-            new_run.font.size = Pt(run_info['font_size']) if run_info['font_size'] else None
-            new_run.font.bold = run_info['font_bold']
-            new_run.font.italic = run_info['font_italic']
-            new_run.font.name = run_info['font_name']
-            new_paragraph.alignment = run_info['alignment']
-
-        print(new_paragraph.text)
-
-    # Guardar el documento de Word modificado como PDF
+    # Saves the .docx and .pdf of the report
     modified_doc.save(output_path)
+    convert(output_path, output_path_pdf)
 
 
+"""
+Reads a .docx document containing the basic format of the report to be generated. 
+"""
 def read_report_format():
     doc = Document('./crud/static/formats/Reporte general beneficiario.docx')
 
