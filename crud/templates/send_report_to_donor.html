@@ -130,12 +130,66 @@
                 </div>
             </div>
 
-            <!-- Send button -->
+            <!-- Generate button -->
             <div class="mt-5 d-flex justify-content-center">
-                <button class="btn btn-outline-primary" type="submit"> Generar y enviar </button>
+                <button class="btn btn-outline-primary" type="submit"> Generar reporte </button>
             </div>
 
         </form>
+
+        {% if generated_report %}
+            <form method="post" action="/sendReport/">
+                {% csrf_token %}
+
+                <!-- Descarga de resultado -->
+                <div class="mt-5 d-flex justify-content-center">
+                    <div class="card">
+                        <div class="card-body text-center">
+
+                            <!-- Email sending result message management -->
+                            <div class="mb-4 d-flex justify-content-center">
+                                {% if email_sending_result_message %}
+
+                                <div class="justify-content-center">
+                                    {% if "Error" in email_sending_result_message %}
+                                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+                            
+                                    {% endif %}
+                            
+                                    <b style="font-size: 18px;"> {{ email_sending_result_message }} </b>
+                                </div>
+                            
+                                {% endif %}
+                            </div>
+                        
+                            <span class="input-group-text"> Reporte generado </span>
+        
+                            <a class="mt-2 btn btn-success" href="{% static 'reports/' %}{{ generated_report }}" download="Reporte generado">
+                                <i class="fas fa-download"></i> Descargar Reporte
+                            </a>
+
+                            <!-- Id of the selected donor -->
+                            <input type="hidden" name="donor-id2" id="donor-id-input2" value="{{ selected_donor_id }}">
+
+                            <!-- Message for the email -->
+                            <input type="hidden" name="email-message" id="email-message" value="{{ email_message }}">
+
+                            <!-- Report name -->
+                            <input type="hidden" name="report-name" id="report-name" value="{{ generated_report }}">
+
+
+                            <!-- Send button -->
+                            <div class="mt-2 d-flex justify-content-center">
+                                <button class="btn btn-outline-primary" type="submit"> Enviar reporte </button>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        {% endif %}
+
     </div>
     
     <script src="{% static 'scripts/search_student.js' %}"></script>
