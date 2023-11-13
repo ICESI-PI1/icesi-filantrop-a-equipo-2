@@ -11,6 +11,7 @@
           type="file"
           name="uploadedFile"
           class="form-control"
+          id="file"
         />
         <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
       </div>
@@ -19,7 +20,7 @@
     <div class="mt-5 d-flex justify-content-center">
         {% if result_message %}
     
-        <div class="justify-content-center">
+        <div class="justify-content-center" id="succesfulMess">
             {% if "Archivo cargado exitosamente." in result_message %}
                 <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
     

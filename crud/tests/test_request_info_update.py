@@ -126,4 +126,3 @@ class RequestInfoUpdateTestCase(TestCase):
         #         message='Este es un mensaje de prueba.\n\nEstudiantes seleccionados:\n- Student 1',
         #         subject='Nuevo mensaje de la oficina',
         #     )
-

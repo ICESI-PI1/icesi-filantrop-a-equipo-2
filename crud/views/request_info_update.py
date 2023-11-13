@@ -19,7 +19,7 @@ When the user fills all the fields, this method receives the information and cal
 """
 
 
-@login_required
+#@login_required
 def ask_info_update(request):
 
     offices = Office.objects.all()
