@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import login, save_student, request_info_update, upload_scholarship_data, upload_non_academic_report, estudiantes, upload_CREA_report, upload_academic_report, send_report_to_donor, api, reportes
+from .views import login, save_student, request_info_update, upload_scholarship_data, upload_non_academic_report, estudiantes, upload_CREA_report, upload_academic_report, send_report_to_donor, api,donors, reportes
+
 
 urlpatterns = [
     path('', login.signin, name='signin'),
@@ -16,5 +17,7 @@ urlpatterns = [
     path('api/getStudents/', api.get_students, name='get-students'),
     path('api/getDonors/', api.get_donors, name='get-donors'),
     path('reportes/', reportes.reportes),
+    path('create_donor/', donors.save_donor, name='save_donor'),
+    path('sendReport/', send_report_to_donor.send_report, name='send_report'),
 ]
 
