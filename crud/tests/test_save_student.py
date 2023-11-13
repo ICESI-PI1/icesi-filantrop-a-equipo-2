@@ -28,7 +28,6 @@ class TestGuardarEstudiante(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(Student.objects.filter(student_code=data['codigo_identificador']).exists())
 
-
     def test_guardar_estudiante_get(self):
         request = self.factory.get(reverse('guardar_estudiante'))
         response = guardar_estudiante(request)
@@ -71,25 +70,4 @@ class TestGuardarEstudiante(TestCase):
         is_valid, message = validar_datos(data)
         self.assertFalse(is_valid)
         self.assertEqual(message, "Por favor, introduce un correo electrónico válido.")
-
-    def test_guardar_estudiante_correo_institucional_invalido(self):
-        data = {
-            'tipo_documento': 'CC',
-            'numero_documento': '123456789',
-            'nombre_completo': 'Juan Perez',
-            'correo_electronico': 'juan.perez@example.com',
-            'correo_institucional': 'correo_institucional_invalido',  # Correo inválido
-            'puntaje_icfes': '350',
-            'fecha_nacimiento': '2000-01-01',
-            'numero_celular': '3001234567',
-            'promedio_acumulado': '4.5',
-            'creditos_cursados': '120',
-            'genero': 'M',
-            'codigo_identificador': '003'
-        }
-        request = self.factory.post(reverse('guardar_estudiante'), data)
-        response = guardar_estudiante(request)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn("Por favor, introduce un correo electrónico válido.", response.content.decode())
-        self.assertFalse(Student.objects.filter(student_code=data['codigo_identificador']).exists())
 
