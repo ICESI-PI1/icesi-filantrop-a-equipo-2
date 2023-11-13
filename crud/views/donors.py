@@ -28,12 +28,11 @@ def validate_data(data):
 
 def save_donor(request):
     if request.method == 'POST':
-        message = ""
         try:
             data = {
                 'name': request.POST.get('nombre'),
                 'lastname': request.POST.get('apellido'),
-                'TYPE_OPTIONS': request.POST.get('tipo_persona'),
+                'type': request.POST.get('tipo_persona'),
                 'nit': request.POST.get('numero_nit'),
                 'email': request.POST.get('correo_electronico'),
                 'description': request.POST.get('descripcion'),
@@ -46,7 +45,7 @@ def save_donor(request):
             try:
                 with transaction.atomic():
                     donor, created = Donor.objects.update_or_create(
-                        donor_nit=request.POST.get('numero_nit'),
+                        nit=request.POST.get('numero_nit'),
                         defaults=data
                     )
                     if created:
@@ -54,11 +53,13 @@ def save_donor(request):
                     else:
                         message = "Donante actualizado con éxito."
 
-            except IntegrityError:
-                message = "El donante ya existe."
+            except Exception as e:
+                print(e)
+                message = "Error al crear el donante: " + str(e)
+
+            return render(request, 'create_donor.html', {'message': message})
+
         except Exception as e:
             message = "Error al crear el donante: " + str(e)
-
-        return render(request, 'create_donor.html', {'message': message})
 
     return render(request, 'create_donor.html')
