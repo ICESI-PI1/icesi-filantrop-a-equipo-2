@@ -6,6 +6,8 @@ from crud.models import Office, Student
 
 import smtplib
 from email.mime.text import MIMEText
+from email.message import EmailMessage
+import os
 
 
 def home(request):
@@ -60,19 +62,32 @@ def ask_info_update(request):
 
 
 """
-Given a destinatary, a message, and a subject, sends an email, from the default mail.
+Given a destinatary, a message, a subject, and an optional file, sends an email, from the default mail.
 """
 
 
-def send_email(receiver_email, message, subject):
+def send_email(receiver_email, message, subject, attachment_path=None):
     sender = "pi.seg.estudiantes@gmail.com"
     password = "zhazuuahhicywuyg"
 
-    mail = MIMEText(message)
+    # mail = MIMEText(message)
+    mail = EmailMessage()
+    mail.set_content(message)
     mail['From'] = sender
     mail['To'] = receiver_email
     mail['Subject'] = subject
 
+    # with smtplib.SMTP("smtp.gmail.com", 587) as gmail_server:
+    #     gmail_server.starttls()
+    #     gmail_server.login(sender, password)
+
+    #     gmail_server.send_message(mail)
+
+    if attachment_path:
+        with open(attachment_path, 'rb') as pdf_file:
+            content = pdf_file.read()
+            mail.add_attachment(content, maintype='application', subtype='pdf', filename=os.path.basename(attachment_path))
+    
     with smtplib.SMTP("smtp.gmail.com", 587) as gmail_server:
         gmail_server.starttls()
         gmail_server.login(sender, password)
