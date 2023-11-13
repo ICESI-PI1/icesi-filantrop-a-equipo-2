@@ -53,13 +53,13 @@ def send_report_to_donor(request):
 
             report_name = generate_general_report(date, semester, selected_student, student_testimony, non_academic_activities, crea_assistance)
 
-            result_message = "Reporte generado y enviado con éxito"
+            result_message = "Reporte generado con éxito"
             
         except Exception as e:
             print(f"Error: {e}")
 
             report_name = None
-            result_message = "Error en la generación y envío de reporte"
+            result_message = "Error en la generación de reporte"
         
         return render(request, 'send_report_to_donor.html', {
             "result_message" : result_message,
