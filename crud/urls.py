@@ -11,8 +11,7 @@ urlpatterns = [
     path('info-financiera/', upload_scholarship_data.LoadScholarshipData.as_view(), name='info-financiera'),
     path('uploadNonAcademicReport/', upload_non_academic_report.upload_non_academic_report),
     path('uploadCREAReport/', upload_CREA_report.upload_CREA_report, name='upload_crea_report'),
-    path('uploadAcademicReport/', upload_academic_report.procesar_zip, name='Subir-Notas'),
-
+    path('infoAcademica/', upload_academic_report.uploadFile, name='uploadFile')
     
 ]
 
