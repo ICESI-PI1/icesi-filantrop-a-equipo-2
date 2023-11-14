@@ -21,7 +21,7 @@ When the user fills all the fields, this method receives the information and cal
 """
 
 
-#@login_required
+# @login_required
 def ask_info_update(request):
 
     offices = Office.objects.all()
@@ -33,26 +33,26 @@ def ask_info_update(request):
             message = request.POST.get('message-area', '')
 
             selected_office = Office.objects.get(id=selected_office_id)
-        
+
             subject = "Solicitud de actualización de información"
 
             send_email(selected_office.email, message, subject)
 
             result_message = "Actualización solicitada correctamente"
-            
+
         except Exception:
             result_message = "Error al solicitar actualización"
 
             return render(request, 'ask_update_info.html', {
-                'offices' : offices,
-                'students' : students,
-                'result_message' : result_message
+                'offices': offices,
+                'students': students,
+                'result_message': result_message
             })
 
         return render(request, 'ask_update_info.html', {
-            'offices' : offices,
-            'students' : students,
-            'result_message' : result_message
+            'offices': offices,
+            'students': students,
+            'result_message': result_message
         })
 
     return render(request, 'ask_update_info.html', {
@@ -86,8 +86,9 @@ def send_email(receiver_email, message, subject, attachment_path=None):
     if attachment_path:
         with open(attachment_path, 'rb') as pdf_file:
             content = pdf_file.read()
-            mail.add_attachment(content, maintype='application', subtype='pdf', filename=os.path.basename(attachment_path))
-    
+            mail.add_attachment(content, maintype='application',
+                                subtype='pdf', filename=os.path.basename(attachment_path))
+
     with smtplib.SMTP("smtp.gmail.com", 587) as gmail_server:
         gmail_server.starttls()
         gmail_server.login(sender, password)

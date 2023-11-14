@@ -10,7 +10,8 @@ from datetime import datetime
 class LoadScholarshipDataTest(TestCase):
     def setUp(self):
         self.client = Client()
-        self.url = reverse('info-financiera')  # Asegúrate de usar la URL correcta según tu configuración de URLs
+        # Asegúrate de usar la URL correcta según tu configuración de URLs
+        self.url = reverse('info-financiera')
         self.test_data_excel = None  # Variable para almacenar el archivo de prueba
 
     def tearDown(self):
@@ -60,7 +61,8 @@ class LoadScholarshipDataTest(TestCase):
         self.test_data_excel.seek(0)
         self.test_data_excel.name = 'test_data.xlsx'
 
-        response = self.client.post(self.url, {'file': self.test_data_excel}, format='multipart')
+        response = self.client.post(
+            self.url, {'file': self.test_data_excel}, format='multipart')
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'scholarship_data.html')
