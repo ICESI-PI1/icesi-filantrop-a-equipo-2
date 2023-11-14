@@ -4,10 +4,9 @@ from django.contrib.auth.decorators import login_required
 from crud.models import *
 from django.http import JsonResponse
 from django.http import HttpResponse
-
 from reportlab.pdfgen import canvas
 from django.core.files.storage import FileSystemStorage
-from django.conf import settings  # Importa la configuración de Django
+from django.conf import settings
 from datetime import datetime
 from docx import Document
 from docx.shared import Pt

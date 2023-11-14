@@ -19,5 +19,6 @@ urlpatterns = [
     path('reportes/', reportes.reportes),
     path('create_donor/', donors.save_donor, name='save_donor'),
     path('sendReport/', send_report_to_donor.send_report, name='send_report'),
+
 ]
 
