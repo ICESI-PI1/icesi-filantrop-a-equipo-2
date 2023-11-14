@@ -34,6 +34,8 @@ def send_report_to_donor(request):
             date = datetime.now().date()
             semester = f'{date.year} - 1' if date.month < 6 else f'{date.year} - 2'
 
+            report_type = request.POST.get('report-type', '')
+
             # Tries to get the selected student's non academic activities. If there is no one, don't stop the report generation. 
             try:
                 non_academic_activities = NonAcademicActvitiesReport.objects.get(student_code=selected_student_id)
@@ -51,7 +53,13 @@ def send_report_to_donor(request):
 
                 crea_assistance = "No se registran asistencias a monitorías."
 
-            report_name = generate_general_report(date, semester, selected_student, student_testimony, non_academic_activities, crea_assistance)
+            report_name = ''
+
+            if 'Reporte general' in report_type:
+                report_name = generate_report(date, semester, selected_student, report_type, testimony=student_testimony, non_academic_activities=non_academic_activities, crea_assistance=crea_assistance)
+
+            elif 'Reporte de actividades no académicas' in report_type:
+                report_name = generate_report(date, semester, selected_student, report_type, non_academic_activities=non_academic_activities)
 
             result_message = "Reporte generado con éxito"
             
@@ -107,21 +115,21 @@ def send_report(request):
 
 
 """
-Receives certain information, obtains the basic format of the report, and fills in 
-the available fields with the information received.
+Receives certain information, obtains the basic format of the report (depending on the value of report_type parameter), and fills in the available fields with the information received.
+
+At the final, returns the name of the generated report.
 """
-def generate_general_report(date, semester, student, testimony, non_academic_activities, crea_assistance):
+def generate_report(date, semester, student, report_type, testimony=None, non_academic_activities=None, crea_assistance=None):
     try:
         # Calls CoInitialize 'cause there was throwing an exception related with this calling
         pythoncom.CoInitialize()
 
-        report_name = "Reporte general {} - {}.docx".format(student.student_code, semester)
+        report_name = f'{report_type} {student.student_code} - {semester}.docx'
         output_path = f'crud/static/reports/{report_name}'
         output_path_pdf = f'crud/static/reports/{report_name.replace(".docx", ".pdf")}'
 
-        
         # Reads the format content
-        format_content = read_report_format()
+        format_content = read_report_format(report_type)
 
         # Creates a new doc to add the modifications
         modified_doc = Document()
@@ -134,9 +142,15 @@ def generate_general_report(date, semester, student, testimony, non_academic_act
             paragraph_text = paragraph_text.replace("[Fecha]", str(date))
             paragraph_text = paragraph_text.replace("[estudiante]", str(student.name))
             paragraph_text = paragraph_text.replace("[semestre]", semester)
-            paragraph_text = paragraph_text.replace("[testimonio_estudiante]", testimony)
-            paragraph_text = paragraph_text.replace("[actividades_no_académicas]", str(non_academic_activities))
-            paragraph_text = paragraph_text.replace("[asistencia_monitorias]", str(crea_assistance))
+
+            if 'Reporte general' in report_type:
+                paragraph_text = paragraph_text.replace("[testimonio_estudiante]", testimony)
+                paragraph_text = paragraph_text.replace("[actividades_no_académicas]", str(non_academic_activities))
+                paragraph_text = paragraph_text.replace("[asistencia_monitorias]", str(crea_assistance))
+
+            elif 'Reporte de actividades no académicas' in report_type:
+                paragraph_text = paragraph_text.replace("[actividades_no_académicas]", str(non_academic_activities))
+
 
             # Adds the modified text to the doc
             new_paragraph.add_run(paragraph_text)
@@ -165,8 +179,13 @@ def generate_general_report(date, semester, student, testimony, non_academic_act
 """
 Reads a .docx document containing the basic format of the report to be generated. 
 """
-def read_report_format():
-    doc = Document('./crud/static/formats/Reporte general beneficiario.docx')
+def read_report_format(report_type):
+    if 'Reporte general' in report_type:
+        doc = Document('./crud/static/formats/Reporte general beneficiario.docx')
+
+    elif 'Reporte de actividades no académicas' in report_type:
+        doc = Document('./crud/static/formats/Reporte de actividades no académicas beneficiario.docx')
+
 
     doc_content = []
 
