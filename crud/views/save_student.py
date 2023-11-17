@@ -7,7 +7,7 @@ import pandas as pd
 import re
 
 
-def validar_datos(data):
+def validate_data(data):
     try:
         for key, value in data.items():
             if not value:
@@ -51,7 +51,7 @@ def validar_datos(data):
         return False, "Error en la validación de datos: " + str(e)
 
 
-def guardar_estudiante(request):
+def save_student(request):
     if request.method == "POST":
         message = ""
 
@@ -97,7 +97,7 @@ def guardar_estudiante(request):
             }
 
             if all(data.values()):
-                is_valid, message = validar_datos(data)
+                is_valid, message = validate_data(data)
 
             try:
                 with transaction.atomic():
