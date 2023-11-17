@@ -1,8 +1,9 @@
-import os 
+import os
 import zipfile
 from django.shortcuts import render
 from django.contrib import messages
 from crud.models import Student
+
 
 def procesar_zip(request):
     if request.method == 'POST' and request.FILES.get('archivo_zip'):
