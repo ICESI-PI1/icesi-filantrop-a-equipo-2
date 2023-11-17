@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 import os
 import zipfile
+=======
+from crud.models import Student, Document
+>>>>>>> 55b9596eeafe88b5af7f3458e27a03de23387622
 from django.shortcuts import render
-from django.contrib import messages
-from crud.models import Student
+import os
 
+<<<<<<< HEAD
 
 def procesar_zip(request):
     if request.method == 'POST' and request.FILES.get('archivo_zip'):
@@ -14,31 +18,39 @@ def procesar_zip(request):
                 # Carpeta temporal para extraer los archivos
                 extract_folder = '/path/to/temp/folder'  # Ruta a tu carpeta temporal
                 zip_ref.extractall(extract_folder)
+=======
+def uploadFile(request):
+    result_message = None
+>>>>>>> 55b9596eeafe88b5af7f3458e27a03de23387622
 
-            # Leer archivos PDF en la carpeta temporal
-            for root, dirs, files in os.walk(extract_folder):
-                for filename in files:
-                    if filename.endswith('.pdf'):
-                        # Procesar el nombre del archivo PDF para obtener el código del estudiante
-                        # Suponiendo que el nombre del archivo contiene el código
-                        codigo_estudiante = filename.split('.pdf')[0]
+    if request.method == "POST":
+        # Fetching the form data
+        #fileTitle = request.POST["fileTitle"]
+        uploadedFile = request.FILES.get("uploadedFile")
 
-                        # Buscar el estudiante en la base de datos
-                        try:
-                            estudiante = Student.objects.get(codigo=codigo_estudiante)
-                            # Aquí puedes relacionar el PDF con el estudiante
-                            # Puedes guardar el nombre del archivo o realizar otras operaciones
-                        except Student.DoesNotExist:
-                            messages.warning(request, f'El estudiante con código {codigo_estudiante} no existe.')
+        if not uploadedFile:
+            result_message = "No se proporcionó ningún archivo."
+            return render(request, "upload_academic_report.html", context={"result_message": result_message})
 
-            # Limpia la carpeta temporal después de procesar los archivos
-            for root, dirs, files in os.walk(extract_folder):
-                for filename in files:
-                    os.remove(os.path.join(root, filename))
-            os.rmdir(extract_folder)
+        # Extract student code from file name
+        codigo_estudiante = os.path.splitext(uploadedFile.name)[0]
 
-            messages.success(request, 'Archivos PDF procesados correctamente.')
-        else:
-            messages.error(request, 'El archivo no es un archivo ZIP.')
+        # Look up student in the database
+        try:
+            student = Student.objects.get(student_code=codigo_estudiante)
+        except Student.DoesNotExist:
+            # Handle the case where the student does not exist
+            result_message = f"Estudiante con código {codigo_estudiante} no encontrado en la base de datos."
+            return render(request, "upload_academic_report.html", context={"result_message": result_message})
 
-    return render(request, 'upload_academic_report.html')
+        # Saving the information in the database
+        try:
+            document = Document(uploadedFile=uploadedFile, codigo_estudiante=student)
+            document.save()
+            result_message = "Archivo cargado exitosamente."
+        except Exception as e:
+            result_message = f"Error al cargar el archivo: {e}"
+    
+    documents = Document.objects.all()
+
+    return render(request, "upload_academic_report.html", context={"files": documents, "result_message": result_message})

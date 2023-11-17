@@ -19,6 +19,7 @@
                     class="form-control"
                     name="nombre_completo"
                     placeholder="Ingrese el nombre completo"
+                    id="name"
                     required
                     />
                   <label class="form-label">Nombre completo</label>
@@ -34,6 +35,7 @@
                     name="codigo_identificador"
                     placeholder="Ingrese el código identificador"
                     required
+                    id="code"
                   />
                   <label class="form-label">Código identificador</label>
                   <div class="invalid-feedback">
@@ -43,7 +45,7 @@
 
                 <div class="mb-3">
                   <label> Tipo de documento</label>
-                  <select name="tipo_documento" class="form-select">
+                  <select name="tipo_documento" class="form-select" id="selDoc">
                     <option value="CC">Cédula de ciudadanía</option>
                     <option value="CE">Cédula de extranjería</option>
                     <option value="TI">Tarjeta de identidad</option>
@@ -62,6 +64,7 @@
                     name="numero_documento"
                     placeholder="Ingrese el número de documento"
                     required
+                    id="numDoc"
                   />
                   <label> Número de documento</label>
                   <div class="invalid-feedback">
@@ -71,7 +74,7 @@
 
                 <div class="mb-3">
                   <label> Género</label>
-                  <select name="genero" class="form-select" required >
+                  <select name="genero" class="form-select" required id="selectGnr">
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                     <option value="O">Otro</option>
@@ -88,6 +91,7 @@
                     name="correo_electronico"
                     placeholder="Ingrese el correo"
                     required
+                    id="email"
                   />
                   <label> Correo</label>
                   <div class="invalid-feedback">
@@ -104,6 +108,7 @@
                     name="correo_institucional"
                     placeholder="Ingrese el correo institucional"
                     required
+                    id="emailUni"
                   />
                   <label> Correo institucional</label>
                   <div class="invalid-feedback">
@@ -120,6 +125,7 @@
                     min="0"
                     max="500"
                     required
+                    id="icfes"
                   />
                   <label> Puntaje ICFES</label>
                   <div class="invalid-feedback">
@@ -150,6 +156,7 @@
                     name="numero_celular"
                     placeholder="Ingrese el número de celular"
                     required
+                    id="phone"
                   />
                   <label>Número de celular</label>
                   <div class="invalid-feedback">
@@ -167,6 +174,7 @@
                     class="form-control"
                     placeholder="Ingrese el promedio acumulado"
                     required
+                    id="promedio"
                   />
                   <label>Promedio acumulado</label>
                   <div class="invalid-feedback">
@@ -181,6 +189,7 @@
                     name="creditos_cursados"
                     placeholder="Ingrese los créditos cursados"
                     required
+                    id="creditos"
                   />
                   <label>Créditos cursados</label>
                   <div class="invalid-feedback">
@@ -195,6 +204,7 @@
                 type="submit"
                 class="btn btn-primary"
                 style="width: 100px; height: 50px"
+                id="sendForms"
               >
                 Enviar
               </button>

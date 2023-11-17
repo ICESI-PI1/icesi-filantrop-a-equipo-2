@@ -1,5 +1,35 @@
-<form method="post" enctype="multipart/form-data">
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class="container mt-3">
+  <h1 class="text-center">Cargar Academica de los Estudiantes</h1>
+
+  <form action="" method="POST" enctype="multipart/form-data", class="mt-5">  
     {% csrf_token %}
-    <input type="file" name="archivo_zip">
-    <button type="submit">Procesar ZIP</button>
-</form>
+    <div class="input-group">
+        <input
+          type="file"
+          name="uploadedFile"
+          class="form-control"
+          id="file"
+        />
+        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
+      </div>
+    </form>
+
+    <div class="mt-5 d-flex justify-content-center">
+        {% if result_message %}
+    
+        <div class="justify-content-center" id="succesfulMess">
+            {% if "Archivo cargado exitosamente." in result_message %}
+                <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+    
+            {% elif "No se proporcionó ningún archivo." in result_message %}
+                <img src="{% static 'images/error.png' %}" alt="Error: ">
+    
+            {% endif %}
+    
+            <b style="font-size: 18px;"> {{ result_message }} </b>
+        </div>
+        {% endif %}
+{% endblock content %}  

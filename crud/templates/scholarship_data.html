@@ -38,7 +38,7 @@
 
     <div class="justify-content-center">
         {% if "Carga exitosa" in result_message %}
-            <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+            <img src="{% static 'images/confirmation.png' %}" alt="Éxito:" id="uploadSucess">
 
         {% elif "El formulario no es válido." in result_message %}
             <img src="{% static 'images/error.png' %}" alt="Error: ">

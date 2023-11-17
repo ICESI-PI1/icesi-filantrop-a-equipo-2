@@ -164,6 +164,12 @@ class CREAReport(models.Model):
     def __str__(self):
         return "{} - {} - {}".format(self.student_code, self.date, self.monitor_name)
 
+    
+class Document(models.Model):
+    codigo_estudiante = models.ForeignKey('Student', on_delete=models.CASCADE)
+    uploadedFile = models.FileField(upload_to="Uploaded Files/")
+    dateTimeOfUpload = models.DateTimeField(auto_now=True)  
+
 
 class Donor(models.Model):
     nit = models.CharField(max_length=12,
