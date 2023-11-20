@@ -170,6 +170,9 @@ class Document(models.Model):
     uploadedFile = models.FileField(upload_to="Uploaded Files/")
     dateTimeOfUpload = models.DateTimeField(auto_now=True)  
 
+    def __str__(self) -> str:
+        return f'{self.codigo_estudiante} - {self.uploadedFile}'
+
 
 class Donor(models.Model):
     nit = models.CharField(max_length=12,

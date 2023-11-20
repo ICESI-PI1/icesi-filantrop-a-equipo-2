@@ -48,7 +48,7 @@
                     <div class="card-body" style="height: auto; min-width: 500px;">
                         <span class="input-group-text"> Tipo de reporte </span>
 
-                        <select class="form-select" name="report-type" id="report-type">
+                        <select class="form-select" name="report-type" id="report-type" required>
                             <option value=""> Selecciona un tipo de reporte </option>
                         
                             <option value="Reporte general">Reporte general</option>
@@ -71,7 +71,7 @@
                                 <!-- Search box -->
                                 <div class="input-group rounded mb-4">
                                     
-                                    <input type="search" id="donor-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al donante" aria-label="Search" aria-describedby="search-box-icon">
+                                    <input type="search" id="donor-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al donante" aria-label="Search" aria-describedby="search-box-icon" required>
                                 
                                 </div>
 
@@ -82,10 +82,10 @@
                                 
                                 
                                 <!-- Id of the selected donor -->
-                                <input type="hidden" name="donor-id" id="donor-id-input" value="">
+                                <input type="hidden" name="donor-id" id="donor-id-input" value="" required>
 
                                 <!-- Id of the selected student -->
-                                <input type="hidden" name="student-id" id="student-id-input" value="">
+                                <input type="hidden" name="student-id" id="student-id-input" value="" required>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                                 <!-- Search box -->
                                 <div class="input-group rounded mb-4">
                                     
-                                    <input type="search" id="student-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon">
+                                    <input type="search" id="student-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon" required>
                                 
                                 </div>
 
@@ -195,6 +195,8 @@
                             <!-- Report name -->
                             <input type="hidden" name="report-name" id="report-name" value="{{ generated_report }}">
 
+                            <!-- Academic report name -->
+                            <input type="hidden" name="academic-report-name" id="academic-report-name" value="{{ academic_report_name }}">
 
                             <!-- Send button -->
                             <div class="mt-2 d-flex justify-content-center">

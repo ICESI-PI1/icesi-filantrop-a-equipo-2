@@ -65,7 +65,40 @@ def ask_info_update(request):
 Given a destinatary, a message, a subject, and an optional file, sends an email, from the default mail.
 """
 
-def send_email(receiver_email, message, subject, attachment_path=None):
+# def send_email(receiver_email, message, subject, attachment_path=None):
+#     sender = "pi.seg.estudiantes@gmail.com"
+#     password = "zhazuuahhicywuyg"
+
+#     mail = EmailMessage()
+#     mail.set_content(message)
+#     mail['From'] = sender
+#     mail['To'] = receiver_email
+#     mail['Subject'] = subject
+
+#     if attachment_path:
+#         with open(attachment_path, 'rb') as file:
+#             content = file.read()
+#             filename = os.path.basename(attachment_path)
+
+#             # Changes MIME type depending on the file extension
+#             if filename.endswith('.pdf'):
+#                 mime_type = 'application/pdf'
+
+#             elif filename.endswith('.docx'):
+#                 mime_type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+
+#             else:
+#                 raise ValueError("Formato de archivo no admitido")
+            
+#             mail.add_attachment(content, maintype='application', subtype=mime_type, filename=filename)
+    
+#     with smtplib.SMTP("smtp.gmail.com", 587) as gmail_server:
+#         gmail_server.starttls()
+#         gmail_server.login(sender, password)
+
+#         gmail_server.send_message(mail)
+
+def send_email(receiver_email, message, subject, attachment_paths=None):
     sender = "pi.seg.estudiantes@gmail.com"
     password = "zhazuuahhicywuyg"
 
@@ -75,22 +108,23 @@ def send_email(receiver_email, message, subject, attachment_path=None):
     mail['To'] = receiver_email
     mail['Subject'] = subject
 
-    if attachment_path:
-        with open(attachment_path, 'rb') as file:
-            content = file.read()
-            filename = os.path.basename(attachment_path)
+    if attachment_paths:
+        for attachment_path in attachment_paths:
+            with open(attachment_path, 'rb') as file:
+                content = file.read()
+                filename = os.path.basename(attachment_path)
 
-            # Changes MIME type depending on the file extension
-            if filename.endswith('.pdf'):
-                mime_type = 'application/pdf'
+                # Changes MIME type depending on the file extension
+                if filename.endswith('.pdf'):
+                    mime_type = 'application/pdf'
 
-            elif filename.endswith('.docx'):
-                mime_type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                elif filename.endswith('.docx'):
+                    mime_type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
-            else:
-                raise ValueError("Formato de archivo no admitido")
-            
-            mail.add_attachment(content, maintype='application', subtype=mime_type, filename=filename)
+                else:
+                    raise ValueError("Formato de archivo no admitido")
+                
+                mail.add_attachment(content, maintype='application', subtype=mime_type, filename=filename)
     
     with smtplib.SMTP("smtp.gmail.com", 587) as gmail_server:
         gmail_server.starttls()
