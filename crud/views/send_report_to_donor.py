@@ -62,6 +62,10 @@ def send_report_to_donor(request):
             elif 'Reporte de actividades no académicas' in report_type:
                 report_name = generate_report(date, semester, selected_student, report_type, non_academic_activities=non_academic_activities)
 
+            elif 'Reporte de asistencia al CREA' in report_type:
+                report_name = generate_report(date, semester, selected_student, report_type, crea_assistance=crea_assistance)
+                print(crea_assistance)
+
             result_message = "Reporte generado con éxito"
 
         except Exception as e:
@@ -129,7 +133,7 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
 
         report_name = f'{report_type} {student.student_code} - {semester}.docx'
         output_path = f'crud/static/reports/{report_name}'
-        output_path_pdf = f'crud/static/reports/{report_name.replace(".docx", ".pdf")}'
+        # output_path_pdf = f'crud/static/reports/{report_name.replace(".docx", ".pdf")}'
 
         # Reads the format content
         format_content = read_report_format(report_type)
@@ -154,6 +158,8 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
             elif 'Reporte de actividades no académicas' in report_type:
                 paragraph_text = paragraph_text.replace("[actividades_no_académicas]", str(non_academic_activities))
 
+            elif 'Reporte de asistencia al CREA' in report_type:
+                paragraph_text = paragraph_text.replace("[asistencia_monitorias]", str(crea_assistance))
 
             # Adds the modified text to the doc
             new_paragraph.add_run(paragraph_text)
@@ -193,6 +199,9 @@ def read_report_format(report_type):
 
     elif 'Reporte de actividades no académicas' in report_type:
         doc = Document('./crud/static/formats/Reporte de actividades no académicas beneficiario.docx')
+
+    elif 'Reporte de asistencia al CREA' in report_type:
+        doc = Document('./crud/static/formats/Reporte de asistencia al CREA beneficiario.docx')
 
     doc_content = []
 
