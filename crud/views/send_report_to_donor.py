@@ -11,8 +11,9 @@ from datetime import datetime
 from docx import Document
 from docx.shared import Pt
 from docx2pdf import convert
-import pythoncom
+# import pythoncom
 import os
+from reportlab.lib.pagesizes import letter
 
 from crud.views.request_info_update import send_email
 
@@ -123,8 +124,8 @@ At the final, returns the name of the generated report.
 
 def generate_report(date, semester, student, report_type, testimony=None, non_academic_activities=None, crea_assistance=None):
     try:
-        # Calls CoInitialize 'cause there was throwing an exception related with this calling
-        pythoncom.CoInitialize()
+        # Calls CoInitialize 'cause there was throeg an exception related with this calling
+        # pythoncom.CoInitialize()
 
         report_name = f'{report_type} {student.student_code} - {semester}.docx'
         output_path = f'crud/static/reports/{report_name}'
@@ -167,14 +168,19 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
 
         # Saves the .docx and .pdf of the report
         modified_doc.save(output_path)
-        convert(output_path, output_path_pdf)
+        # convert(output_path, output_path_pdf)
 
-        return output_path_pdf.split('/')[-1]
+        # convert_docx_to_pdf(output_path, output_path_pdf)
+
+        # return output_path_pdf.split('/')[-1]
+        return output_path.split('/')[-1]
+
     except Exception as e:
         print(f'Error: {e}')
 
     finally:
-        pythoncom.CoUninitialize()
+        # pythoncom.CoUninitialize()
+        print('')
 
 
 """
