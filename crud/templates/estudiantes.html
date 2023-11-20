@@ -3,9 +3,10 @@
   class="container-fluid d-flex flex-column justify-content-center"
   style="height: 75vh"
 >
+<div>
   <div class="row">
     <div class="col-md-6 mt-5 d-flex align-items-center">
-      <a class="btn btn-primary custom-btn" href="/students_info" role="button"
+      <a class="btn btn-primary custom-btn" href="/students_info" role="button" id="regEstud"
         >Registrar Estudiante</a
       >
     </div>
@@ -16,24 +17,50 @@
         class="btn btn-primary custom-btn"
         href="/info-financiera"
         role="button"
+        id="subirBeca"
         >Subir informacion de la Beca</a
       >
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mt-5 d-flex align-items-center">
-      <a class="btn btn-primary custom-btn" href="/askInfoUpdate" role="button"
+      <a class="btn btn-primary custom-btn" href="/askInfoUpdate" role="button" id="reqInfo"
         >Solicitar Informacion</a
+      >
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mt-5 d-flex align-items-center">
+      <a
+        class="btn btn-primary custom-btn"
+        href="/uploadNonAcademicReport"
+        role="button"
+        id="uploadBU"
+        >Subir informacion de BU</a
       >
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mt-5 d-flex align-items-center">
-      <a class="btn btn-primary custom-btn" href="/uploadNonAcademicReport" role="button"
-        >Subir informacion de BU</a
+      <a class="btn btn-primary custom-btn" href="/uploadAcademicReport" role="button" id="academicRprt"
+        >Subir Informacion Academica</a
       >
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-6 mt-5 d-flex align-items-center">
+      <a
+        class="btn btn-primary custom-btn"
+        href="/uploadCREAReport"
+        role="button"
+        id="reportCREA"
+        >Subir Informacion del CREA</a
+      >
+    </div>
+  </div>
+  
 </div>
 <style>
   .custom-btn {
