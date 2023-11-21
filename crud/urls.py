@@ -1,12 +1,12 @@
 from django.urls import path
 
-from .views import login, save_student, request_info_update, upload_scholarship_data, upload_non_academic_report, estudiantes, upload_CREA_report, upload_academic_report, send_report_to_donor, api,donors, reportes, home, send_notifications
+from .views import login, save_student, request_info_update, upload_scholarship_data, upload_non_academic_report, estudiantes, upload_CREA_report, upload_academic_report, send_report_to_donor, api,donors, reportes, home, send_notifications, deleteAlertStud
 
 
 urlpatterns = [
     path('', login.signin, name='signin'),
     path('home/', home.contar_registers,),
-    path('students_info/', save_student.guardar_estudiante, name='guardar_estudiante'),
+    #path('students_info/', save_student.guardar_estudiante, name='guardar_estudiante'),
     path('askInfoUpdate/', request_info_update.ask_info_update, name='ask_info_update'),
     path('estudiantes/', estudiantes.estudiantes),
     path('info-financiera/', upload_scholarship_data.LoadScholarshipData.as_view(), name='info-financiera'),
@@ -23,6 +23,7 @@ urlpatterns = [
     path('list-Donors/', home.listar_donantes),
     path('list-alerts/', home.listar_alertas),
     path('eliminarAlerta/<int:id_alert>',home.delete, name='eliminarAlerta'),
+    path('eliminarAlerta-stud/<int:id_alert>',deleteAlertStud.delete_alert, name='eliminarAlertaEstud'),
     path('send-notis/',send_notifications.crear_alerta, name='send-notis')
 ]
 

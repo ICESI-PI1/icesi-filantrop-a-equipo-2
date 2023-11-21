@@ -2,6 +2,12 @@
 <div class="d-flex justify-content-center mt-3">
     <h1>Lista de Alertas</h1>
 </div>
+{% if mensaje %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Alerta eliminada exitosamente
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+{% endif %}
 <table class="table table-striped-columns mt-5">
     <thead>
       <tr>
@@ -23,7 +29,7 @@
         <td>{{ Alerta.student_code }}</td>
         <td>{{ Alerta.name }}</td>
         <td>{{ Alerta.fecha }}</td>
-        <td class="text-center"><a class="btn btn-outline-danger " href="{% url 'eliminarAlerta' Alerta.id %}"><i class="fa-solid fa-trash fa-2xs"></i></a></td>
+        <td class="text-center"><a class="btn btn-outline-danger " href="{% url 'eliminarAlertaEstud' Alerta.id %}"><i class="fa-solid fa-trash fa-2xs"></i></a></td>
 
       </tr>
     {% endfor %}  
