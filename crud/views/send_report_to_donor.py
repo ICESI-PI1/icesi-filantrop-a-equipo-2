@@ -201,8 +201,7 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
             # Replaces the fields with the information received as parameters
             paragraph_text = paragraph_info['paragraph_text']
             paragraph_text = paragraph_text.replace("[Fecha]", str(date))
-            paragraph_text = paragraph_text.replace(
-                "[estudiante]", str(student.name))
+            paragraph_text = paragraph_text.replace("[estudiante]", str(student.name))
             paragraph_text = paragraph_text.replace("[semestre]", semester)
 
             if 'Reporte general' in report_type:
@@ -228,8 +227,7 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
 
             for run in new_paragraph.runs:
                 for run_info in paragraph_info['runs']:
-                    run.font.size = Pt(
-                        run_info['font_size']) if run_info['font_size'] else None
+                    run.font.size = Pt(run_info['font_size']) if run_info['font_size'] else None
                     run.font.bold = run_info['font_bold']
                     run.font.italic = run_info['font_italic']
                     run.font.name = run_info['font_name']
