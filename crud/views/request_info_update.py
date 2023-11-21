@@ -19,8 +19,6 @@ Renders the view to make a request, to an office, to update a student's informat
 
 When the user fills all the fields, this method receives the information and calls the send email function.
 """
-
-
 # @login_required
 def ask_info_update(request):
 
@@ -64,31 +62,34 @@ def ask_info_update(request):
 """
 Given a destinatary, a message, a subject, and an optional file, sends an email, from the default mail.
 """
-
-
-def send_email(receiver_email, message, subject, attachment_path=None):
+def send_email(receiver_email, message, subject, attachment_paths=None):
     sender = "pi.seg.estudiantes@gmail.com"
     password = "zhazuuahhicywuyg"
 
-    # mail = MIMEText(message)
     mail = EmailMessage()
     mail.set_content(message)
     mail['From'] = sender
     mail['To'] = receiver_email
     mail['Subject'] = subject
 
-    # with smtplib.SMTP("smtp.gmail.com", 587) as gmail_server:
-    #     gmail_server.starttls()
-    #     gmail_server.login(sender, password)
+    if attachment_paths:
+        for attachment_path in attachment_paths:
+            with open(attachment_path, 'rb') as file:
+                content = file.read()
+                filename = os.path.basename(attachment_path)
 
-    #     gmail_server.send_message(mail)
+                # Changes MIME type depending on the file extension
+                if filename.endswith('.pdf'):
+                    mime_type = 'application/pdf'
 
-    if attachment_path:
-        with open(attachment_path, 'rb') as pdf_file:
-            content = pdf_file.read()
-            mail.add_attachment(content, maintype='application',
-                                subtype='pdf', filename=os.path.basename(attachment_path))
+                elif filename.endswith('.docx'):
+                    mime_type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
+                else:
+                    raise ValueError("Formato de archivo no admitido")
+                
+                mail.add_attachment(content, maintype='application', subtype=mime_type, filename=filename)
+    
     with smtplib.SMTP("smtp.gmail.com", 587) as gmail_server:
         gmail_server.starttls()
         gmail_server.login(sender, password)
