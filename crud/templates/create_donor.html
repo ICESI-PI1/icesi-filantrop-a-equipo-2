@@ -1,4 +1,7 @@
 {% extends "base.html" %} {% block content %}
+<div class="d-flex justify-content-center mt-3">
+  <h1>Registrar Donante</h1>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-md-8 mt-4 mx-auto">
@@ -13,7 +16,8 @@
             {% csrf_token %}
             <div class="row">
               <div class="col-md-6">
-                <div class="form-floating mb-3">
+
+                <div class="form-floating mb-2">
                   <input
                     type="text"
                     class="form-control"
@@ -27,44 +31,19 @@
                   </div>
                 </div>
 
-                <div class="form-floating mb-3">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="apellido"
-                    placeholder="Ingrese el apellido del donante"
-                    required
-                  />
-                  <label class="form-label">Apellido del donante</label>
-                  <div class="invalid-feedback">
-                    Ingrese el apellido del donante
-                  </div>
-                </div>
 
                 <div class="mb-3">
                   <label> Tipo de persona</label>
-                  <select name="tipo_persona" class="form-select">
-                    <option value=PN>Persona natural</option>
+                  <select name="tipo_persona" class="form-select mt-1">
+                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="PN">Persona natural</option>
                     <option value="PJ">Persona jurídica</option>
-                    </select>
+                  </select>
                   <div class="invalid-feedback">
                     Seleccione una de las opciones
                   </div>
                 </div>
-
-                <div class="form-floating mb-3">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="numero_nit"
-                    placeholder="Ingrese el número de identificación tributaria (NIT)"
-                    required
-                  />
-                  <label> Número de NIT</label>
-                  <div class="invalid-feedback">
-                    Ingrese el numero de identificación tributaria (NIT) del donante
-                  </div>
-                </div>
+                
 
                 <div class="form-floating mb-3">
                   <input
@@ -82,6 +61,34 @@
               </div>
 
               <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="apellido"
+                    placeholder="Ingrese el apellido del donante"
+                    required
+                  />
+                  <label class="form-label">Apellido del donante</label>
+                  <div class="invalid-feedback">
+                    Ingrese el apellido del donante
+                  </div>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="numero_nit"
+                  placeholder="Ingrese el número de identificación tributaria (NIT)"
+                  required
+                />
+                <label> Número de NIT</label>
+                <div class="invalid-feedback">
+                  Ingrese el numero de identificación tributaria (NIT) del donante
+                </div>
+              </div>
+
                 <div class="form-floating mb-3">
                   <input
                     type="text"
@@ -105,7 +112,7 @@
                     placeholder="Ingrese una colaboración previa"
                     required
                     />
-                  <label class="form-label">Colaboración previa</label>
+                  <label class="form-label"> Colaboración previa </label>
                   <div class="invalid-feedback">
                     Ingrese colaboraciones previas
                   </div>
@@ -115,7 +122,7 @@
             <div class="d-flex justify-content-center">
               <button
                 type="submit"
-                class="btn btn-primary"
+                class="btn btn-outline-primary"
                 style="width: 100px; height: 50px"
               >
                 Enviar
@@ -149,5 +156,7 @@
       );
     });
   })();
+
+  
 </script>
 {% endblock content %}

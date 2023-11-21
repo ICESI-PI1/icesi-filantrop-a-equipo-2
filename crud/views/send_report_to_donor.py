@@ -46,7 +46,8 @@ def send_report_to_donor(request):
 
             # Tries to get the selected student's non academic activities. If there is no one, don't stop the report generation. 
             try:
-                non_academic_activities = NonAcademicActvitiesReport.objects.get(student_code=selected_student_id)
+                non_academic_activities = NonAcademicActvitiesReport.objects.get(
+                    student_code=selected_student_id)
 
             except Exception as e:
                 traceback.print_exc()
@@ -128,6 +129,8 @@ def send_report_to_donor(request):
 """
 Manages the event when the user clicks the send button, confirming that she/he is in agreement by sending the generated report.
 """
+
+
 @login_required
 def send_report(request):
     try:
@@ -198,7 +201,8 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
             # Replaces the fields with the information received as parameters
             paragraph_text = paragraph_info['paragraph_text']
             paragraph_text = paragraph_text.replace("[Fecha]", str(date))
-            paragraph_text = paragraph_text.replace("[estudiante]", str(student.name))
+            paragraph_text = paragraph_text.replace(
+                "[estudiante]", str(student.name))
             paragraph_text = paragraph_text.replace("[semestre]", semester)
 
             if 'Reporte general' in report_type:
@@ -224,7 +228,8 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
 
             for run in new_paragraph.runs:
                 for run_info in paragraph_info['runs']:
-                    run.font.size = Pt(run_info['font_size']) if run_info['font_size'] else None
+                    run.font.size = Pt(
+                        run_info['font_size']) if run_info['font_size'] else None
                     run.font.bold = run_info['font_bold']
                     run.font.italic = run_info['font_italic']
                     run.font.name = run_info['font_name']
@@ -238,7 +243,6 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
     except Exception as e:
         traceback.print_exc()
         print(f'Error por acá: {e}')
-
 
 
 """
