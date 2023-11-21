@@ -2,12 +2,13 @@ from crud.models import Student, Document
 from django.shortcuts import render
 import os
 
+
 def uploadFile(request):
     result_message = None
 
     if request.method == "POST":
         # Fetching the form data
-        #fileTitle = request.POST["fileTitle"]
+        # fileTitle = request.POST["fileTitle"]
         uploadedFile = request.FILES.get("uploadedFile")
 
         if not uploadedFile:
@@ -27,12 +28,13 @@ def uploadFile(request):
 
         # Saving the information in the database
         try:
-            document = Document(uploadedFile=uploadedFile, codigo_estudiante=student)
+            document = Document(uploadedFile=uploadedFile,
+                                codigo_estudiante=student)
             document.save()
             result_message = "Archivo cargado exitosamente."
         except Exception as e:
             result_message = f"Error al cargar el archivo: {e}"
-    
+
     documents = Document.objects.all()
 
     return render(request, "upload_academic_report.html", context={"files": documents, "result_message": result_message})

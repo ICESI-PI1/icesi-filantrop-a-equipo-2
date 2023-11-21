@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block content %}
+<div class="d-flex justify-content-center mt-3">
+    <h1>Lista de Donantes</h1>
+</div>
+<table class="table table-striped-columns mt-5">
+    <thead>
+      <tr>
+        <th scope="col">Nit</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Tipo de Persona</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for Donor in donantes %}
+      <tr>
+        <td>{{ Donor.nit}}</td>
+        <td>{{ Donor.name }}</td>
+        <td>{{ Donor.lastname }}</td>
+        <td>{{ Donor.email }}</td>
+        <td>{{ Donor.type }}</td>
+      </tr>
+    {% endfor %}  
+    </tbody>
+  </table>
+{% endblock content %}

@@ -19,19 +19,32 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #003da0">
+    <nav
+      class="navbar sticky-top navbar-expand-lg"
+      style="background-color: #003da0"
+    >
       <div class="container d-flex align-items-center">
         <div class="h-100">
           <a class="navbar-brand" href="#">
             <img
               class="img-fluid"
-              src="{% static 'images/logoIcesi.png' %}"
-              alt="Bootstrap"
-              width="200"
-              height="100%"
+              src="{% static 'images/filantropia_logo.png' %}"
+              width="160"
             />
           </a>
         </div>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav d-flex flex-row flex-fill text-center">
@@ -41,12 +54,16 @@
               >
             </li>
             <li class="nav-item ms-3 flex-fill">
-              <a class="nav-link text-white fs-5 btn-outline-light" href="/reportes"
+              <a
+                class="nav-link text-white fs-5 btn-outline-light"
+                href="/sendReportToDonor"
                 >Reportes</a
               >
             </li>
             <li class="nav-item ms-3 flex-fill">
-              <a class="nav-link text-white fs-5 btn-outline-light" href="/create_donor"
+              <a
+                class="nav-link text-white fs-5 btn-outline-light"
+                href="/create_donor"
                 >Donantes</a
               >
             </li>
@@ -91,7 +108,11 @@
                   ></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li><a class="dropdown-item" id="logout" href="/">Cerrar Sesion</a></li>
+                  <li>
+                    <a class="dropdown-item" id="logout" href="/"
+                      >Cerrar Sesion</a
+                    >
+                  </li>
                 </ul>
               </div>
             </li>
@@ -99,12 +120,11 @@
         </div>
       </div>
     </nav>
-
     <style>
       .dropdown-toggle::after {
         color: #ffffff !important; /* Cambia el color de la flecha a blanco */
       }
     </style>
-    {% block content %} {% endblock %}
   </body>
 </html>
+{% block content %} {% endblock %}

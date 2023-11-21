@@ -26,7 +26,8 @@ class TestGuardarEstudiante(TestCase):
         request = self.factory.post(reverse('guardar_estudiante'), data)
         response = guardar_estudiante(request)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(Student.objects.filter(student_code=data['codigo_identificador']).exists())
+        self.assertTrue(Student.objects.filter(
+            student_code=data['codigo_identificador']).exists())
 
     def test_guardar_estudiante_get(self):
         request = self.factory.get(reverse('guardar_estudiante'))
@@ -37,7 +38,8 @@ class TestGuardarEstudiante(TestCase):
         # Prueba la creación de un estudiante sin proporcionar datos
         request = self.factory.post(reverse('guardar_estudiante'))
         response = guardar_estudiante(request)
-        self.assertEqual(response.status_code, 400)  # Debe devolver un código de estado 400 (BadRequest)
+        # Debe devolver un código de estado 400 (BadRequest)
+        self.assertEqual(response.status_code, 400)
 
     def test_validar_datos(self):
         # Prueba con todos los campos requeridos
@@ -69,5 +71,5 @@ class TestGuardarEstudiante(TestCase):
         data['correo_electronico'] = 'invalid_email'
         is_valid, message = validar_datos(data)
         self.assertFalse(is_valid)
-        self.assertEqual(message, "Por favor, introduce un correo electrónico válido.")
-
+        self.assertEqual(
+            message, "Por favor, introduce un correo electrónico válido.")

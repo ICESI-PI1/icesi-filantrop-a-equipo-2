@@ -13,7 +13,7 @@ def validate_data(data):
         # Comprueba si los correos electrónicos son válidos
         email_regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         if not re.fullmatch(email_regex, data['email']) or not re.fullmatch(email_regex,
-                                                                                         data['correo_institucional']):
+                                                                            data['correo_institucional']):
             return False, "Por favor, introduce un correo electrónico válido."
 
         # Comprueba si el tipo_persona es válido

@@ -1,7 +1,73 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<div class="container-fluid d-flex flex-column justify-content-center mt-5" style="height: 65vh">
+  <div class="row ms-2">
+    <div class="col-md-6 mt-3 ms-5">
+      <a class="btn btn-primary custom-btn" href="/list-Students" role="button" id="listStud">
+        <i class="fa-solid fa-user-graduate fa-2xl mt-4"></i> Estudiantes 
+        <p class="mt-2" id="pStud">{{ cantidad_alumnos }}</p>
+      </a>
+    </div>
+  </div>
+  <div class="row ms-2">
+    <div class="col-md-6 mt-3 ms-5">
+      <a class="btn btn-primary custom-btn" href="/list-Donors" role="button" id="listDnrs">
+        <i class="fa-solid fa-user-tie fa-2xl"></i>Donantes
+        <p class="mt-2" id="pDnr">{{ cantidad_donantes }}</p>
 
-{% block content %}
+      </a>
+    </div>
+  </div>
+</div>
 
-<h1> HOME </h1> 
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+
+<style>
+  #pStud {
+    font-family: 'Roboto', sans-serif;    
+    font-size: 25px;
+  }
+
+  #listStud {
+    font-family: 'Fira Sans', sans-serif;    
+    font-size: 25px;
+  }
+
+  #pDnr {
+    font-family: 'Roboto', sans-serif;    
+    font-size: 25px;
+  }
+
+  #listDnrs {
+    font-family: 'Fira Sans', sans-serif;    
+    font-size: 25px;
+  }
+
+  .custom-btn {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #ffffff;
+    border: 5px solid #007bff;
+    color: #007bff;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 10px;
+  }
+
+  .custom-btn:hover {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+</style>
 
 {% endblock content %}

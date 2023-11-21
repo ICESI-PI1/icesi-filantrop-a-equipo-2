@@ -21,7 +21,8 @@ def validar_datos(data):
 
         # Comprueba si la fecha de nacimiento es válida
         try:
-            birth_date = datetime.strptime(data['fecha_nacimiento'], '%d/%m/%Y')
+            birth_date = datetime.strptime(
+                data['fecha_nacimiento'], '%d/%m/%Y')
             if birth_date > datetime.now():
                 return False, "La fecha de nacimiento no puede ser en el futuro."
         except ValueError:
