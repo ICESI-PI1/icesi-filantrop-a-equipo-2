@@ -7,6 +7,8 @@ urlpatterns = [
     path('', login.signin, name='signin'),
     path('home/', home.contar_registers,),
     #path('students_info/', save_student.guardar_estudiante, name='guardar_estudiante'),
+    path('home/', home.contar_registers),
+    path('students_info/', save_student.save_student, name='guardar_estudiante'),
     path('askInfoUpdate/', request_info_update.ask_info_update, name='ask_info_update'),
     path('estudiantes/', estudiantes.estudiantes),
     path('info-financiera/', upload_scholarship_data.LoadScholarshipData.as_view(), name='info-financiera'),
