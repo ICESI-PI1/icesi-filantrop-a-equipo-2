@@ -6,7 +6,6 @@
 - **Dennis Masso**
 - **Andrés Pino**
 - **Jacobo Ossa**
-- **Camilo Cardona**
 
 ## Descripción
 El módulo de seguimiento a estudiantes esta destinado al monitoreo de las actividades académicas y extracadémicas de los alumnos.

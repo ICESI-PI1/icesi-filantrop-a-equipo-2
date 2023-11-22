@@ -1,0 +1,162 @@
+{% extends "base.html" %} {% block content %}
+<div class="d-flex justify-content-center mt-3">
+  <h1>Registrar Donante</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-4 mx-auto">
+      <div class="card my-auto">
+        <div class="card-body">
+          <form
+            class="needs-validation"
+            novalidate
+            method="post"
+            action="/create_donor/"
+          >
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6">
+
+                <div class="form-floating mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nombre"
+                    placeholder="Ingrese el nombre del donante"
+                    required
+                    />
+                  <label class="form-label">Nombre del donante</label>
+                  <div class="invalid-feedback">
+                    Ingrese el nombre del donante
+                  </div>
+                </div>
+
+
+                <div class="mb-3">
+                  <label> Tipo de persona</label>
+                  <select name="tipo_persona" class="form-select mt-1">
+                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="PN">Persona natural</option>
+                    <option value="PJ">Persona jurídica</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Seleccione una de las opciones
+                  </div>
+                </div>
+                
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="correo_electronico"
+                    placeholder="Ingrese el correo"
+                    required
+                  />
+                  <label> Correo</label>
+                  <div class="invalid-feedback">
+                    Ingrese el correo del donante
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="apellido"
+                    placeholder="Ingrese el apellido del donante"
+                    required
+                  />
+                  <label class="form-label">Apellido del donante</label>
+                  <div class="invalid-feedback">
+                    Ingrese el apellido del donante
+                  </div>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="numero_nit"
+                  placeholder="Ingrese el número de identificación tributaria (NIT)"
+                  required
+                />
+                <label> Número de NIT</label>
+                <div class="invalid-feedback">
+                  Ingrese el numero de identificación tributaria (NIT) del donante
+                </div>
+              </div>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="descripcion"
+                    placeholder="Ingrese una descripción del donante"
+                    required
+                  />
+                  <label> Descripción </label>
+                  <div class="invalid-feedback">
+                      Ingrese una descripción del donante
+                  </div>
+                </div>
+              </div>
+
+                 <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="colaboraciones_previas"
+                    placeholder="Ingrese una colaboración previa"
+                    required
+                    />
+                  <label class="form-label"> Colaboración previa </label>
+                  <div class="invalid-feedback">
+                    Ingrese colaboraciones previas
+                  </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button
+                type="submit"
+                class="btn btn-outline-primary"
+                style="width: 100px; height: 50px"
+              >
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (() => {
+    "use strict";
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll(".needs-validation");
+    // Loop over them and prevent submission
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+
+  
+</script>
+{% endblock content %}

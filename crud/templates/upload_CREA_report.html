@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <nav aria-label="breadcrumb" class="ms-4 mt-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/estudiantes">Estudiantes</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Subir Reporte del Centro de Recursos para el Aprendizaje 
+          </li>
+        </ol>
+      </nav>
+    <div class="d-flex justify-content-center">
+        <h1> Subir archivo de Reporte del CREA </h1>
+    </div>
+    
+</head>
+
+<body>
+
+    <!-- Descarga de formato -->
+    <div class="mt-5 d-flex justify-content-center">
+
+        <a class="btn btn-secondary" href="{% static 'formats/Formato CREA Report.xlsx' %}" download="Formato Reporte CREA">
+            <i class="fas fa-download"></i> Descargar formato del reporte
+        </a>
+
+    </div>
+
+    <div class="mt-5 d-flex justify-content-center">
+        <form method="post" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+    
+            <div class="input-group">
+                <input type="file" name="report_file" class="form-control" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".xls, .xlsx">
+                <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
+            </div>
+
+            <div class="mt-5 d-flex justify-content-center">
+                {% if result_message %}
+
+                <div class="justify-content-center" id="succesfulMess">
+                    {% if "Carga exitosa" in result_message %}
+                        <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+            
+                    {% elif "Error al cargar reporte" in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+            
+                    {% endif %}
+            
+                    <b style="font-size: 18px;"> {{ result_message }} </b>
+                </div>
+            
+                {% endif %}
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+{% endblock content %}

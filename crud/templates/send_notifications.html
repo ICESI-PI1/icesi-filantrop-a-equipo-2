@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+<nav aria-label="breadcrumb" class="ms-4 mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/estudiantes">Estudiantes</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Envio de Alertas
+    </li>
+    </ol>
+  </nav>
+<div class="d-flex justify-content-center mt-3">
+    <h1>Envie una Alerta a Filantropía</h1>
+</div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            {% if "Alerta creada exitosamente." in result_message %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Alerta enviada exitosamente
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endif %}
+            
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" novalidate class="needs-validation">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_tipo" class="form-label" required>Tipo de Alerta</label>
+                            <select name="tipo" id="id_tipo" class="form-select" required>
+                                <option value="" selected disabled>Seleccione una opción</option>
+                                <option value="cancelacion de materia">Cancelación de Materia</option>
+                                <option value="retiro">Retiro</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Elija una opción
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_student_code" class="form-label" required>Estudiante</label>
+                            <select name="student_code" id="id_student_code" class="form-select" required>
+                                <option value="" selected disabled>Seleccione un Estudiante</option>
+                                {% for student in alumnos %}
+                                    <option value="{{ student.student_code }}">{{ student.student_code }} - {{ student.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">
+                                Elija una opción
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_descripcion" class="form-label">Descripción</label>
+                            <textarea name="descripcion" id="id_descripcion" class="form-control"  required></textarea>
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary d-block mx-auto mt-3">Enviar Notificación</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+      'use strict'
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation')
+      // Loop over them and prevent submission
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })})()
+  </script>
+{% endblock content %}
