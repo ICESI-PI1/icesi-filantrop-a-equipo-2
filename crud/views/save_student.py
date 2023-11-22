@@ -5,8 +5,6 @@ from crud.models import Student
 from datetime import datetime
 import pandas as pd
 import re
-from django.contrib.auth.decorators import login_required
-import traceback
 
 
 def validate_data(data):
@@ -53,13 +51,44 @@ def validate_data(data):
         # Agrega un manejo de excepciones para posibles errores aquí.
         return False, "Error en la validación de datos: " + str(e)
 
-@login_required
+
 def save_student(request):
     if request.method == "POST":
         message = ""
 
+        data = {
+            'id_type': request.POST.get('tipo_documento'),
+            'id_number': request.POST.get('numero_documento'),
+            'name': request.POST.get('nombre_completo'),
+            'email': request.POST.get('correo_electronico'),
+            'institutional_email': request.POST.get('correo_institucional'),
+            'icfes_score': request.POST.get('puntaje_icfes'),
+            'birth_date': request.POST.get('fecha_nacimiento'),
+            'cellphone_number': request.POST.get('numero_celular'),
+            'accumulated_average': request.POST.get('promedio_acumulado'),
+            'credits_studied': request.POST.get('creditos_cursados'),
+            'genre': request.POST.get('genero'),
+            'student_code': request.POST.get('codigo_identificador')
+        }
+
+        if all(data.values()):
+            is_valid, message = validate_data(data)
+
         try:
-            received_file = request.FILES.get('file_students')
+            with transaction.atomic():
+                student, created = Student.objects.update_or_create(
+                    student_code=request.POST.get('codigo_identificador'),
+                    defaults=data
+                )
+                if created:
+                    message = "Estudiante creado exitosamente."
+                else:
+                    message = "Estudiante actualizado exitosamente."
+        except IntegrityError:
+            message = "El estudiante ya existe."
+
+        try:
+            received_file = request.FILES.get('file')
             if received_file:
                 file = pd.read_excel(received_file)
 
@@ -84,40 +113,7 @@ def save_student(request):
                         defaults=fields
                     )
 
-            data = {
-                'id_type': request.POST.get('tipo_documento'),
-                'id_number': request.POST.get('numero_documento'),
-                'name': request.POST.get('nombre_completo'),
-                'email': request.POST.get('correo_electronico'),
-                'institutional_email': request.POST.get('correo_institucional'),
-                'icfes_score': request.POST.get('puntaje_icfes'),
-                'birth_date': request.POST.get('fecha_nacimiento'),
-                'cellphone_number': request.POST.get('numero_celular'),
-                'accumulated_average': request.POST.get('promedio_acumulado'),
-                'credits_studied': request.POST.get('creditos_cursados'),
-                'genre': request.POST.get('genero'),
-                'student_code': request.POST.get('codigo_identificador')
-            }
-
-            if all(data.values()):
-                is_valid, message = validate_data(data)
-
-            try:
-                with transaction.atomic():
-                    student, created = Student.objects.update_or_create(
-                        student_code=request.POST.get('codigo_identificador'),
-                        defaults=data
-                    )
-                    if created:
-                        message = "Estudiante creado exitosamente."
-                    else:
-                        message = "Estudiante actualizado exitosamente."
-            except IntegrityError:
-                message = "El estudiante ya existe."
-
         except Exception as e:
-            traceback.print_exc()
-            print(f'Error: {e}')
             message = str(e)
 
         return render(request, 'students_info.html', {'result_message': message})
