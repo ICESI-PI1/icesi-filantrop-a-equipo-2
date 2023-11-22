@@ -5,6 +5,7 @@ from django.urls import reverse
 from unittest.mock import patch, MagicMock
 from crud.models import Office, Student
 
+
 class RequestInfoUpdateTestCase(TestCase):
 
     """
@@ -12,8 +13,10 @@ class RequestInfoUpdateTestCase(TestCase):
 
     Also, creates all the objects needed to test each part of the screen.  
     """
+
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.user = User.objects.create_user(
+            username='testuser', password='testpassword')
         self.client.login(username='testuser', password='testpassword')
 
         self.office1 = Office.objects.create(name='Office 1')
@@ -34,10 +37,10 @@ class RequestInfoUpdateTestCase(TestCase):
             credits_studied=120
         )
 
-
     """
     Tests the screen for request information update is rendering correctly.
     """
+
     def test_screen_render(self):
         url = reverse('ask_info_update')
 
@@ -45,18 +48,19 @@ class RequestInfoUpdateTestCase(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-
     """
     Tests that the offices in the screen for request information update are the same that have been created in the DB.
     """
+
     def test_office_selection(self):
         url = reverse('ask_info_update')
-        
+
         response = self.client.get(url)
 
         self.assertIn('offices', response.context)
 
-        actual_offices = [str(office) for office in response.context['offices']]
+        actual_offices = [str(office)
+                          for office in response.context['offices']]
 
         self.assertCountEqual(actual_offices, ['Office 1', 'Office 2'])
 
@@ -67,16 +71,15 @@ class RequestInfoUpdateTestCase(TestCase):
 
         self.assertEqual(selected_office, self.office1)
 
-
-
     """
     Tests that the results returned by the search box, in the screen, are consistent with the written text.
 
     Also, tests that the user can search the student by name and by code.
     """
+
     def test_student_search(self):
         url = reverse('ask_info_update')
-        
+
         response = self.client.get(url)
 
         search_term = self.student1.name
@@ -91,18 +94,19 @@ class RequestInfoUpdateTestCase(TestCase):
         self.assertContains(response, 'Student1')
         self.assertContains(response, 'A00456789')
 
-
     """
     Tests that the email is sent successfully.
     """
+
     def test_send_message(self):
         url = reverse('ask_info_update')
-        
+
         response = self.client.get(url)
 
         test_message = 'Test message'
 
-        response = response.client.get(url, {'offices': self.office1.id, 'message-area': test_message})
+        response = response.client.get(
+            url, {'offices': self.office1.id, 'message-area': test_message})
 
         self.assertContains(response, self.office1.id)
 
@@ -126,4 +130,3 @@ class RequestInfoUpdateTestCase(TestCase):
         #         message='Este es un mensaje de prueba.\n\nEstudiantes seleccionados:\n- Student 1',
         #         subject='Nuevo mensaje de la oficina',
         #     )
-

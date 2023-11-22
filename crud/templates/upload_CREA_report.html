@@ -28,14 +28,14 @@
             {% csrf_token %}
     
             <div class="input-group">
-                <input type="file" name="report_file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".xls, .xlsx">
+                <input type="file" name="report_file" class="form-control" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".xls, .xlsx">
                 <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
             </div>
 
             <div class="mt-5 d-flex justify-content-center">
                 {% if result_message %}
 
-                <div class="justify-content-center">
+                <div class="justify-content-center" id="succesfulMess">
                     {% if "Carga exitosa" in result_message %}
                         <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
             

@@ -8,8 +8,6 @@ from crud.models import Beca, Archivo
 from datetime import datetime
 
 
-from django.contrib import messages
-
 class LoadScholarshipData(View):
 
     def get(self, request):
@@ -36,24 +34,24 @@ class LoadScholarshipData(View):
                 for sheet_name in xls.sheet_names:
                     df = pd.read_excel(xls, sheet_name)
                     for index, row in df.iterrows():
-                            beca, created = Beca.objects.get_or_create(
-                                id_estudiante=row['id_estudiante'],
-                                defaults={
-                                    'tipo_beca': row['tipo_beca'],
-                                    'monto': row['monto_asignado'],
-                                    'duracion': row['duracion']
-                                }
-                            )
-                            if not created:
-                                beca.tipo_beca = row['tipo_beca']
-                                beca.monto = row['monto_asignado']
-                                beca.duracion = row['duracion']
-                                beca.save()
+                        beca, created = Beca.objects.get_or_create(
+                            id_estudiante=row['id_estudiante'],
+                            defaults={
+                                'tipo_beca': row['tipo_beca'],
+                                'monto': row['monto_asignado'],
+                                'duracion': row['duracion']
+                            }
+                        )
+                        if not created:
+                            beca.tipo_beca = row['tipo_beca']
+                            beca.monto = row['monto_asignado']
+                            beca.duracion = row['duracion']
+                            beca.save()
                 result_message = 'Carga exitosa'
             except Exception as e:
                 result_message = f'Error al cargar reporte: {e}'
         else:
-            result_message = 'El formulario no es válido.'
-            
-        return render(request, 'scholarship_data.html', {'form': form, 'result_message': result_message})
 
+            result_message = 'El formulario no es válido.'
+
+        return render(request, 'scholarship_data.html', {'form': form, 'result_message': result_message})

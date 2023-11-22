@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+<div class="d-flex justify-content-center mt-3">
+    <h1>Lista de Alumnos</h1>
+</div>
+<table class="table table-striped-columns mt-5">
+    <thead>
+      <tr>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Correo</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for Student in alumnos %}
+      <tr>
+        <td>{{ Student.student_code }}</td>
+        <td>{{ Student.name }}</td>
+        <td>{{ Student.cellphone_number }}</td>
+        <td>{{ Student.institutional_email }}</td>
+      </tr>
+    {% endfor %}  
+    </tbody>
+  </table>
+{% endblock content %}

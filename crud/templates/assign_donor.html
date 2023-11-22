@@ -53,8 +53,11 @@
                                     <p id="donors-prompt-message" class="text-center" style="font-size: 12px; color: rgb(168, 168, 172);">Verá los resultados en esta área</p>
                                 </ul>
                                 
-                                <!-- Email of the selected donor -->
-                                <input type="hidden" name="donor-id" id="donor-id-input" value="">
+                                <!-- Id of the selected donor -->
+                                <input type="hidden" name="donor-id" id="donor-id-input" value="" required>
+
+                                <!-- Id of the selected student -->
+                                <input type="hidden" name="student-id" id="student-id-input" value="" required>
                             </div>
                         </div>
                     </div>
@@ -70,7 +73,7 @@
             <div class="mt-5 d-flex justify-content-center">
                 {% if result_message %}
                 <div class="justify-content-center">
-                    {% if "Reporte generado y enviado con éxito" in result_message %}
+                    {% if "exitosamente" in result_message %}
                         <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
             
                     {% elif "Error" in result_message %}

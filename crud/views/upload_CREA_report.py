@@ -10,7 +10,7 @@ def home(request):
     return render(request, 'home.html')
 
 
-@login_required
+# @login_required
 def upload_CREA_report(request):
     if request.method == 'POST':
         try:
@@ -34,7 +34,7 @@ def upload_CREA_report(request):
                                                        monitor_name=row['Nombre monitoría'],
                                                        date=row['Fecha'],
                                                        hour=row['Hora'])
-                
+
                 if exists_row:
                     exists_row.update(**fields)
 
@@ -42,14 +42,13 @@ def upload_CREA_report(request):
                     report = CREAReport.objects.create(**fields)
                     report.save()
 
-
             result_message = "Carga exitosa"
 
         except Exception as e:
             result_message = "Error al cargar reporte"
-        
+
         return render(request, 'upload_CREA_report.html', {
-            'result_message' : result_message
+            'result_message': result_message
         })
 
     return render(request, 'upload_CREA_report.html')
