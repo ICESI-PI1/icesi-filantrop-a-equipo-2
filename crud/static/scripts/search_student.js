@@ -51,6 +51,8 @@ function update_results() {
         li.classList.add('list-group-item', 'student-item');
         li.textContent = result.display_text;
 
+        li.setAttribute('data-id', result.id);
+
         results_list.appendChild(li);
     
         // Adds the click event to each new element.
@@ -64,7 +66,10 @@ function update_results() {
             search_input.value = student_code + " - " + student_name;
             update_results();
 
-            document.getElementById('student-id-input').value = result.id;
+            // document.getElementById('student-id-input').value = result.id;
+            var student_id = this.getAttribute('data-id');
+
+            document.getElementById('student-id-input').value = student_id;
 
             // Call the auto_resize function after updating the message-area
             auto_resize(document.getElementById('message-area'));

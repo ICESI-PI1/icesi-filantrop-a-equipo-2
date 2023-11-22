@@ -50,7 +50,7 @@ function update_results() {
         li.classList.add('list-group-item', 'student-item');
         li.textContent = result.display_text;
 
-        // Set the email as a data attribute.
+        // Set the id as a data attribute.
         li.setAttribute('data-id', result.id);
 
         donor_results_list.appendChild(li);
