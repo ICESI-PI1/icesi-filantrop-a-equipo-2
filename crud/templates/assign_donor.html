@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Solicitar información </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/request_info_update_styles.css' %}">
+</head>
+<body>
+    <div class="d-flex justify-content-center">
+        <h1> Asignar estudiante a donante </h1>
+    </div>
+    <div class=" mt-2 justify-content-center container-fluid">
+        <form method="post" action="/assignDonor/">
+            {% csrf_token %}
+            
+            <div class="container-fluid my-5">
+                <div class="row justify-content-center">
+
+                    <!-- Student searcher -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body" style="height: 218px;">
+                                
+                                <!-- Search box -->
+                                    <div class="input-group rounded mb-4">
+                                        <input type="search" id="student-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon">
+
+                                    </div>
+            
+                                    <!-- List -->
+                                    <ul class="list-group" id="students-list" style="max-height: 125px; overflow-y: auto;">
+                                        <p id="student-prompt-message" class="text-center" style="font-size: 12px; color: rgb(168, 168, 172);">Verá los resultados en esta área</p>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Donor searcher -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body" style="height: 218px;">         
+
+                                <!-- Search box -->
+                                <div class="input-group rounded mb-4">
+                                    <input type="search" id="donor-search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al donante" aria-label="Search" aria-describedby="search-box-icon">
+
+                                </div>
+
+                                <!-- List -->
+                                <ul class="list-group" id="donors-list" style="max-height: 125px; overflow-y: auto;">
+                                    <p id="donors-prompt-message" class="text-center" style="font-size: 12px; color: rgb(168, 168, 172);">Verá los resultados en esta área</p>
+                                </ul>
+                                
+                                <!-- Id of the selected donor -->
+                                <input type="hidden" name="donor-id" id="donor-id-input" value="" required>
+
+                                <!-- Id of the selected student -->
+                                <input type="hidden" name="student-id" id="student-id-input" value="" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid my-5">
+            <!-- Send button -->
+            <div class="mt-5 d-flex justify-content-center">
+                <button class="btn btn-outline-primary" type="submit"> Asignar </button>
+            </div>
+            <!-- Result message management -->
+            <div class="mt-5 d-flex justify-content-center">
+                {% if result_message %}
+                <div class="justify-content-center">
+                    {% if "exitosamente" in result_message %}
+                        <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+            
+                    {% elif "Error" in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+            
+                    {% endif %}
+            
+                    <b style="font-size: 18px;"> {{ result_message }} </b>
+                </div>
+            
+                {% endif %}
+            </div>
+        </form>
+    </div>
+    
+    <script src="{% static 'scripts/search_student.js' %}"></script>
+    <script src="{% static 'scripts/search_donor.js' %}"></script>
+</body>
+</html>
+{% endblock content %}

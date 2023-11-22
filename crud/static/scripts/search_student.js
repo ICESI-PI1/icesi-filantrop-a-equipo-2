@@ -59,15 +59,21 @@ function update_results() {
             var student_name = student_info[1];
             var student_code = student_info[0];
 
-            document.getElementById('message-area').value += '\n-' + student_name + ' - ' + student_code;
+            console.log(student_name);
 
             search_input.value = student_code + " - " + student_name;
             update_results();
 
             document.getElementById('student-id-input').value = result.id;
 
-            // Call the auto_resize function after updating the message-area
-            auto_resize(document.getElementById('message-area'));
+            message_area = document.getElementById('message-area');
+
+            if (message_area != null) {
+                message_area.value += '\n-' + student_name + ' - ' + student_code;
+
+                // Call the auto_resize function after updating the message-area
+                auto_resize(message_area);
+            }
         });
     });
 
