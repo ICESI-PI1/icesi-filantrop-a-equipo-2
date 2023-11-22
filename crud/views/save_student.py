@@ -5,8 +5,10 @@ from crud.models import Student
 from datetime import datetime
 import pandas as pd
 import re
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def validate_data(data):
     try:
         for key, value in data.items():
@@ -51,7 +53,7 @@ def validate_data(data):
         # Agrega un manejo de excepciones para posibles errores aquí.
         return False, "Error en la validación de datos: " + str(e)
 
-
+@login_required
 def save_student(request):
     if request.method == "POST":
         message = ""

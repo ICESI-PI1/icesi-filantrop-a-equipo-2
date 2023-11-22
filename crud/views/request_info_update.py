@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 from email.message import EmailMessage
 import os
 
-
+@login_required
 def home(request):
     return render(request, 'home.html')
 
@@ -19,7 +19,7 @@ Renders the view to make a request, to an office, to update a student's informat
 
 When the user fills all the fields, this method receives the information and calls the send email function.
 """
-# @login_required
+@login_required
 def ask_info_update(request):
 
     offices = Office.objects.all()
@@ -62,6 +62,8 @@ def ask_info_update(request):
 """
 Given a destinatary, a message, a subject, and an optional file, sends an email, from the default mail.
 """
+
+@login_required
 def send_email(receiver_email, message, subject, attachment_paths=None):
     sender = "pi.seg.estudiantes@gmail.com"
     password = "zhazuuahhicywuyg"

@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from crud.models import Alerta, Student
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def crear_alerta(request):
     result_message = None
 

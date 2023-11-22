@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from crud.models import Student, Donor
 from django.http import HttpRequest
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def listar_dnts(request):
     donantes = Donor.objects.all()
     for donante in donantes:

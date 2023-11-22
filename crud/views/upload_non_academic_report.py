@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from crud.models import *
 
 
-# @login_required
+@login_required
 def upload_non_academic_report(request):
 
     if request.method == 'POST':

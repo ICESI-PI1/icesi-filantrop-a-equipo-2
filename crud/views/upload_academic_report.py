@@ -1,8 +1,10 @@
 from crud.models import Student, Document
 from django.shortcuts import render
 import os
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def uploadFile(request):
     result_message = None
 

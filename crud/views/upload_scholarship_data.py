@@ -6,6 +6,7 @@ from django.views import View
 from .forms import UploadFileForm
 from crud.models import Beca, Archivo
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 
 class LoadScholarshipData(View):
