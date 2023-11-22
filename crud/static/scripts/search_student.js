@@ -51,6 +51,8 @@ function update_results() {
         li.classList.add('list-group-item', 'student-item');
         li.textContent = result.display_text;
 
+        li.setAttribute('data-id', result.id);
+
         results_list.appendChild(li);
     
         // Adds the click event to each new element.
@@ -59,15 +61,24 @@ function update_results() {
             var student_name = student_info[1];
             var student_code = student_info[0];
 
-            document.getElementById('message-area').value += '\n-' + student_name + ' - ' + student_code;
+            console.log(student_name);
 
             search_input.value = student_code + " - " + student_name;
             update_results();
 
-            document.getElementById('student-id-input').value = result.id;
+            // document.getElementById('student-id-input').value = result.id;
+            var student_id = this.getAttribute('data-id');
 
-            // Call the auto_resize function after updating the message-area
-            auto_resize(document.getElementById('message-area'));
+            document.getElementById('student-id-input').value = student_id;
+
+            message_area = document.getElementById('message-area');
+
+            if (message_area != null) {
+                message_area.value += '\n-' + student_name + ' - ' + student_code;
+
+                // Call the auto_resize function after updating the message-area
+                auto_resize(message_area);
+            }
         });
     });
 

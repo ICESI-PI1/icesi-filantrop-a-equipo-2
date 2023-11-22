@@ -5,16 +5,16 @@ from django.http import HttpResponse
 from crud.models import *
 
 
-#@login_required
+@login_required
 def upload_non_academic_report(request):
 
     if request.method == 'POST':
-         
+
         try:
             received_file = request.FILES['report_file']
-            
+
             file = pd.read_excel(received_file)
-            
+
             for index, row in file.iterrows():
                 fields = {
                     'student_code': row['Código de estudiante'],
@@ -25,7 +25,7 @@ def upload_non_academic_report(request):
                     'semester': row['Semestre']
                 }
 
-                exists_row = NonAcademicActvitiesReport.objects.filter(student_code=row['Código de estudiante'], 
+                exists_row = NonAcademicActvitiesReport.objects.filter(student_code=row['Código de estudiante'],
                                                                        name=row['Nombres'],
                                                                        lastname=row['Apellidos'],
                                                                        activity=row['Actividad'],
@@ -35,7 +35,8 @@ def upload_non_academic_report(request):
                     exists_row.update(**fields)
 
                 else:
-                    report = NonAcademicActvitiesReport.objects.create(**fields)
+                    report = NonAcademicActvitiesReport.objects.create(
+                        **fields)
                     report.save()
 
             result_message = "Carga exitosa"

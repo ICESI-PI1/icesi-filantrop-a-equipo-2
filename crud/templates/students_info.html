@@ -1,4 +1,15 @@
 {% extends "base.html" %} {% block content %}
+<nav aria-label="breadcrumb" class="ms-4 mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/estudiantes">Estudiantes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Registro de Estudiante(s)
+    </li>
+  </ol>
+</nav>
+<div class="d-flex justify-content-center mt-4">
+  <h1> Registrar Estudiante(s)</h1>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-md-8 mt-4 mx-auto">
@@ -202,7 +213,7 @@
             <div class="d-flex justify-content-center">
               <button
                 type="submit"
-                class="btn btn-primary"
+                class="btn btn-outline-primary"
                 style="width: 100px; height: 50px"
                 id="sendForms"
               >
@@ -211,28 +222,20 @@
             </div>
           </form>
 
-            <form class="mt-5" method="POST" enctype="multipart/form-data">
+          <form class="mt-5" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="mb-3">
-              <label for="file" class="form-label">Seleccione un archivo Excel:</label>
-
+            <label for="file" class="form-label">Seleccione un archivo Excel:</label>
+            <div class="input-group">
               <input
                 type="file"
-                name="file_students"
+                name="file"
                 class="form-control"
-                id="inputGroupFile05"
-                aria-describedby="inputGroupFileAddon05"
-                aria-label="Upload"
-
+                id="file"
                 accept=".xlsx, .xls"
+                aria-describedby="inputGroupFileAddon04" aria-label="Upload"
               />
-                <button type="submit"
-                        class="btn btn-primary"
-                        id="inputGroupFileAddon05">
-                    Upload
-                </button>
+              <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
             </div>
-
           </form>
         </div>
       </div>

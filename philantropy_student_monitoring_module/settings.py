@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-wawmili2w7+vj^%f3+*__n7b4-ljwrn7-nw@4gxd4k7o*k1!_e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '127.0.0.1' ,'sistemadefilantropia.azurewebsites.net']
+ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['http://sistemadefilantropia.azurewebsites.net','https://sistemadefilantropia.azurewebsites.net']
 
 

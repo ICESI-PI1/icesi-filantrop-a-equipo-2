@@ -1,72 +1,71 @@
 {% extends "base.html" %} {% block content %}
-<div
-  class="container-fluid d-flex flex-column justify-content-center"
-  style="height: 75vh"
->
-<div>
-  <div class="row">
-    <div class="col-md-6 mt-5 d-flex align-items-center">
-      <a class="btn btn-primary custom-btn" href="/students_info" role="button" id="regEstud"
-        >Registrar Estudiante</a
-      >
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 mt-5 d-flex align-items-center">
-      <a
-        class="btn btn-primary custom-btn"
-        href="/info-financiera"
-        role="button"
-        id="subirBeca"
-        >Subir informacion de la Beca</a
-      >
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 mt-5 d-flex align-items-center">
-      <a class="btn btn-primary custom-btn" href="/askInfoUpdate" role="button" id="reqInfo"
-        >Solicitar Informacion</a
-      >
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 mt-5 d-flex align-items-center">
-      <a
-        class="btn btn-primary custom-btn"
-        href="/uploadNonAcademicReport"
-        role="button"
-        id="uploadBU"
-        >Subir informacion de BU</a
-      >
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 mt-5 d-flex align-items-center">
-      <a class="btn btn-primary custom-btn" href="/uploadAcademicReport" role="button" id="academicRprt"
-        >Subir Informacion Academica</a
-      >
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 mt-5 d-flex align-items-center">
-      <a
-        class="btn btn-primary custom-btn"
-        href="/uploadCREAReport"
-        role="button"
-        id="reportCREA"
-        >Subir Informacion del CREA</a
-      >
-    </div>
-  </div>
-  
+<div class="d-flex justify-content-center mt-3">
+  <h1> Seleccione una opción</h1>
 </div>
+<div class="container-fluid d-flex flex-column justify-content-center" style="height: 65vh">
+  <div class="row ms-4">
+    <div class="col-md-4 mt-3">
+      <a class="btn btn-primary custom-btn" href="/students_info" role="button" id="regEstud">
+        <i class="fa-solid fa-pen-to-square fa-lg"></i>Registrar Estudiante
+      </a>
+    </div>
+    <div class="col-md-4 mt-3">
+      <a class="btn btn-primary custom-btn" href="/info-financiera" role="button" id="subirBeca">
+        <i class="fas fa-upload fa-lg"></i> Subir Informacion de la Beca
+      </a>
+    </div>
+    <div class="col-md-4 mt-3">
+      <a class="btn btn-primary custom-btn" href="/askInfoUpdate" role="button" id="reqInfo">
+        <i class="fa-solid fa-file-circle-question fa-lg"></i> Solicitar Actualizacion de Informacion
+      </a>
+    </div>
+  </div>
+  <div class="row ms-4">
+    <div class="col-md-4 mt-3">
+      <a class="btn btn-primary custom-btn" href="/uploadNonAcademicReport" role="button" id="uploadBU">
+        <i class="fas fa-upload fa-lg"></i>Subir informacion de BU
+      </a>
+    </div>
+    <div class="col-md-4 mt-3">
+      <a class="btn btn-primary custom-btn" href="/uploadAcademicReport" role="button" id="academicRprt">
+        <i class="fas fa-upload fa-lg"></i> Subir Informacion Academica
+      </a>
+    </div>
+    <div class="col-md-4 mt-3">
+      <a href="/uploadCREAReport" role="button" id="reportCREA" class="btn btn-primary custom-btn">
+        <i class="fas fa-upload fa-lg"></i> Subir Información del CREA
+      </a>
+    </div>
+    <div class="col-md-4 mt-3">
+      <a class="btn btn-primary custom-btn" href="/send-notis" role="button" id="uploadBU">
+        <i class="fa-solid fa-bell"></i>Enviar Alarma</a>
+    </div>
+    <div class="col-md-4 mt-3">
+      <a class="btn btn-primary custom-btn" href="/assignDonor/" role="button" id="uploadBU">
+        <i class="fa-solid fa-user-tie"></i>Asignar Donante</a>
+    </div>
+  </div>  
+</div>
+
 <style>
   .custom-btn {
-    background-color: #3255a4;
-    border-radius: 20px; /* Cambia este valor para ajustar el radio de borde */
-    width: 50%;
+    width: 80%; 
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #ffffff; 
+    border: 1px solid #007bff;
+    color: #007bff; 
+    transition: background-color 0.3s, color 0.3s; 
+    border-radius: 20px; 
+  }
+
+  .custom-btn:hover {
+    background-color: #007bff;
+    color: #ffffff; 
   }
 </style>
 

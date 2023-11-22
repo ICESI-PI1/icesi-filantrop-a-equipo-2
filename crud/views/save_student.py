@@ -5,9 +5,11 @@ from crud.models import Student
 from datetime import datetime
 import pandas as pd
 import re
+from django.contrib.auth.decorators import login_required
+import traceback
 
 
-def validar_datos(data):
+def validate_data(data):
     try:
         for key, value in data.items():
             if not value:
@@ -21,7 +23,8 @@ def validar_datos(data):
 
         # Comprueba si la fecha de nacimiento es válida
         try:
-            birth_date = datetime.strptime(data['fecha_nacimiento'], '%d/%m/%Y')
+            birth_date = datetime.strptime(
+                data['fecha_nacimiento'], '%d/%m/%Y')
             if birth_date > datetime.now():
                 return False, "La fecha de nacimiento no puede ser en el futuro."
         except ValueError:
@@ -50,8 +53,8 @@ def validar_datos(data):
         # Agrega un manejo de excepciones para posibles errores aquí.
         return False, "Error en la validación de datos: " + str(e)
 
-
-def guardar_estudiante(request):
+@login_required
+def save_student(request):
     if request.method == "POST":
         message = ""
 
@@ -97,7 +100,7 @@ def guardar_estudiante(request):
             }
 
             if all(data.values()):
-                is_valid, message = validar_datos(data)
+                is_valid, message = validate_data(data)
 
             try:
                 with transaction.atomic():
@@ -113,6 +116,8 @@ def guardar_estudiante(request):
                 message = "El estudiante ya existe."
 
         except Exception as e:
+            traceback.print_exc()
+            print(f'Error: {e}')
             message = str(e)
 
         return render(request, 'students_info.html', {'result_message': message})
