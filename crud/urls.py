@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import login, save_student, request_info_update, upload_scholarship_data, upload_non_academic_report, estudiantes, upload_CREA_report, upload_academic_report, send_report_to_donor, api,donors, reportes, home, send_notifications, deleteAlertStud
+from .views import login, save_student, request_info_update, upload_scholarship_data, upload_non_academic_report, estudiantes, upload_CREA_report, upload_academic_report, send_report_to_donor, api,donors, reportes, home, send_notifications, deleteAlertStud, assign_donor
 
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     path('list-alerts/', home.listar_alertas),
     path('eliminarAlerta/<int:id_alert>',home.delete, name='eliminarAlerta'),
     path('eliminarAlerta-stud/<int:id_alert>',deleteAlertStud.delete_alert, name='eliminarAlertaEstud'),
-    path('send-notis/',send_notifications.crear_alerta, name='send-notis')
+    path('send-notis/',send_notifications.crear_alerta, name='send-notis'),
+    path('assignDonor/', assign_donor.assign_donor, name='assign-donor'),
 ]
 
