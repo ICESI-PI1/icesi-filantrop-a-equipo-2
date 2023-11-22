@@ -184,6 +184,8 @@ Receives certain information, obtains the basic format of the report (depending 
 
 At the final, returns the name of the generated report.
 """
+
+@login_required
 def generate_report(date, semester, student, report_type, testimony=None, non_academic_activities=None, crea_assistance=None, academic_info=None):
     try:
         report_name = f'{report_type} {student.student_code} - {semester}.docx'
@@ -246,6 +248,7 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
 """
 Reads a .docx document containing the basic format of the report to be generated. 
 """
+@login_required
 def read_report_format(report_type):
     # Checks the type of the report and reads the corresponding base
     if 'Reporte general' in report_type:

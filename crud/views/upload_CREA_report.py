@@ -5,12 +5,12 @@ import pandas as pd
 
 from crud.models import *
 
-
+@login_required
 def home(request):
     return render(request, 'home.html')
 
 
-# @login_required
+@login_required
 def upload_CREA_report(request):
     if request.method == 'POST':
         try:

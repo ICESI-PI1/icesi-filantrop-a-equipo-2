@@ -2,8 +2,10 @@ from django.db import IntegrityError, transaction
 from django.shortcuts import render
 from crud.models import Donor
 import re
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def validate_data(data):
     try:
         for key, value in data.items():
