@@ -2,10 +2,6 @@ from django.shortcuts import render, redirect
 from crud.models import Student, Donor, Alerta
 from django.http import HttpRequest
 from crud.views import listStudents
- 
-def listar_donantes(request):
-    donantes=Donor.objects.all()  
-    return render(request, "ListaDonantes.html",{"donantes": donantes})
 
 def listar_alertas(request):
     alertas= Alerta.objects.all()
@@ -29,10 +25,16 @@ def delete(request, id_alert):
     cantidad_alumnos = alumnos.count()
     return render(request, "home.html", {"alertas": alertas, "cantidad_donantes": cantidad_donantes, "cantidad_alumnos": cantidad_alumnos, "mensaje": 'OK'})
 
-def delete_estudiantes(request, student_code):
+def delete_estudiantes(student_code):
     alumno = Student.objects.get(student_code=student_code)
     alumno.delete()
     alumnos = Student.objects.all()
     
     return redirect ('listar_alumnos')
-    #return render(request, "ListaAlumnos.html", {"alumnos": alumnos, "mensaje": 'OK'})
+
+
+def delete_donante(request, donor_id):
+    donante = Donor.objects.get(id=donor_id)
+    donante.delete()
+    return redirect('listar_donantes')
+
