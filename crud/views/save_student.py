@@ -6,9 +6,9 @@ from datetime import datetime
 import pandas as pd
 import re
 from django.contrib.auth.decorators import login_required
+import traceback
 
 
-@login_required
 def validate_data(data):
     try:
         for key, value in data.items():
@@ -116,6 +116,8 @@ def save_student(request):
                 message = "El estudiante ya existe."
 
         except Exception as e:
+            traceback.print_exc()
+            print(f'Error: {e}')
             message = str(e)
 
         return render(request, 'students_info.html', {'result_message': message})

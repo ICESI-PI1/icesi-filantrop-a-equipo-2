@@ -3,9 +3,9 @@ from django.shortcuts import render
 from crud.models import Donor
 import re
 from django.contrib.auth.decorators import login_required
+import traceback
 
 
-@login_required
 def validate_data(data):
     try:
         for key, value in data.items():
@@ -28,6 +28,7 @@ def validate_data(data):
         return False, "Error en la validación de datos: " + str(e)
 
 
+@login_required
 def save_donor(request):
     if request.method == 'POST':
         try:
@@ -62,6 +63,7 @@ def save_donor(request):
             return render(request, 'create_donor.html', {'message': message})
 
         except Exception as e:
+            traceback.print_exc()
             message = "Error al crear el donante: " + str(e)
 
     return render(request, 'create_donor.html')
