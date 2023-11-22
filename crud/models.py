@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 
 # Create your models here.
@@ -212,3 +214,22 @@ class Donor(models.Model):
 
     def __str__(self):
         return "{} - {} {}".format(self.nit, self.name, self.lastname)
+    
+class Alerta(models.Model):
+    
+    id = models.AutoField(primary_key=True)
+    tipo = models.CharField(max_length=200)
+    descripcion = models.TextField()
+    student_code = models.CharField(max_length=9,null=False,blank=False)
+    name = models.CharField(max_length=100, null=False,blank=False)
+    fecha = models.DateTimeField(default=timezone.now)
+
+    def save(self, *args, **kwargs):
+        # Personaliza el formato de la fecha y hora antes de guardar
+        self.fecha = self.fecha.strftime('%Y-%m-%d %H:%M')
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.nombre
+
+
