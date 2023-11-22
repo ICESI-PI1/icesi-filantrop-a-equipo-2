@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'SistemaDeFilantropia'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0F5FB9E33CAF43BF8A929B5D138534C5 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_26786613C0E04385B5CB0114710956EC }}
