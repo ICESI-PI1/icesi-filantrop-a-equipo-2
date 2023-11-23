@@ -228,7 +228,6 @@
             <a class="btn btn-secondary" href="{% static 'formats/Formato-registro-estudiantes.xlsx' %}" download="Formato registro estudiantes">
                 <i class="fas fa-download"></i> Descargar formato de registro de estudiantes
             </a>
-
         </div>
           <form class="mt-5" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -245,11 +244,24 @@
               <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
             </div>
           </form>
-        </div>
-      </div>
     </div>
   </div>
+        {% if result_message %}
+                <div class="justify-content-center" id="succesfulMess">
+                    {% if "Estudiante creado exitosamente." in result_message %}
+                        <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+                    {% elif "Error al registrar estudiantes." in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+                    {% elif "El estudiante ya existe." in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+                    {% endif %}
+                    <b style="font-size: 18px;"> {{ result_message }} </b>
+                </div>
+        {% endif %}
+    </div>
 </div>
+</div>
+
 
 <script>
   // Example starter JavaScript for disabling form submissions if there are invalid fields

@@ -113,9 +113,14 @@ def save_student(request):
                         defaults=fields
                     )
 
+                    if created:
+                        message = "Estudiante creado exitosamente."
+                    else:
+                        message = "Error al registrar estudiantes."
+
         except Exception as e:
-            message = str(e)
+            message = "Error al cargar archivo: " + str(e)
 
         return render(request, 'students_info.html', {'result_message': message})
 
-    return render(request, 'students_info.html')
+    return render(request, 'students_info.html', {'result_message': ""})
