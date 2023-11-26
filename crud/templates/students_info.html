@@ -1,4 +1,16 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% load static %} {% block content %}
+<nav aria-label="breadcrumb" class="ms-4 mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/estudiantes">Estudiantes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Registro de Estudiante(s)
+    </li>
+  </ol>
+</nav>
+<div class="d-flex justify-content-center mt-4">
+  <h1> Registrar Estudiante(s)</h1>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-md-8 mt-4 mx-auto">
@@ -19,6 +31,7 @@
                     class="form-control"
                     name="nombre_completo"
                     placeholder="Ingrese el nombre completo"
+                    id="name"
                     required
                     />
                   <label class="form-label">Nombre completo</label>
@@ -34,6 +47,7 @@
                     name="codigo_identificador"
                     placeholder="Ingrese el código identificador"
                     required
+                    id="code"
                   />
                   <label class="form-label">Código identificador</label>
                   <div class="invalid-feedback">
@@ -43,7 +57,7 @@
 
                 <div class="mb-3">
                   <label> Tipo de documento</label>
-                  <select name="tipo_documento" class="form-select">
+                  <select name="tipo_documento" class="form-select" id="selDoc">
                     <option value="CC">Cédula de ciudadanía</option>
                     <option value="CE">Cédula de extranjería</option>
                     <option value="TI">Tarjeta de identidad</option>
@@ -62,6 +76,7 @@
                     name="numero_documento"
                     placeholder="Ingrese el número de documento"
                     required
+                    id="numDoc"
                   />
                   <label> Número de documento</label>
                   <div class="invalid-feedback">
@@ -71,7 +86,7 @@
 
                 <div class="mb-3">
                   <label> Género</label>
-                  <select name="genero" class="form-select" required >
+                  <select name="genero" class="form-select" required id="selectGnr">
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                     <option value="O">Otro</option>
@@ -88,6 +103,7 @@
                     name="correo_electronico"
                     placeholder="Ingrese el correo"
                     required
+                    id="email"
                   />
                   <label> Correo</label>
                   <div class="invalid-feedback">
@@ -104,6 +120,7 @@
                     name="correo_institucional"
                     placeholder="Ingrese el correo institucional"
                     required
+                    id="emailUni"
                   />
                   <label> Correo institucional</label>
                   <div class="invalid-feedback">
@@ -120,6 +137,7 @@
                     min="0"
                     max="500"
                     required
+                    id="icfes"
                   />
                   <label> Puntaje ICFES</label>
                   <div class="invalid-feedback">
@@ -150,6 +168,7 @@
                     name="numero_celular"
                     placeholder="Ingrese el número de celular"
                     required
+                    id="phone"
                   />
                   <label>Número de celular</label>
                   <div class="invalid-feedback">
@@ -167,6 +186,7 @@
                     class="form-control"
                     placeholder="Ingrese el promedio acumulado"
                     required
+                    id="promedio"
                   />
                   <label>Promedio acumulado</label>
                   <div class="invalid-feedback">
@@ -181,6 +201,7 @@
                     name="creditos_cursados"
                     placeholder="Ingrese los créditos cursados"
                     required
+                    id="creditos"
                   />
                   <label>Créditos cursados</label>
                   <div class="invalid-feedback">
@@ -193,18 +214,54 @@
             <div class="d-flex justify-content-center">
               <button
                 type="submit"
-                class="btn btn-primary"
+                class="btn btn-outline-primary"
                 style="width: 100px; height: 50px"
+                id="sendForms"
               >
                 Enviar
               </button>
             </div>
           </form>
+                <!-- Descarga de formato -->
+        <div class="mt-5 d-flex justify-content-center">
+
+            <a class="btn btn-secondary" href="{% static 'formats/Formato-registro-estudiantes.xlsx' %}" download="Formato registro estudiantes">
+                <i class="fas fa-download"></i> Descargar formato de registro de estudiantes
+            </a>
         </div>
-      </div>
+          <form class="mt-5" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="file" class="form-label">Seleccione un archivo Excel:</label>
+            <div class="input-group">
+              <input
+                type="file"
+                name="file"
+                class="form-control"
+                id="file"
+                accept=".xlsx, .xls"
+                aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+              />
+              <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
+            </div>
+          </form>
     </div>
   </div>
+        {% if result_message %}
+                <div class="justify-content-center" id="succesfulMess">
+                    {% if "Estudiante creado exitosamente." in result_message %}
+                        <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+                    {% elif "Error al registrar estudiantes." in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+                    {% elif "El estudiante ya existe." in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+                    {% endif %}
+                    <b style="font-size: 18px;"> {{ result_message }} </b>
+                </div>
+        {% endif %}
+    </div>
 </div>
+</div>
+
 
 <script>
   // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -228,5 +285,4 @@
     });
   })();
 </script>
-
 {% endblock content %}

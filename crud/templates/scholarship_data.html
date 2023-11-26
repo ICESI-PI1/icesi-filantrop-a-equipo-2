@@ -1,38 +1,61 @@
 {% extends "base.html" %} {% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/request_info_update_styles.css' %}">
+</head>
+<nav aria-label="breadcrumb" class="ms-4 mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/estudiantes">Estudiantes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Subir información de la beca
+    </li>
+  </ol>
+</nav>
 <div class="container mt-3">
   <h1 class="text-center">Cargar Informacion de las Becas Estudiantiles</h1>
 
+
+  <div class="mt-5 d-flex justify-content-center">
+    <a
+      class="btn btn-secondary"
+      href="{% static 'formats/Formato Reporte Becas.xlsx' %}"
+      download="Formato Reporte Becas"
+    >
+      <i class="fas fa-download"></i> Descargar formato del reporte
+    </a>
+  </div>
+
   <form class="mt-5" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="mb-3">
-      <label for="file" class="form-label">Seleccione un archivo Excel:</label>
+    <div class="input-group">
       <input
         type="file"
         name="file"
         class="form-control"
         id="file"
         accept=".xlsx, .xls"
+        aria-describedby="inputGroupFileAddon04" aria-label="Upload"
       />
+      <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
     </div>
-    <button type="submit" class="btn btn-primary">Cargar</button>
   </form>
 
-  <h2 class="mt-5">Historial de Archivos Subidos</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nombre del Archivo</th>
-        <th>Fecha</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for archivo in archivos %}
-      <tr>
-        <td>{{ archivo.nombre }}</td>
-        <td>{{ archivo.fecha }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+  <div class="mt-5 d-flex justify-content-center">
+    {% if result_message %}
+
+    <div class="justify-content-center">
+        {% if "Carga exitosa" in result_message %}
+            <img src="{% static 'images/confirmation.png' %}" alt="Éxito:" id="uploadSucess">
+
+        {% elif "El formulario no es válido." in result_message %}
+            <img src="{% static 'images/error.png' %}" alt="Error: ">
+
+        {% endif %}
+
+        <b style="font-size: 18px;"> {{ result_message }} </b>
+    </div>
+
+    {% endif %}
 {% endblock content %}
