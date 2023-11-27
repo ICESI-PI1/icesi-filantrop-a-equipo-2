@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+{% load static %} {% block content %}
+<nav aria-label="breadcrumb" class="ms-4 mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/estudiantes">Estudiantes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Registro de Estudiante(s)
+    </li>
+  </ol>
+</nav>
+<div class="d-flex justify-content-center mt-4">
+  <h1> Registrar Estudiante(s)</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-4 mx-auto">
+      <div class="card my-auto">
+        <div class="card-body">
+          <form
+            class="needs-validation"
+            novalidate
+            method="post"
+            action="/students_info/"
+          >
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nombre_completo"
+                    placeholder="Ingrese el nombre completo"
+                    id="name"
+                    required
+                    />
+                  <label class="form-label">Nombre completo</label>
+                  <div class="invalid-feedback">
+                    Ingrese el nombre completo del estudiante
+                  </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="codigo_identificador"
+                    placeholder="Ingrese el código identificador"
+                    required
+                    id="code"
+                  />
+                  <label class="form-label">Código identificador</label>
+                  <div class="invalid-feedback">
+                    Ingrese el codigo del estudiante
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label> Tipo de documento</label>
+                  <select name="tipo_documento" class="form-select" id="selDoc">
+                    <option value="CC">Cédula de ciudadanía</option>
+                    <option value="CE">Cédula de extranjería</option>
+                    <option value="TI">Tarjeta de identidad</option>
+                    <option value="PA">Pasaporte</option>
+                    <option value="RC">Registro civil</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Seleccione una de las opciones
+                  </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="numero_documento"
+                    placeholder="Ingrese el número de documento"
+                    required
+                    id="numDoc"
+                  />
+                  <label> Número de documento</label>
+                  <div class="invalid-feedback">
+                    Ingrese el numero de documento del estudiante
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label> Género</label>
+                  <select name="genero" class="form-select" required id="selectGnr">
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                    <option value="O">Otro</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Seleccione una de las opciones
+                  </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="correo_electronico"
+                    placeholder="Ingrese el correo"
+                    required
+                    id="email"
+                  />
+                  <label> Correo</label>
+                  <div class="invalid-feedback">
+                    Ingrese el correo del estudiante
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="correo_institucional"
+                    placeholder="Ingrese el correo institucional"
+                    required
+                    id="emailUni"
+                  />
+                  <label> Correo institucional</label>
+                  <div class="invalid-feedback">
+                    Ingrese el correo institucional del estudiante
+                  </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="puntaje_icfes"
+                    placeholder="Ingrese el puntaje ICFES"
+                    min="0"
+                    max="500"
+                    required
+                    id="icfes"
+                  />
+                  <label> Puntaje ICFES</label>
+                  <div class="invalid-feedback">
+                    Ingrese el puntaje ICFES del estudiante
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="start">Fecha de Nacimiento</label>
+                  <input
+                    type="date"
+                    id="start"
+                    class="form-control"
+                    name="fecha_nacimiento"
+                    min="1980-01-01"
+                    max="2023-12-31"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Ingrese la fecha de nacimiento del estudiante
+                  </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="tel"
+                    class="form-control"
+                    name="numero_celular"
+                    placeholder="Ingrese el número de celular"
+                    required
+                    id="phone"
+                  />
+                  <label>Número de celular</label>
+                  <div class="invalid-feedback">
+                    Ingrese numero de celular del estudiante
+                  </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    max="5.0"
+                    name="promedio_acumulado"
+                    class="form-control"
+                    placeholder="Ingrese el promedio acumulado"
+                    required
+                    id="promedio"
+                  />
+                  <label>Promedio acumulado</label>
+                  <div class="invalid-feedback">
+                    Ingrese el promedio acumulado del estudiante
+                  </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="creditos_cursados"
+                    placeholder="Ingrese los créditos cursados"
+                    required
+                    id="creditos"
+                  />
+                  <label>Créditos cursados</label>
+                  <div class="invalid-feedback">
+                    Ingrese el numero de creditos cursados del estudiante
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button
+                type="submit"
+                class="btn btn-outline-primary"
+                style="width: 100px; height: 50px"
+                id="sendForms"
+              >
+                Enviar
+              </button>
+            </div>
+          </form>
+                <!-- Descarga de formato -->
+        <div class="mt-5 d-flex justify-content-center">
+
+            <a class="btn btn-secondary" href="{% static 'formats/Formato-registro-estudiantes.xlsx' %}" download="Formato registro estudiantes">
+                <i class="fas fa-download"></i> Descargar formato de registro de estudiantes
+            </a>
+        </div>
+          <form class="mt-5" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="file" class="form-label">Seleccione un archivo Excel:</label>
+            <div class="input-group">
+              <input
+                type="file"
+                name="file"
+                class="form-control"
+                id="file"
+                accept=".xlsx, .xls"
+                aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+              />
+              <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
+            </div>
+          </form>
+    </div>
+  </div>
+        {% if result_message %}
+                <div class="justify-content-center" id="succesfulMess">
+                    {% if "Estudiante creado exitosamente." in result_message %}
+                        <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+                    {% elif "Error al registrar estudiantes." in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+                    {% elif "El estudiante ya existe." in result_message %}
+                        <img src="{% static 'images/error.png' %}" alt="Error: ">
+                    {% endif %}
+                    <b style="font-size: 18px;"> {{ result_message }} </b>
+                </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (() => {
+    "use strict";
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll(".needs-validation");
+    // Loop over them and prevent submission
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>
+{% endblock content %}

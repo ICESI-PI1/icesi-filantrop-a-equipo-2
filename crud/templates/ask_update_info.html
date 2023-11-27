@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Solicitar información </title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/request_info_update_styles.css' %}">
+
+</head>
+
+<body>
+
+  <nav aria-label="breadcrumb" class="ms-4 mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/estudiantes">Estudiantes</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Solicitar Información
+      </li>
+    </ol>
+  </nav>
+  
+  <div class="d-flex justify-content-center">
+    <h1> Solicitud de actualización de información </h1>
+  </div>
+
+  <div class="mt-5 d-flex justify-content-center">
+    
+    <form method="post" action="/askInfoUpdate/">
+    {% csrf_token %}
+
+
+    <!-- Office selector -->
+    <div class="justify-content-center container">
+
+      <p class="text-center fs-5 fw-bold"> Oficina: </p>
+      <select class="form-select" name="offices" id="selOffice">
+        <option value=""> Selecciona una Oficina </option>
+        
+        {% for office in offices %}
+          <option value="{{ office.id }}">{{ office.name }}</option>
+        {% endfor %}
+          
+      </select>
+
+    </div>
+    
+    <!-- Student searcher -->
+    <div class="justify-content-center d-flex container my-5">
+      <div class="d-flex justify-content-center">
+        <div class="col-lg-6" style="width: 100%;">
+          <div class="card">
+            <div class="card-body">
+
+              <!-- Search box -->
+              <div class="input-group rounded mb-4">
+                
+                <input type="search" id="search-box" class="form-control rounded" style="width: 100%;" placeholder="Busca al estudiante" aria-label="Search" aria-describedby="search-box-icon">
+              
+              </div>
+              
+              <!-- List -->
+              <ul class="list-group" id="students-list">
+                {% for student in students %}
+                  
+                  <li class="list-group-item student-item" data-student-id="{{ student.id }}">
+                      {{ student.name }} - {{ student.student_code }}
+                  </li>
+
+                {% endfor %}
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <!-- Message area -->
+    <div class="mt-1 justify-content-center">
+      <span class="input-group-text"> Mensaje a enviar </span>
+      <textarea name="message-area" id="message-area" class="form-control auto-resize-textarea" aria-label="With textarea" style="height: 200px;" oninput="auto_resize(this)">Buenos días/tardes. 
+
+Por medio del presente, solicito la actualización de la información de los siguientes estudiantes, desde la Oficina de Filantropía:</textarea>
+
+      <script>
+        function auto_resize(element) {
+          element.style.height = 'auto';
+          element.style.height = (element.scrollHeight) + 'px';
+        }
+      </script>
+    
+    </div>
+
+    <div class="mt-5 d-flex justify-content-center">
+      <button class="btn btn-outline-primary" type="submit" id="sendReq"> Solicitar </button>
+    </div>
+
+    {% if result_message %}
+    <div class="mt-5 justify-content-center" id="message">
+      {% if "Actualización solicitada correctamente" in result_message %}
+        <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+  
+      {% elif "Error" in result_message %}
+        <img src="{% static 'images/error.png' %}" alt="Error: ">
+  
+      {% endif %}
+  
+      <b style="font-size: 18px;"> {{ result_message }} </b>
+    </div>
+    {% endif %}
+
+    </form>
+    
+  </div>
+
+  <script src="{% static 'scripts/request_info_update_script.js' %}"></script>
+
+</body>
+</html>
+
+{% endblock content %}

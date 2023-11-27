@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head>
+    {% load static %}
+</head>
+<nav aria-label="breadcrumb" class="ms-4 mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/estudiantes">Estudiantes</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Subir Reporte de Actividades No Academicas
+      </li>
+    </ol>
+  </nav>
+<div class="d-flex justify-content-center mt-5">
+    <h1 class="text-center"> Subir archivo de reporte de seguimiento de actividades no académicas </h1>
+</div>
+
+
+
+
+
+<body>
+
+    <div class="mt-5 d-flex justify-content-center">
+
+        <a class="btn btn-secondary" href="{% static 'formats/Formato Actividades No Academicas.xlsx' %}" download="Formato Reporte Actividades No Academicas">
+            <i class="fas fa-download"></i> Descargar formato del reporte
+        </a>
+
+    </div>
+
+    <div class="mt-5 d-flex justify-content-center">
+        <form method="post" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+    
+            <div class="input-group">
+                <input type="file" name="report_file" class="form-control" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".xls, .xlsx">
+                <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
+            </div>
+
+            {% if result_message %}
+            <div class="mt-5 justify-content-center" id="succesfulMess">
+                {% if "Carga exitosa" in result_message %}
+                  <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+          
+                {% elif "Error al cargar reporte" in result_message %}
+                  <img src="{% static 'images/error.png' %}" alt="Error: ">
+          
+                {% endif %}
+          
+                <b style="font-size: 18px;"> {{ result_message }} </b>
+            </div>
+            {% endif %}
+          
+
+        </form>
+    </div>
+</body>
+</html>
+
+{% endblock content %}

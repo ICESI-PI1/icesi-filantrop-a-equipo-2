@@ -1,0 +1,68 @@
+{% extends "base.html" %} {% block content %}
+<nav aria-label="breadcrumb" class="ms-4 mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Listado de Donantes
+    </li>
+  </ol>
+</nav>
+
+<div class="d-flex justify-content-center mt-3">
+    <h1>Lista de Donantes</h1>
+</div>
+<table class="table table-striped-columns mt-5">
+    <thead>
+      <tr>
+        <th scope="col">Nit</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Tipo de Persona</th>
+        <th scope="col">Estudiantes Beneficiados</th>
+        <th scope="col">Eliminar</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for Donor in donantes %}
+      <tr>
+        <td>{{ Donor.nit}}</td>
+        <td>{{ Donor.name }}</td>
+        <td>{{ Donor.lastname }}</td>
+        <td>{{ Donor.email }}</td>
+        <td>{{ Donor.type }}</td>
+        <td class="text-center">
+          <!-- Botón que abre el modal con la lista de estudiantes -->
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#studentsModal{{ Donor.id }}">
+            Ver estudiantes
+          </button>
+    
+          <!-- Modal -->
+          <div class="modal fade" id="studentsModal{{ Donor.id }}" tabindex="-1" aria-labelledby="studentsModalLabel{{ Donor.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="studentsModalLabel{{ Donor.id }}">Estudiante(s) Beneficiados por: {{ Donor.name }} {{ Donor.lastname }} </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <!-- Aquí se llenará la lista de estudiantes -->
+                  {% for Student in Donor.estudiantes_asociados %}
+                    <p><strong>Código:</strong> {{ Student.student_code }}</p>
+                    <p><strong>Nombre:</strong> {{ Student.name }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="text-center">
+          <a href="{% url 'eliminar_donante' Donor.id %}" class="btn btn-outline-danger"><i class="fa-solid fa-trash fa-xs"></i></a>
+        </td>
+      </tr>
+    {% endfor %}
+    
+    </tbody>
+  </table>
+{% endblock content %}

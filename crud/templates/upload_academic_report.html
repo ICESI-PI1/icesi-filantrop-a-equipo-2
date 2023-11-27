@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<nav aria-label="breadcrumb" class="ms-4 mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/estudiantes">Estudiantes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Subir Reporte Academico
+    </li>
+  </ol>
+</nav>
+<div class="container mt-3">
+  <h1 class="text-center">Cargar Academica de los Estudiantes</h1>
+  <form action="" method="POST" enctype="multipart/form-data", class="mt-5">  
+    {% csrf_token %}
+    <div class="input-group">
+        <input
+          type="file"
+          name="uploadedFile"
+          class="form-control"
+          id="file"
+        />
+        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Subir</button>
+      </div>
+    </form>
+
+    <div class="mt-5 d-flex justify-content-center">
+        {% if result_message %}
+    
+        <div class="justify-content-center" id="succesfulMess">
+            {% if "Archivo cargado exitosamente." in result_message %}
+                <img src="{% static 'images/confirmation.png' %}" alt="Éxito: ">
+    
+            {% elif "No se proporcionó ningún archivo." in result_message %}
+                <img src="{% static 'images/error.png' %}" alt="Error: ">
+    
+            {% endif %}
+    
+            <b style="font-size: 18px;"> {{ result_message }} </b>
+        </div>
+        {% endif %}
+{% endblock content %}  

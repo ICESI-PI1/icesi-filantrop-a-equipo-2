@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block content %}
+<nav aria-label="breadcrumb" class="ms-4 mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Listado de Alertas
+    </li>
+  </ol>
+</nav>
+
+<div class="d-flex justify-content-center mt-3">
+    <h1>Lista de Alertas</h1>
+</div>
+
+{% if mensaje %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Alerta eliminada exitosamente
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+{% endif %}
+<table class="table table-striped-columns mt-5">
+    <thead>
+      <tr>
+        <th scope="col">Codigo Alerta</th>
+        <th scope="col">Tipo de Alarma</th>
+        <th scope="col">descripcion</th>
+        <th scope="col">Codigo del Estudiante</th>
+        <th scope="col">Nombre Estudiante</th>
+        <th scope="col">Fecha de Generacion</th>
+        <th scope="col">Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for Alerta in alertas %}
+      <tr>
+        <td>{{ Alerta.id }}</td>
+        <td>{{ Alerta.tipo }}</td>
+        <td>{{ Alerta.descripcion }}</td>
+        <td>{{ Alerta.student_code }}</td>
+        <td>{{ Alerta.name }}</td>
+        <td>{{ Alerta.fecha }}</td>
+        <td class="text-center"><a class="btn btn-outline-danger " href="{% url 'eliminarAlertaEstud' Alerta.id %}"><i class="fa-solid fa-trash fa-2xs"></i></a></td>
+
+      </tr>
+    {% endfor %}  
+    </tbody>
+  </table>
+{% endblock content %}
