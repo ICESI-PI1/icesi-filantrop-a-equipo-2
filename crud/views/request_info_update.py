@@ -9,6 +9,13 @@ from email.mime.text import MIMEText
 from email.message import EmailMessage
 import os
 
+import traceback
+
+from django.contrib import messages
+from django.urls import reverse
+
+
+
 @login_required
 def home(request):
     return render(request, 'home.html')
@@ -23,11 +30,10 @@ When the user fills all the fields, this method receives the information and cal
 def ask_info_update(request):
 
     offices = Office.objects.all()
-    students = Student.objects.all()
 
     if request.method == 'POST':
         try:
-            selected_office_id = request.POST.get('offices')
+            selected_office_id = request.POST.get('selected-office', '')
             message = request.POST.get('message-area', '')
 
             selected_office = Office.objects.get(id=selected_office_id)
@@ -38,31 +44,26 @@ def ask_info_update(request):
 
             result_message = "Actualización solicitada correctamente"
 
-        except Exception:
-            result_message = "Error al solicitar actualización"
+        except Exception as e:
+            traceback.print_exc()
+            print(f'Error: {e}')
 
-            return render(request, 'ask_update_info.html', {
-                'offices': offices,
-                'students': students,
-                'result_message': result_message
-            })
+            result_message = "Error al solicitar actualización"
 
         return render(request, 'ask_update_info.html', {
             'offices': offices,
-            'students': students,
             'result_message': result_message
         })
 
     return render(request, 'ask_update_info.html', {
         'offices': offices,
-        'students': students
     })
 
 
 """
 Given a destinatary, a message, a subject, and an optional file, sends an email, from the default mail.
 """
-@login_required
+# @login_required
 def send_email(receiver_email, message, subject, attachment_paths=None):
     sender = "pi.seg.estudiantes@gmail.com"
     password = "zhazuuahhicywuyg"
