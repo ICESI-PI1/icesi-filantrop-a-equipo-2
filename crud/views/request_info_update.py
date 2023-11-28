@@ -54,11 +54,15 @@ def ask_info_update(request):
             'offices': offices,
             'result_message': result_message
         })
-
-    return render(request, 'ask_update_info.html', {
-        'offices': offices,
-    })
-
+    
+    if 'Filantropía' in request.user.user_type:
+        return render(request, 'ask_update_info.html', {
+            'offices': offices,
+            'user': request.user
+        })
+    
+    else:
+        return redirect('/home/')
 
 """
 Given a destinatary, a message, a subject, and an optional file, sends an email, from the default mail.

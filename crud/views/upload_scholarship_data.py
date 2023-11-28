@@ -1,6 +1,6 @@
 import pandas as pd
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
 from .forms import UploadFileForm
@@ -17,10 +17,16 @@ class LoadScholarshipData(View):
         for archivo in archivos:
             print(f'Nombre del archivo: {archivo.nombre}')
             print(f'Fecha: {archivo.fecha}')
-        return render(request, 'scholarship_data.html', {
-            'form': form,
-            'archivos': archivos
-        })
+
+        if 'Apoyo Financiero' in request.user.user_type:
+            return render(request, 'scholarship_data.html', {
+                'form': form,
+                'archivos': archivos,
+                'user': request.user
+            })
+        
+        else:
+            return redirect('/home/')
 
     def post(self, request):
         form = UploadFileForm(request.POST, request.FILES)
@@ -55,4 +61,11 @@ class LoadScholarshipData(View):
 
             result_message = 'El formulario no es válido.'
 
-        return render(request, 'scholarship_data.html', {'form': form, 'result_message': result_message})
+        if 'Apoyo Financiero' in request.user.user_type:
+            return render(request, 'scholarship_data.html', {
+                'form': form, 'result_message': result_message,
+                'user': request.user
+            })
+        
+        else:
+            return redirect('/home/')

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 import pandas as pd
 from django.http import HttpResponse
@@ -34,4 +34,11 @@ def assign_donor(request):
             'result_message': result_message
         })
 
-    return render(request, 'assign_donor.html')
+
+    if 'Filantropía' in request.user.user_type:
+        return render(request, 'assign_donor.html', {
+            'user': request.user
+        })
+
+    else:
+        return redirect('/home/')

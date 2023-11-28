@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 import pandas as pd
 from django.http import HttpResponse
@@ -48,4 +48,10 @@ def upload_non_academic_report(request):
             'result_message': result_message
         })
 
-    return render(request, "upload_non_academic_report.html")
+    if 'Bienestar Universitario' in request.user.user_type:
+        return render(request, "upload_non_academic_report.html", {
+            'user': request.user
+        })
+    
+    else:
+        return redirect('/home/')

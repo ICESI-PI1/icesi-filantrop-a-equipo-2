@@ -1,5 +1,5 @@
 from django.db import IntegrityError, transaction
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from crud.models import Donor
 import re
 from django.contrib.auth.decorators import login_required
@@ -66,4 +66,10 @@ def save_donor(request):
             traceback.print_exc()
             message = "Error al crear el donante: " + str(e)
 
-    return render(request, 'create_donor.html')
+    if 'Filantropía' in request.user.user_type:
+        return render(request, 'create_donor.html', {
+            'user': request.user
+        })
+
+    else:
+        return redirect('/home/')

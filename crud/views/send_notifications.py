@@ -27,4 +27,13 @@ def crear_alerta(request):
             result_message = f'Error al crear la alerta: {str(e)}'
 
     alumnos = Student.objects.all()
-    return render(request, 'send_notifications.html', {'alumnos': alumnos, 'result_message': result_message})
+
+    if 'Director de Programa' in request.user.user_type:
+        return render(request, 'send_notifications.html', {
+            'alumnos': alumnos, 
+            'result_message': result_message,
+            'user': request.user
+        })
+    
+    else:
+        return redirect('/home/')

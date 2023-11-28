@@ -1,6 +1,6 @@
 from django.db import IntegrityError, transaction
 from django.http import HttpResponseBadRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from crud.models import Student
 from datetime import datetime
 import pandas as pd
@@ -123,4 +123,11 @@ def save_student(request):
 
         return render(request, 'students_info.html', {'result_message': message})
 
-    return render(request, 'students_info.html', {'result_message': ""})
+    if 'Registro Académico' in request.user.user_type:
+        return render(request, 'students_info.html', {
+            'result_message': "",
+            'user': request.user
+        })
+    
+    else:
+        return redirect('/home/')

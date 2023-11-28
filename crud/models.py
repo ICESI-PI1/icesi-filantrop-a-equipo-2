@@ -32,6 +32,7 @@ class CustomUserManager(BaseUserManager):
 
         return self._create_user(username, password, user_type, **extra_fields)
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=1000,
                                 null=False,
@@ -44,8 +45,8 @@ class User(AbstractBaseUser, PermissionsMixin):
                                   blank=False)
     
     last_name = models.CharField(max_length=1000,
-                                 null=False,
-                                 blank=False)
+                                 null=True,
+                                 blank=True)
     
     email = models.CharField(max_length=1000,
                              null=False,
@@ -53,7 +54,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     ROL_OPTIONS = {
         ('Filantropía', 'Filantropía'),
-        ('Bienestar Universitario', 'Bienestar Universitario')
+        ('Bienestar Universitario', 'Bienestar Universitario'),
+        ('Director de Programa', 'Director de Programa'),
+        ('Apoyo Financiero', 'Apoyo Financiero'),
+        ('Registro Académico', 'Registro Académico'),
+        ('CREA', 'CREA')
     }
     
     user_type = models.CharField(max_length=100,
@@ -81,8 +86,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
-    groups = models.ManyToManyField(Group, related_name='crud_users')
-    user_permissions = models.ManyToManyField(Permission, related_name='crud_users_permissions')
+    groups = models.ManyToManyField(Group, 
+                                    related_name='crud_users',
+                                    null=True,
+                                    blank=True)
+    
+    user_permissions = models.ManyToManyField(Permission, 
+                                              related_name='crud_users_permissions',
+                                              null=True,
+                                              blank=True)
 
     class Meta:
         verbose_name = 'User'
