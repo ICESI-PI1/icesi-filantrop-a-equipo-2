@@ -53,20 +53,26 @@
                 >Inicio</a
               >
             </li>
-            <li class="nav-item ms-3 flex-fill">
-              <a
-                class="nav-link text-white fs-5 btn-outline-light"
-                href="/sendReportToDonor"
-                >Reportes</a
-              >
-            </li>
-            <li class="nav-item ms-3 flex-fill">
-              <a
-                class="nav-link text-white fs-5 btn-outline-light"
-                href="/create_donor"
-                >Donantes</a
-              >
-            </li>
+
+            {% if 'Filantropía' in user.user_type %}
+              <li class="nav-item ms-3 flex-fill">
+                <a
+                  class="nav-link text-white fs-5 btn-outline-light"
+                  href="/sendReportToDonor"
+                  >Reportes</a
+                >
+              </li>
+
+
+              <li class="nav-item ms-3 flex-fill">
+                <a
+                  class="nav-link text-white fs-5 btn-outline-light"
+                  href="/create_donor"
+                  >Donantes</a
+                >
+              </li>
+            {% endif %}
+
             <li class="nav-item ms-3 flex-fill">
               <a
                 class="nav-link text-white fs-5 btn-outline-light"
@@ -74,25 +80,29 @@
                 >Estudiantes</a
               >
             </li>
-            <li class="nav-item dropdown ms-3 flex-fill">
-              <div class="dropdown">
-                <button
-                  class="btn dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i
-                    class="fa-regular fa-bell fa-2xl"
-                    style="color: #ffffff"
-                  ></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li><a class="dropdown-item" href="/list-alerts">Notificaciones</a></li>
-                </ul>
-              </div>
-            </li>
+            
+            {% if 'Filantropía' in user.user_type %}
+              <li class="nav-item dropdown ms-3 flex-fill">
+                <div class="dropdown">
+                  <button
+                    class="btn dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i
+                      class="fa-regular fa-bell fa-2xl"
+                      style="color: #ffffff"
+                    ></i>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="/list-alerts">Notificaciones</a></li>
+                  </ul>
+                </div>
+              </li>
+            {% endif %}
+
             <li class="nav-item dropdown ms-3 flex-fill">
               <div class="dropdown">
                 <button
