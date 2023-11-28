@@ -1,140 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {% load static %}
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        {% load static %}
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Oficina de Filantropía</title>
-    <!--<link rel="stylesheet" type="text/css" href="{% static 'styles/base.css' %}">-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    />
-    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
-    <!-- jQuery, Popper.js, y Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
+        <title>Oficina de Filantropía</title>
+        <!--<link rel="stylesheet" type="text/css" href="{% static 'styles/base.css' %}">-->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        />
+        <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+        <!-- jQuery, Popper.js, y Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
 
-  <body>
-    <nav
-      class="navbar sticky-top navbar-expand-lg"
-      style="background-color: #003da0"
-    >
-      <div class="container d-flex align-items-center">
-        <div class="h-100">
-          <a class="navbar-brand" href="/home/">
-            <img
-              class="img-fluid"
-              src="{% static 'images/filantropia_logo.png' %}"
-              width="160"
-            />
-          </a>
-        </div>
-
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+    <body>
+        <nav
+            class="navbar sticky-top navbar-expand-lg"
+            style="background-color: #003da0"
         >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav d-flex flex-row flex-fill text-center">
-            <li class="nav-item ms-3 flex-fill">
-              <a class="nav-link text-white fs-5 btn-outline-light" href="/home"
-                >Inicio</a
-              >
-            </li>
-
-            {% if 'Filantropía' in user.user_type %}
-              <li class="nav-item ms-3 flex-fill">
-                <a
-                  class="nav-link text-white fs-5 btn-outline-light"
-                  href="/sendReportToDonor"
-                  >Reportes</a
-                >
-              </li>
-
-
-              <li class="nav-item ms-3 flex-fill">
-                <a
-                  class="nav-link text-white fs-5 btn-outline-light"
-                  href="/create_donor"
-                  >Donantes</a
-                >
-              </li>
-            {% endif %}
-
-            <li class="nav-item ms-3 flex-fill">
-              <a
-                class="nav-link text-white fs-5 btn-outline-light"
-                href="/estudiantes"
-                >Estudiantes</a
-              >
-            </li>
-            
-            {% if 'Filantropía' in user.user_type %}
-              <li class="nav-item dropdown ms-3 flex-fill">
-                <div class="dropdown">
-                  <button
-                    class="btn dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i
-                      class="fa-regular fa-bell fa-2xl"
-                      style="color: #ffffff"
-                    ></i>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="/list-alerts">Notificaciones</a></li>
-                  </ul>
+            <div class="container d-flex align-items-center">
+                <div class="h-100">
+                    <a class="navbar-brand" href="/home/">
+                        <img
+                            class="img-fluid"
+                            src="{% static 'images/filantropia_logo.png' %}"
+                            width="160"
+                        />
+                    </a>
                 </div>
-              </li>
-            {% endif %}
 
-            <li class="nav-item dropdown ms-3 flex-fill">
-              <div class="dropdown">
                 <button
-                  class="btn dropdown-toggle"
-                  type="button"
-                  id="profiledropdownMenuButton"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
                 >
-                  <i
-                    class="fa-regular fa-user fa-2xl"
-                    style="color: #ffffff"
-                  ></i>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li>
-                    <a class="dropdown-item" id="logout" href="/"
-                      >Cerrar Sesion</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <style>
-      .dropdown-toggle::after {
-        color: #ffffff !important; /* Cambia el color de la flecha a blanco */
-      }
-    </style>
-  </body>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav d-flex flex-row flex-fill text-center">
+                        <li class="nav-item ms-3 flex-fill">
+                            <a class="nav-link text-white fs-5 btn-outline-light" href="/home"
+                              >Inicio</a
+                            >
+                        </li>
+
+                        {% if 'Filantropía' in user.user_type %}
+                            <li class="nav-item ms-3 flex-fill">
+                                <a
+                                  class="nav-link text-white fs-5 btn-outline-light"
+                                  href="/sendReportToDonor"
+                                  >Reportes</a
+                                >
+                            </li>
+
+
+                            <li class="nav-item ms-3 flex-fill">
+                                <a
+                                  class="nav-link text-white fs-5 btn-outline-light"
+                                  href="/create_donor"
+                                  >Donantes</a
+                                >
+                            </li>
+
+                            <li class="nav-item ms-3 flex-fill">
+                                <a
+                                  class="nav-link text-white fs-5 btn-outline-light"
+                                  href="/estudiantes"
+                                  >Estudiantes</a
+                                >
+                            </li>
+                        {% endif %}
+
+                        {% if 'Director de Programa' in user.user_type %}
+                            <li class="nav-item ms-3 flex-fill">
+                                <a
+                                class="nav-link text-white fs-5 btn-outline-light"
+                                href="/send-notis"
+                                >Enviar Alarma</a
+                                >
+                            </li>
+
+                            <li class="nav-item ms-3 flex-fill">
+                                <a
+                                class="nav-link text-white fs-5 btn-outline-light"
+                                href="/uploadAcademicReport"
+                                >Reporte Académico</a
+                                >
+                            </li>
+                        {% endif %}
+
+                        {% if 'Registro Académico' in user.user_type %}
+                            <li class="nav-item ms-3 flex-fill">
+                                <a
+                                class="nav-link text-white fs-5 btn-outline-light"
+                                href="/students_info"
+                                >Registrar Estudiante</a
+                                >
+                            </li>
+                        {% endif %}
+
+                        {% if 'Apoyo Financiero' in user.user_type %}
+                            <li class="nav-item ms-3 flex-fill">
+                                <a
+                                class="nav-link text-white fs-5 btn-outline-light"
+                                href="/info-financiera"
+                                >Información de beca</a
+                                >
+                            </li>
+                        {% endif %}
+
+                        {% if 'Bienestar Universitario' in user.user_type %}
+                            <li class="nav-item ms-3 flex-fill">
+                                <a
+                                class="nav-link text-white fs-5 btn-outline-light"
+                                href="/uploadNonAcademicReport"
+                                >Reporte actividades</a
+                                >
+                            </li>
+                        {% endif %}
+
+                        {% if 'CREA' in user.user_type %}
+                            <li class="nav-item ms-3 flex-fill">
+                                <a
+                                class="nav-link text-white fs-5 btn-outline-light"
+                                href="/uploadCREAReport"
+                                >Reporte asistencia</a
+                                >
+                            </li>
+                        {% endif %}
+
+                        {% if 'Filantropía' in user.user_type %}
+                            <li class="nav-item dropdown ms-3 flex-fill">
+                                <div class="dropdown">
+                                    <button
+                                        class="btn dropdown-toggle"
+                                        type="button"
+                                        id="dropdownMenuButton"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        <i
+                                          class="fa-regular fa-bell fa-2xl"
+                                          style="color: #ffffff"
+                                        ></i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item" href="/list-alerts">Notificaciones</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        <li class="nav-item dropdown ms-3 flex-fill">
+                            <div class="dropdown">
+                                <button
+                                    class="btn dropdown-toggle"
+                                    type="button"
+                                    id="profiledropdownMenuButton"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    <i
+                                        class="fa-regular fa-user fa-2xl"
+                                        style="color: #ffffff"
+                                    ></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                      <a class="dropdown-item" id="logout" href="/"
+                                        >Cerrar Sesion</a
+                                      >
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <style>
+          .dropdown-toggle::after {
+            color: #ffffff !important; /* Cambia el color de la flecha a blanco */
+          }
+        </style>
+    </body>
 </html>
 {% block content %} {% endblock %}

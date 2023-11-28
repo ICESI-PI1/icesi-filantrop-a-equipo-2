@@ -16,7 +16,19 @@ def contar_registers(request):
     cantidad_donantes = donantes.count()
     alumnos=Student.objects.all()  
     cantidad_alumnos = alumnos.count()
-    return render (request, "home.html",{"cantidad_donantes": cantidad_donantes, "cantidad_alumnos": cantidad_alumnos, "alertas": alertas})
+
+    if 'Filantropía' in request.user.user_type:
+        return render (request, "home.html",{
+                "cantidad_donantes": cantidad_donantes, 
+                "cantidad_alumnos": cantidad_alumnos, 
+                "alertas": alertas,
+                "user": request.user
+            })    
+    else:
+        return render (request, "non_philantropy_user_home.html",{
+            "user": request.user
+        })
+    
 
 @login_required
 def delete(request, id_alert):
