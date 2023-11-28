@@ -94,7 +94,13 @@ def send_report_to_donor(request):
 
         return render(request, 'send_report_to_donor.html', html_data)
 
-    return render(request, 'send_report_to_donor.html')
+    if 'Filantropía' in request.user.user_type:
+        return render(request, 'send_report_to_donor.html', {
+            'user': request.user
+        })
+    
+    else:
+        return redirect('/home/')
 
 
 """
