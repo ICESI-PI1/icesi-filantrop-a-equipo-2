@@ -3,4 +3,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def estudiantes(request):
-    return render(request, 'estudiantes.html')
+    return render(request, 'estudiantes.html', {
+        'user': request.user
+    })

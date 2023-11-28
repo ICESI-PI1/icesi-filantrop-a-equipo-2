@@ -5,48 +5,70 @@
 
 <div class="container-fluid d-flex flex-column justify-content-center" style="height: 65vh">
     <div class="row ms-4">
-        <div class="col-md-4 mt-3">
-            <a class="btn btn-primary custom-btn" href="/students_info" role="button" id="regEstud">
-                <i class="fa-solid fa-pen-to-square fa-lg"></i>Registrar Estudiante
-            </a>
-        </div>
-        <div class="col-md-4 mt-3">
-            <a class="btn btn-primary custom-btn" href="/info-financiera" role="button" id="subirBeca">
-                <i class="fas fa-upload fa-lg"></i> Subir Información de la Beca
-            </a>
-        </div>
-        <div class="col-md-4 mt-3">
-            <a class="btn btn-primary custom-btn" href="/askInfoUpdate" role="button" id="reqInfo">
-                <i class="fa-solid fa-file-circle-question fa-lg"></i> Solicitar Actualización de Información
-            </a>
-        </div>
+
+        {% if 'Registro Académico' in user.user_type %}
+            <div class="col-md-4 mt-3">
+                <a class="btn btn-primary custom-btn" href="/students_info" role="button" id="regEstud">
+                    <i class="fa-solid fa-pen-to-square fa-lg"></i>Registrar Estudiante
+                </a>
+            </div>
+        {% endif %}
+
+        {% if 'Apoyo Financiero' in user.user_type %}
+            <div class="col-md-4 mt-3">
+                <a class="btn btn-primary custom-btn" href="/info-financiera" role="button" id="subirBeca">
+                    <i class="fas fa-upload fa-lg"></i> Subir Información de la Beca
+                </a>
+            </div>
+        {% endif %}
+
+        {% if 'Filantropía' in user.user_type %}
+            <div class="col-md-4 mt-3">
+                <a class="btn btn-primary custom-btn" href="/askInfoUpdate" role="button" id="reqInfo">
+                    <i class="fa-solid fa-file-circle-question fa-lg"></i> Solicitar Actualización de Información
+                </a>
+            </div>
+
+            <div class="col-md-4 mt-3">
+                <a class="btn btn-primary custom-btn" href="/assignDonor/" role="button" id="uploadBU">
+                    <i class="fa-solid fa-user-tie"></i>Asignar Donante
+                </a>
+            </div>
+        {% endif %}
+
     </div>
     <div class="row ms-4">
-        <div class="col-md-4 mt-3">
-            <a class="btn btn-primary custom-btn" href="/uploadNonAcademicReport" role="button" id="uploadBU">
-                <i class="fas fa-upload fa-lg"></i>Subir información de BU
-            </a>
-        </div>
-        <div class="col-md-4 mt-3">
-            <a class="btn btn-primary custom-btn" href="/uploadAcademicReport" role="button" id="academicRprt">
-                <i class="fas fa-upload fa-lg"></i> Subir Información Académica
-            </a>
-        </div>
-        <div class="col-md-4 mt-3">
-            <a href="/uploadCREAReport" role="button" id="reportCREA" class="btn btn-primary custom-btn">
-                <i class="fas fa-upload fa-lg"></i> Subir Información del CREA
-            </a>
-        </div>
-        <div class="col-md-4 mt-3">
-            <a class="btn btn-primary custom-btn" href="/send-notis" role="button" id="uploadBU">
-                <i class="fa-solid fa-bell"></i>Enviar Alarma
-            </a>
-        </div>
-        <div class="col-md-4 mt-3">
-            <a class="btn btn-primary custom-btn" href="/assignDonor/" role="button" id="uploadBU">
-                <i class="fa-solid fa-user-tie"></i>Asignar Donante
-            </a>
-        </div>
+        
+        {% if 'Bienestar Universitario' in user.user_type %}
+            <div class="col-md-4 mt-3">
+                <a class="btn btn-primary custom-btn" href="/uploadNonAcademicReport" role="button" id="uploadBU">
+                    <i class="fas fa-upload fa-lg"></i>Subir información de BU
+                </a>
+            </div>
+        {% endif %}
+
+        {% if 'Director de Programa' in user.user_type %}
+            <div class="col-md-4 mt-3">
+                <a class="btn btn-primary custom-btn" href="/uploadAcademicReport" role="button" id="academicRprt">
+                    <i class="fas fa-upload fa-lg"></i> Subir Información Académica
+                </a>
+            </div>
+
+            <div class="col-md-4 mt-3">
+                <a class="btn btn-primary custom-btn" href="/send-notis" role="button" id="uploadBU">
+                    <i class="fa-solid fa-bell"></i>Enviar Alarma
+                </a>
+            </div>
+        {% endif %}
+
+        {% if 'CREA' in user.user_type %}
+            <div class="col-md-4 mt-3">
+                <a href="/uploadCREAReport" role="button" id="reportCREA" class="btn btn-primary custom-btn">
+                    <i class="fas fa-upload fa-lg"></i> Subir Información del CREA
+                </a>
+            </div>
+        {% endif %}
+
     </div>  
 </div>
 
