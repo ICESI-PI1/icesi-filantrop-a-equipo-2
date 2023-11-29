@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from crud.models import Student, Donor
 from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
@@ -12,5 +12,13 @@ def listar_dnts(request):
         
         # Convertimos el QuerySet a una lista
         donante.estudiantes_asociados = list(estudiantes_asociados)
-    return render(request, "ListaDonantes.html", {"donantes": donantes})
+
+    if 'Filantropía' in request.user.user_type:
+        return render(request, "ListaDonantes.html", {
+            "donantes": donantes,
+            "user": request.user
+        })
+    
+    else:
+        return redirect('/home/')
 

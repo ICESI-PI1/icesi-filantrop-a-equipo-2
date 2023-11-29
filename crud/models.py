@@ -1,8 +1,105 @@
+from typing import Any
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser, BaseUserManager, UserManager, AbstractBaseUser, PermissionsMixin, Group, Permission
+from datetime import datetime
+
+from django.contrib.auth.models import User
 
 # Create your models here.
 
+
+class CustomUserManager(BaseUserManager):
+    def _create_user(self, username, password, user_type, **extra_fields):
+        if not username:
+            raise ValueError('El nombre de usuario es obligatorio')
+        
+        user = self.model(username=username, user_type=user_type, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+
+        return user
+    
+    def create_user(self, username=None, password=None, user_type=None, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+
+        return self._create_user(username, password, user_type, **extra_fields)
+    
+    def create_superuser(self, username=None, password=None, user_type=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        return self._create_user(username, password, user_type, **extra_fields)
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(max_length=1000,
+                                null=False,
+                                blank=False,
+                                default='username',
+                                unique=True)
+
+    first_name = models.CharField(max_length=1000,
+                                  null=False,
+                                  blank=False)
+    
+    last_name = models.CharField(max_length=1000,
+                                 null=True,
+                                 blank=True)
+    
+    email = models.CharField(max_length=1000,
+                             null=False,
+                             blank=False)
+    
+    ROL_OPTIONS = {
+        ('Filantropía', 'Filantropía'),
+        ('Bienestar Universitario', 'Bienestar Universitario'),
+        ('Director de Programa', 'Director de Programa'),
+        ('Apoyo Financiero', 'Apoyo Financiero'),
+        ('Registro Académico', 'Registro Académico'),
+        ('CREA', 'CREA')
+    }
+    
+    user_type = models.CharField(max_length=100,
+                                 null=True,
+                                 blank=True,
+                                 choices=ROL_OPTIONS)
+    
+    is_active = models.BooleanField(default=True)
+
+    is_superuser = models.BooleanField(default=False)
+
+    is_staff = models.BooleanField(default=False)
+
+    date_joined = models.DateTimeField(default=timezone.now, 
+                                       null=False,
+                                       blank=False)
+    
+    last_login = models.DateTimeField(blank=True,
+                                      null=True)
+    
+    USERNAME_FIELD = 'username'
+    EMAIL_FIELD = 'email'
+
+    REQUIRED_FIELDS = ['email']
+
+    objects = CustomUserManager()
+
+    groups = models.ManyToManyField(Group, 
+                                    related_name='crud_users',
+                                    null=True,
+                                    blank=True)
+    
+    user_permissions = models.ManyToManyField(Permission, 
+                                              related_name='crud_users_permissions',
+                                              null=True,
+                                              blank=True)
+
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
+    
 
 class Office(models.Model):
     name = models.CharField(max_length=25,

@@ -9,6 +9,8 @@ from docx.shared import Pt
 import traceback
 
 from crud.views.request_info_update import send_email
+from django.contrib.auth import get_user_model
+
 
 
 """
@@ -37,71 +39,42 @@ def send_report_to_donor(request):
             html_data['selected_donor_id'] = selected_donor_id
             html_data['email_message'] = email_message
             
-            student_testimony = request.POST.get('student-testimony', '')
-
             date = datetime.now().date()
             semester = f'{date.year} - 1' if date.month < 6 else f'{date.year} - 2'
 
             report_type = request.POST.get('report-type', '')
 
-            # Tries to get the selected student's non academic activities. If there is no one, don't stop the report generation. 
-            try:
-                non_academic_activities = NonAcademicActvitiesReport.objects.get(
-                    student_code=selected_student_id)
+            selected_student = Student.objects.get(id=selected_student_id)
 
-            except Exception as e:
-                traceback.print_exc()
-                print(f"Error: {e}")
+            student_testimony = None
+            non_academic_activities = None
+            crea_assistance = None
+            academic_info = None 
+            academic_report_name = None
 
-                non_academic_activities = "No se registran asistencias a actividades no académicas."
+            if 'Reporte general' in report_type:
+                student_testimony = request.POST.get('student-testimony', '')
 
-            try:
-                crea_assistance = CREAReport.objects.get(student_code=selected_student_id)
+                non_academic_activities = extract_non_academic_information(selected_student.student_code)
+                crea_assistance = extract_crea_information(selected_student.student_code)
+                academic_info, academic_report_name = extract_academic_information(selected_student_id)
 
-            except Exception as e:
-                traceback.print_exc()
-                print(f"Error: {e}")
-
-                crea_assistance = "No se registran asistencias a monitorías."
-
-            try:
-                academic_info = AcademicDocument.objects.filter(codigo_estudiante=selected_student_id).first()
-
-                academic_report_name = str(academic_info.uploadedFile).split('/')[-1]
-                print(academic_report_name)
-
+                academic_info = 'No se registra información académica.' if academic_info is None else academic_info
+            
                 # Charges the academic report name if there is a matching document
                 html_data['academic_report_name'] = academic_report_name
 
-            # Catches the exception when there is not a matching document
-            except Exception as e:
-                traceback.print_exc()
-                print(f"Error: {e}")
-
-                academic_info = None
-                academic_report_name = None
-
-            report_name = ''
-
-            # Searches the selected student on the db
-            selected_student = Student.objects.get(id=selected_student_id)
-
-            # Send different parameters depending on the report type
-            if 'Reporte general' in report_type:
-                if  academic_info is None:
-                    academic_info = 'No se registra información académica.'
-
-                    report_name = generate_report(date, semester, selected_student, report_type, testimony=student_testimony, non_academic_activities=non_academic_activities, crea_assistance=crea_assistance, academic_info=academic_info)
-                else:
-                    report_name = generate_report(date, semester, selected_student, report_type, testimony=student_testimony, non_academic_activities=non_academic_activities, crea_assistance=crea_assistance)
+                print(f'ACTIVIDADES NO ACADÉMICAS: {non_academic_activities}')
+                print(f'CREA: {crea_assistance}')
 
             elif 'Reporte de actividades no académicas' in report_type:
-                report_name = generate_report(date, semester, selected_student, report_type, non_academic_activities=non_academic_activities)
+                non_academic_activities = extract_non_academic_information(selected_student.student_code)
 
             elif 'Reporte de asistencia al CREA' in report_type:
-                report_name = generate_report(date, semester, selected_student, report_type, crea_assistance=crea_assistance)
-                print(crea_assistance)
+                crea_assistance = extract_crea_information(selected_student.student_code)
 
+            report_name = generate_report(date, semester, selected_student, report_type, testimony=student_testimony, non_academic_activities=non_academic_activities, crea_assistance=crea_assistance, academic_info=academic_info)
+                
             result_message = "Reporte generado con éxito"
 
             # Charges the generated report name to the html once it has been created successfully
@@ -123,15 +96,83 @@ def send_report_to_donor(request):
 
         return render(request, 'send_report_to_donor.html', html_data)
 
-    return render(request, 'send_report_to_donor.html')
+    if 'Filantropía' in request.user.user_type:
+        return render(request, 'send_report_to_donor.html', {
+            'user': request.user
+        })
+    
+    else:
+        return redirect('/home/')
+
+
+"""
+Searches into the DB for the CREA assistance information of the student passed as parameter, and returns it in a string.
+"""
+def extract_crea_information(student_code):
+    try:
+        crea_information = CREAReport.objects.filter(student_code=student_code)
+
+        print(f'INFO: {crea_information}')
+
+        info_str = 'No se registran asistencias a monitorías.' if not crea_information.exists() is None else ''
+
+        for info in crea_information:
+            info_str += f'\nNombre monitoría: {info.monitor_name}\n'
+            info_str += f'Razón de asistencia: {info.reason}\n'
+            info_str += f'Resultado de la monitoría: {info.result}\n'
+            info_str += f'Fecha de la monitoría: {info.date}\n'
+    
+    except Exception as e:
+        traceback.print_exc()
+        print(f"Error: {e}")
+
+    return info_str
+
+
+"""
+Searches into the DB for the non academic information of the student passed as parameter, and returns it in a string.
+"""
+def extract_non_academic_information(student_code):
+    try:
+        non_academic_information = NonAcademicActvitiesReport.objects.filter(student_code=student_code)
+
+        info_str = ''
+        info_str = 'No se registran asistencias a actividades no académicas.' if not non_academic_information.exists() is None else ''
+
+        for info in non_academic_information:
+            info_str += f'\nNombre actividad: {info.activity}\n'
+            info_str += f'Cantidad de horas asistidas: {info.activity_hours}\n'
+    
+    except Exception as e:
+        traceback.print_exc()
+        print(f"Error: {e}")
+
+    return info_str
+
+
+"""
+Searches into the DB for the academic information of the student passed as parameter, and returns the name of that report.
+"""
+def extract_academic_information(student_id):
+    try:
+        academic_info = AcademicDocument.objects.filter(codigo_estudiante=student_id).first()
+
+        academic_report_name = str(academic_info.uploadedFile).split('/')[-1]
+
+    # Catches the exception when there is not a matching document
+    except Exception as e:
+        traceback.print_exc()
+        print(f"Error: {e}")
+
+        academic_info = None
+        academic_report_name = None
+
+    return academic_info, academic_report_name
 
 
 """
 Manages the event when the user clicks the send button, confirming that she/he is in agreement by sending the generated report.
 """
-
-
-@login_required
 def send_report(request):
     try:
         # Gets the info
@@ -184,8 +225,6 @@ Receives certain information, obtains the basic format of the report (depending 
 
 At the final, returns the name of the generated report.
 """
-
-@login_required
 def generate_report(date, semester, student, report_type, testimony=None, non_academic_activities=None, crea_assistance=None, academic_info=None):
     try:
         report_name = f'{report_type} {student.student_code} - {semester}.docx'
@@ -248,7 +287,6 @@ def generate_report(date, semester, student, report_type, testimony=None, non_ac
 """
 Reads a .docx document containing the basic format of the report to be generated. 
 """
-@login_required
 def read_report_format(report_type):
     # Checks the type of the report and reads the corresponding base
     if 'Reporte general' in report_type:

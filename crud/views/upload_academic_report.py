@@ -1,5 +1,5 @@
 from crud.models import Student, Document
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import os
 from django.contrib.auth.decorators import login_required
 
@@ -52,4 +52,12 @@ def uploadFile(request):
 
     documents = Document.objects.all()
 
-    return render(request, "upload_academic_report.html", context={"files": documents, "result_message": result_message})
+    if 'Director de Programa' in request.user.user_type:
+        return render(request, "upload_academic_report.html", context={
+            "files": documents, 
+            "result_message": result_message,
+            "user": request.user
+        })
+    
+    else:
+        return redirect('/home/')

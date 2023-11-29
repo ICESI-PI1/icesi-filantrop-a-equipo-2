@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from crud.models import Beca, Student
 from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
@@ -12,4 +12,12 @@ def listar_alumnos(request):
             alumno.beca = beca
         except Beca.DoesNotExist:
             alumno.beca = None
-    return render(request, "ListaAlumnos.html", {"alumnos": alumnos})
+
+    if 'Filantropía' in request.user.user_type:
+        return render(request, "ListaAlumnos.html", {
+            "alumnos": alumnos,
+            "user": request.user
+        })
+    
+    else:
+        return redirect('/home/')
